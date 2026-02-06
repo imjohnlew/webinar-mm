@@ -1,0 +1,212 @@
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { BookOpen, Search, Siren, Flag, Menu, X, Filter, Layers, ScanEye, ChevronLeft, LayoutGrid, ChevronUp } from 'lucide-react';
+
+import IndustrySelector from './components/IndustrySelector';
+import BusinessModelViz from './components/BusinessModelViz';
+import MindsetSession from './components/MindsetSession';
+import KillRoom from './components/KillRoom';
+import FunnelSimulation from './components/FunnelSimulation';
+import CustomerJourneyBuilder from './components/CustomerJourneyBuilder';
+import ClosingSession from './components/ClosingSession';
+import IndustryScanner from './components/IndustryScanner';
+
+const TABS = [
+  { id: 'mindset', label: '1. The Mindset', icon: BookOpen },
+  { id: 'scanner', label: '2. Industry Scanner', icon: ScanEye },
+  { id: 'discovery', label: '3. Niche Deep Dive', icon: Search },
+  { id: 'diagnosis', label: '4. The Kill Room', icon: Siren },
+  { id: 'simulation', label: '5. The Funnel Lab', icon: Filter },
+  { id: 'builder', label: '6. Journey Builder', icon: Layers },
+  { id: 'closing', label: '7. The Bridge', icon: Flag },
+];
+
+const PINNED_IDS = ['simulation', 'builder'];
+
+function App() {
+  const [activeTab, setActiveTab] = useState('mindset');
+  const [selectedIndustry, setSelectedIndustry] = useState(null);
+  const [isNavOpen, setIsNavOpen] = useState(false); // Mobile nav toggle
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
+
+  // Split tabs
+  const pinnedTabs = TABS.filter(t => PINNED_IDS.includes(t.id));
+  const moreTabs = TABS.filter(t => !PINNED_IDS.includes(t.id));
+  const isMoreActive = moreTabs.some(t => t.id === activeTab);
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'mindset':
+        return <MindsetSession />;
+      case 'scanner':
+        return <IndustryScanner />;
+      case 'discovery':
+        if (selectedIndustry) {
+          return <BusinessModelViz industry={selectedIndustry} onBack={() => setSelectedIndustry(null)} />;
+        }
+        return <IndustrySelector onSelect={setSelectedIndustry} />;
+      case 'diagnosis':
+        return <KillRoom />;
+      case 'simulation':
+        return <FunnelSimulation />;
+      case 'builder':
+        return <CustomerJourneyBuilder industry={selectedIndustry} />;
+      case 'closing':
+        return <ClosingSession />;
+      default:
+        return <MindsetSession />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0f172a] text-slate-100 font-sans selection:bg-red-500/30 overflow-x-hidden">
+      {/* Background Noise/Gradient */}
+      <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none -z-10" />
+      <div className="fixed top-0 left-0 w-full h-[500px] bg-gradient-to-b from-blue-900/20 to-transparent -z-10 pointer-events-none" />
+
+      {/* Mobile Header */}
+      <div className="lg:hidden p-4 flex items-center justify-between border-b border-slate-800 bg-[#0f172a]/90 backdrop-blur z-50 sticky top-0">
+        <span className="font-bold text-lg tracking-widest uppercase">AI Agency Day 1</span>
+        <button onClick={() => setIsNavOpen(!isNavOpen)}>
+          {isNavOpen ? <X /> : <Menu />}
+        </button>
+      </div>
+
+      <div className="flex flex-col lg:flex-row min-h-screen">
+
+        {/* Sidebar Navigation (Desktop) / Drawer (Mobile) */}
+        <motion.nav
+          initial={false}
+          animate={{
+            width: isSidebarVisible ? 256 : 0,
+            x: isSidebarVisible ? 0 : -256,
+            opacity: isSidebarVisible ? 1 : 0
+          }}
+          transition={{ duration: 0.3, type: 'spring', bounce: 0, stiffness: 100 }}
+          className={`
+            fixed lg:sticky top-0 left-0 h-screen bg-[#0B1120] border-r border-slate-800 z-40
+            flex flex-col overflow-visible whitespace-nowrap
+            ${!isSidebarVisible && 'pointer-events-none'}
+          `}
+        >
+          <div className="p-8 flex items-center justify-between">
+            <div className="min-w-[160px]">
+              <h1 className="text-2xl font-black tracking-tighter text-white mb-1">AGENCY<span className="text-blue-500">OS</span></h1>
+              <p className="text-xs text-slate-500 font-mono uppercase tracking-widest">Instructor Mode</p>
+            </div>
+            <button onClick={() => setIsSidebarVisible(false)} className="text-slate-500 hover:text-white lg:block hidden">
+              <ChevronLeft />
+            </button>
+          </div>
+
+          {/* PINNED TABS */}
+          <div className="px-4 space-y-2 min-w-[256px]">
+            {pinnedTabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => { setActiveTab(tab.id); setIsNavOpen(false); }}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group
+                    ${isActive
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+                      : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                    }
+                  `}
+                >
+                  <tab.icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-white'}`} />
+                  <span className="font-medium text-sm text-left">{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* SPACER */}
+          <div className="flex-1" />
+
+          {/* MORE TOOLS (Bottom) */}
+          <div className="p-4 min-w-[256px] relative z-50">
+
+            {/* POPUP MENU */}
+            <AnimatePresence>
+              {showMoreMenu && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute bottom-full left-4 right-4 mb-2 bg-[#1a2333] border border-slate-700 rounded-xl shadow-2xl overflow-hidden flex flex-col p-2 space-y-1"
+                >
+                  <div className="px-3 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider mb-1 border-b border-slate-700/50">
+                    More Tools
+                  </div>
+                  {moreTabs.map((tab) => {
+                    const isActive = activeTab === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => { setActiveTab(tab.id); setIsNavOpen(false); setShowMoreMenu(false); }}
+                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all
+                                    ${isActive ? 'bg-blue-500/20 text-blue-400' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}
+                                  `}
+                      >
+                        <tab.icon className="w-4 h-4" />
+                        <span className="text-sm font-medium">{tab.label}</span>
+                      </button>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <button
+              onClick={() => setShowMoreMenu(!showMoreMenu)}
+              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all
+                    ${isMoreActive || showMoreMenu
+                  ? 'bg-slate-800 border-slate-700 text-white'
+                  : 'bg-transparent border-transparent text-slate-500 hover:bg-slate-900 hover:text-white'
+                }
+                `}
+            >
+              <div className="flex items-center gap-3">
+                <LayoutGrid className="w-5 h-5" />
+                <span className="font-medium text-sm">More Tools</span>
+              </div>
+              <ChevronUp className={`w-4 h-4 transition-transform ${showMoreMenu ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
+
+        </motion.nav>
+
+        {/* Toggle Button (When Sidebar Hidden) */}
+        {!isSidebarVisible && (
+          <button
+            onClick={() => setIsSidebarVisible(true)}
+            className="fixed top-6 left-6 z-50 p-3 bg-slate-800 border border-slate-700 rounded-full shadow-lg text-slate-400 hover:text-white hover:scale-110 transition-all hover:bg-slate-700"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        )}
+
+        {/* Main Content */}
+        <main className="flex-1 relative overflow-y-auto h-screen">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="p-4 md:p-8 lg:p-12"
+            >
+              {renderContent()}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+      </div>
+    </div>
+  );
+}
+
+export default App;
