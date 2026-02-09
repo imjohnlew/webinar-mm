@@ -1,4 +1,4 @@
-import { Stethoscope, Scale, Users, Megaphone, Globe, Mail, Video, MousePointerClick, Calendar, FileText, Search, MapPin, Linkedin, Youtube, Instagram, BookOpen } from 'lucide-react';
+import { Stethoscope, Scale, Users, Megaphone, Globe, Mail, Video, MousePointerClick, Calendar, FileText, Search, MapPin, Linkedin, Youtube, Instagram, BookOpen, MessageCircle, Sparkles } from 'lucide-react';
 
 // Master list of all possible "Lego Blocks" for each category
 export const MASTER_BLOCKS = {
@@ -14,11 +14,13 @@ export const MASTER_BLOCKS = {
         { id: 'webinars', name: 'Webinars', icon: Video },
     ],
     funnel: [
-        { id: 'ad_click', name: 'Ad Click', icon: MousePointerClick },
         { id: 'landing_page', name: 'Landing Page', icon: Globe },
         { id: 'lead_magnet', name: 'Lead Magnet', icon: GiftIcon },
         { id: 'booking', name: 'Booking Calendar', icon: Calendar },
         { id: 'email_seq', name: 'Email Sequence', icon: Mail },
+        { id: 'whatsapp', name: 'WhatsApp', icon: MessageCircle },
+        { id: 'messenger', name: 'Messenger', icon: MessageCircle },
+        { id: 'webinar_funnel', name: 'Webinar', icon: Video },
         { id: 'call', name: 'Sales Call', icon: Stethoscope }, // Reusing stethoscope for "Consultation" vibe or generic phone
         { id: 'visit', name: 'In-Person Visit', icon: MapPin },
     ],
@@ -37,6 +39,34 @@ export const MASTER_BLOCKS = {
 // Let's rely on the industry mapping to specific IDs in MASTER_BLOCKS.
 
 export const industries = [
+    {
+        id: 'new',
+        name: 'NEW',
+        type: 'Custom Project',
+        icon: Sparkles,
+        description: 'Start from scratch with a blank canvas.',
+        color: 'from-amber-400 to-orange-500',
+        model: {
+            lead: {
+                title: 'Traffic Sources',
+                description: 'Where are your customers coming from?',
+                activeBlocks: [],
+                skills: []
+            },
+            offer: {
+                title: 'The Offer',
+                description: 'What are you selling?',
+                activeBlocks: [],
+                skills: []
+            },
+            funnel: {
+                title: 'The Funnel',
+                description: 'How do you convert them?',
+                activeBlocks: [],
+                skills: []
+            }
+        }
+    },
     {
         id: 'dental',
         name: 'Dental Clinic',
@@ -66,7 +96,7 @@ export const industries = [
             funnel: {
                 title: 'The Funnel',
                 description: 'Converting interest into a booked appointment.',
-                activeBlocks: ['ad_click', 'landing_page', 'booking', 'visit'],
+                activeBlocks: ['landing_page', 'booking', 'visit'],
                 skills: [
                     { name: 'Landing Page Design', icon: MousePointerClick },
                     { name: 'Automation (SMS Reminders)', icon: Mail },

@@ -76,7 +76,7 @@ const SCENARIOS = [
                         <p className="mb-2">We provide legal services since 1998.</p>
                         <p className="text-white">Call us at 555-0199 for help.</p>
                         <br />
-                        <a href="#" className="text-blue-300 underline">Enter Site >></a>
+                        <a href="#" className="text-blue-300 underline">Enter Site &gt;&gt;</a>
                     </div>
                 </div>
                 <div className="mt-4 text-[10px] text-center text-white">

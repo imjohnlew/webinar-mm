@@ -10,21 +10,22 @@ import FunnelSimulation from './components/FunnelSimulation';
 import CustomerJourneyBuilder from './components/CustomerJourneyBuilder';
 import ClosingSession from './components/ClosingSession';
 import IndustryScanner from './components/IndustryScanner';
+import PDFExportButton from './components/PDFExportButton';
 
 const TABS = [
   { id: 'mindset', label: '1. The Mindset', icon: BookOpen },
   { id: 'scanner', label: '2. Industry Scanner', icon: ScanEye },
   { id: 'discovery', label: '3. Niche Deep Dive', icon: Search },
   { id: 'diagnosis', label: '4. The Kill Room', icon: Siren },
-  { id: 'simulation', label: '5. The Funnel Lab', icon: Filter },
-  { id: 'builder', label: '6. Journey Builder', icon: Layers },
+  { id: 'simulation', label: 'The Funnel Lab', icon: Filter },
+  { id: 'builder', label: 'Journey Builder', icon: Layers },
   { id: 'closing', label: '7. The Bridge', icon: Flag },
 ];
 
 const PINNED_IDS = ['simulation', 'builder'];
 
 function App() {
-  const [activeTab, setActiveTab] = useState('mindset');
+  const [activeTab, setActiveTab] = useState('builder');
   const [selectedIndustry, setSelectedIndustry] = useState(null);
   const [isNavOpen, setIsNavOpen] = useState(false); // Mobile nav toggle
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
@@ -92,7 +93,7 @@ function App() {
         >
           <div className="p-8 flex items-center justify-between">
             <div className="min-w-[160px]">
-              <h1 className="text-2xl font-black tracking-tighter text-white mb-1">AGENCY<span className="text-blue-500">OS</span></h1>
+              <h1 className="text-2xl font-black tracking-tighter text-white mb-1">AI <span className="text-blue-500">MARKETER</span></h1>
               <p className="text-xs text-slate-500 font-mono uppercase tracking-widest">Instructor Mode</p>
             </div>
             <button onClick={() => setIsSidebarVisible(false)} className="text-slate-500 hover:text-white lg:block hidden">
@@ -125,56 +126,10 @@ function App() {
           {/* SPACER */}
           <div className="flex-1" />
 
-          {/* MORE TOOLS (Bottom) */}
-          <div className="p-4 min-w-[256px] relative z-50">
-
-            {/* POPUP MENU */}
-            <AnimatePresence>
-              {showMoreMenu && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute bottom-full left-4 right-4 mb-2 bg-[#1a2333] border border-slate-700 rounded-xl shadow-2xl overflow-hidden flex flex-col p-2 space-y-1"
-                >
-                  <div className="px-3 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider mb-1 border-b border-slate-700/50">
-                    More Tools
-                  </div>
-                  {moreTabs.map((tab) => {
-                    const isActive = activeTab === tab.id;
-                    return (
-                      <button
-                        key={tab.id}
-                        onClick={() => { setActiveTab(tab.id); setIsNavOpen(false); setShowMoreMenu(false); }}
-                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all
-                                    ${isActive ? 'bg-blue-500/20 text-blue-400' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}
-                                  `}
-                      >
-                        <tab.icon className="w-4 h-4" />
-                        <span className="text-sm font-medium">{tab.label}</span>
-                      </button>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <button
-              onClick={() => setShowMoreMenu(!showMoreMenu)}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all
-                    ${isMoreActive || showMoreMenu
-                  ? 'bg-slate-800 border-slate-700 text-white'
-                  : 'bg-transparent border-transparent text-slate-500 hover:bg-slate-900 hover:text-white'
-                }
-                `}
-            >
-              <div className="flex items-center gap-3">
-                <LayoutGrid className="w-5 h-5" />
-                <span className="font-medium text-sm">More Tools</span>
-              </div>
-              <ChevronUp className={`w-4 h-4 transition-transform ${showMoreMenu ? 'rotate-180' : ''}`} />
-            </button>
-          </div>
+          {/* MORE TOOLS (Bottom) - HIDDEN */}
+          {/* <div className="p-4 min-w-[256px] relative z-50">
+           ... (Hidden) ...
+          </div> */}
 
         </motion.nav>
 
@@ -190,18 +145,21 @@ function App() {
 
         {/* Main Content */}
         <main className="flex-1 relative overflow-y-auto h-screen">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="p-4 md:p-8 lg:p-12"
-            >
-              {renderContent()}
-            </motion.div>
-          </AnimatePresence>
+          <div id="pdf-export-container" className="min-h-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="p-4 md:p-8 lg:p-12"
+              >
+                {renderContent()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          <PDFExportButton targetId="pdf-export-container" />
         </main>
 
       </div>

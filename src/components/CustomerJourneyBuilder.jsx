@@ -15,136 +15,205 @@ const ALL_BLOCKS = [
 const UNIQUE_BLOCKS = Array.from(new Map(ALL_BLOCKS.map(item => [item.id, item])).values());
 
 // --- CALCULATOR SIMULATOR ---
+// --- CALCULATOR SIMULATOR ---
+// --- CALCULATOR SIMULATOR ---
+const InputField = ({ label, value, onChange, prefix = '', suffix = '', icon: Icon, color = 'text-slate-400', metric, metricLabel, metricColor = 'text-white', subMetric }) => (
+    <div className="flex flex-col items-center gap-4">
+        {/* Input Block */}
+        <div className="flex flex-col gap-1 w-32">
+            <label className={`text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 ${color} mb-1`}>
+                <Icon className="w-3 h-3" /> {label}
+            </label>
+            <div className="relative group w-full">
+                <input
+                    type="number"
+                    value={value}
+                    onChange={(e) => onChange(Number(e.target.value))}
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-3 text-lg font-mono font-bold text-white focus:border-blue-500 focus:outline-none transition-all text-right pr-8 [&::-webkit-inner-spin-button]:appearance-none"
+                />
+                {prefix && <span className="absolute left-3 top-3.5 text-sm text-slate-500 font-mono pointer-events-none">{prefix}</span>}
+                {suffix && <span className="absolute right-3 top-3.5 text-sm text-slate-500 font-mono pointer-events-none">{suffix}</span>}
+            </div>
+        </div>
+
+        {/* Result Metric Below */}
+        <div className="flex flex-col items-center justify-start min-h-[4rem]">
+            {metric !== undefined && (
+                <>
+                    <span className={`text-4xl font-black ${metricColor} leading-none mb-1`}>
+                        {typeof metric === 'number' ? metric.toLocaleString() : metric}
+                    </span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">
+                        {metricLabel}
+                    </span>
+                    {subMetric && (
+                        <div className="text-sm font-black whitespace-nowrap mt-1">
+                            {subMetric}
+                        </div>
+                    )}
+                </>
+            )}
+        </div>
+    </div>
+);
+
+// --- REUSABLE FUNNEL ROW COMPONENT ---
+const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProjected = false }) => {
+    return (
+        <div className={`w-full min-w-max p-4 rounded-2xl border ${isProjected ? 'bg-slate-900/50 border-blue-500/30' : 'bg-slate-800/30 border-slate-700/50'}`}>
+            <div className="flex items-center gap-2 mb-4">
+                <div className={`text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded ${isProjected ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-400'}`}>
+                    {title}
+                </div>
+            </div>
+
+            <div className="flex items-start justify-between gap-4 flex-nowrap pb-4 px-4 min-w-[1000px]">
+                <InputField
+                    label="Views"
+                    value={values.traffic}
+                    onChange={handlers.setTraffic}
+                    icon={Users}
+                    color={isProjected ? "text-blue-400" : "text-slate-500"}
+                />
+
+                <div className="text-slate-700 font-light text-xl mt-8">→</div>
+
+                <InputField
+                    label="Opt-in"
+                    value={values.optIn}
+                    onChange={handlers.setOptIn}
+                    suffix="%"
+                    icon={Target}
+                    color={isProjected ? "text-purple-400" : "text-slate-500"}
+                    metric={metrics.leads}
+                    metricLabel="Leads"
+                    metricColor="text-white"
+                    subMetric={comparisons.leadsDiff && (
+                        <span className={comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}>
+                            {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
+                        </span>
+                    )}
+                />
+
+                <div className="text-slate-700 font-light text-xl mt-8">→</div>
+
+                <InputField
+                    label="Appt Rate"
+                    value={values.apptRate}
+                    onChange={handlers.setApptRate}
+                    suffix="%"
+                    icon={Calendar}
+                    color={isProjected ? "text-pink-400" : "text-slate-500"}
+                    metric={metrics.appointments}
+                    metricLabel="Appointments"
+                    metricColor={isProjected ? "text-pink-200" : "text-white"}
+                    subMetric={comparisons.apptsDiff && (
+                        <span className={comparisons.apptsDiff > 0 ? "text-green-400" : "text-red-400"}>
+                            {comparisons.apptsDiff > 0 ? '+' : ''}{comparisons.apptsDiff.toLocaleString()}
+                        </span>
+                    )}
+                />
+
+                <div className="text-slate-700 font-light text-xl mt-8">→</div>
+
+                <InputField
+                    label="Closing"
+                    value={values.closeRate}
+                    onChange={handlers.setCloseRate}
+                    suffix="%"
+                    icon={Star}
+                    color={isProjected ? "text-orange-400" : "text-slate-500"}
+                    metric={metrics.sales}
+                    metricLabel="Sales"
+                    metricColor={isProjected ? "text-green-200" : "text-white"}
+                    subMetric={comparisons.salesDiff && (
+                        <span className={comparisons.salesDiff > 0 ? "text-green-400" : "text-red-400"}>
+                            {comparisons.salesDiff > 0 ? '+' : ''}{comparisons.salesDiff.toLocaleString()}
+                        </span>
+                    )}
+                />
+
+                <div className="text-slate-700 font-light text-xl mt-8">×</div>
+
+                <InputField
+                    label="Price"
+                    value={values.price}
+                    onChange={handlers.setPrice}
+                    prefix="$"
+                    icon={DollarSign}
+                    color={isProjected ? "text-green-400" : "text-slate-500"}
+                    metric={`$${metrics.revenue.toLocaleString()}`}
+                    metricLabel="Revenue"
+                    metricColor={isProjected ? "text-green-400" : "text-white"}
+                    subMetric={comparisons.revenueDiff && (
+                        <span className={comparisons.revenueDiff > 0 ? "text-green-400" : "text-red-400"}>
+                            {comparisons.revenueDiff > 0 ? '+' : ''}${comparisons.revenueDiff.toLocaleString()}
+                        </span>
+                    )}
+                />
+            </div>
+        </div>
+    );
+};
+
 const SimulatorPanel = () => {
-    // State for the "New Reality" simulator
+    // 1. PROJECTED State
     const [traffic, setTraffic] = useState(1000);
-    const [optIn, setOptIn] = useState(25); // %
-    const [closeRate, setCloseRate] = useState(20); // %
+    const [optIn, setOptIn] = useState(25);
+    const [apptRate, setApptRate] = useState(30);
+    const [closeRate, setCloseRate] = useState(20);
     const [price, setPrice] = useState(1500);
 
-    // Derived Logic
-    const leads = Math.floor(traffic * (optIn / 100));
-    const sales = Math.floor(leads * (closeRate / 100));
-    const revenue = sales * price;
+    // 2. CURRENT State (Baseline)
+    const [curTraffic, setCurTraffic] = useState(1000);
+    const [curOptIn, setCurOptIn] = useState(5);
+    const [curApptRate, setCurApptRate] = useState(10);
+    const [curCloseRate, setCurCloseRate] = useState(10);
+    const [curPrice, setCurPrice] = useState(1000);
 
-    // Baseline (Static Comparison - "The Old Way")
-    const baseTraffic = 1000;
-    const baseOptIn = 5;
-    const baseClose = 10;
-    const basePrice = 1000;
-    const baseRevenue = Math.floor(baseTraffic * (baseOptIn / 100) * (baseClose / 100)) * basePrice;
+    // Helper to calculate metrics
+    const calculateMetrics = (t, o, a, c, p) => {
+        const leads = Math.floor(t * (o / 100));
+        const appointments = Math.floor(leads * (a / 100));
+        const sales = Math.floor(appointments * (c / 100));
+        const revenue = sales * p;
+        return { leads, appointments, sales, revenue };
+    };
 
-    const improvement = revenue - baseRevenue;
+    const projected = calculateMetrics(traffic, optIn, apptRate, closeRate, price);
+    const current = calculateMetrics(curTraffic, curOptIn, curApptRate, curCloseRate, curPrice);
+
+    // Diffs
+    const comparisons = {
+        leadsDiff: projected.leads - current.leads,
+        apptsDiff: projected.appointments - current.appointments,
+        salesDiff: projected.sales - current.sales,
+        revenueDiff: projected.revenue - current.revenue
+    };
 
     return (
-        <div className="w-full bg-[#0B1120] border-b border-slate-800 p-6 sticky top-0 z-40 shadow-2xl">
-            <div className="max-w-[1600px] mx-auto flex flex-col xl:flex-row gap-8 items-center justify-between">
+        <div className="w-full bg-[#0B1120] border-b border-slate-800 p-6 shadow-2xl">
+            <div className="max-w-[1400px] mx-auto flex flex-col gap-6">
 
-                {/* CONTROLS (Sliders) */}
-                <div className="flex-1 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* 1. CURRENT SCENARIO */}
+                <FunnelRow
+                    title="Current Scenario"
+                    values={{ traffic: curTraffic, optIn: curOptIn, apptRate: curApptRate, closeRate: curCloseRate, price: curPrice }}
+                    handlers={{ setTraffic: setCurTraffic, setOptIn: setCurOptIn, setApptRate: setCurApptRate, setCloseRate: setCurCloseRate, setPrice: setCurPrice }}
+                    metrics={current}
+                    isProjected={false}
+                />
 
-                    {/* Traffic Control */}
-                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-colors">
-                        <div className="flex justify-between mb-2">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                                <Users className="w-4 h-4 text-blue-500" /> Traffic Hits
-                            </label>
-                            <span className="text-blue-400 font-bold font-mono text-lg">{traffic.toLocaleString()}</span>
-                        </div>
-                        <input
-                            type="range" min="500" max="10000" step="100"
-                            value={traffic} onChange={(e) => setTraffic(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                        />
-                    </div>
+                {/* 2. PROJECTED SCENARIO */}
+                <FunnelRow
+                    title="Future Scenario (After Operations)"
+                    values={{ traffic, optIn, apptRate, closeRate, price }}
+                    handlers={{ setTraffic, setOptIn, setApptRate, setCloseRate, setPrice }}
+                    metrics={projected}
+                    comparisons={comparisons}
+                    isProjected={true}
+                />
 
-                    {/* Opt-in Rate */}
-                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-purple-500/50 transition-colors">
-                        <div className="flex justify-between mb-2">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                                <Target className="w-4 h-4 text-purple-500" /> Opt-in Rate
-                            </label>
-                            <span className="text-purple-400 font-bold font-mono text-lg">{optIn}%</span>
-                        </div>
-                        <input
-                            type="range" min="1" max="80" step="1"
-                            value={optIn} onChange={(e) => setOptIn(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
-                        />
-                    </div>
-
-                    {/* Close Rate */}
-                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-orange-500/50 transition-colors">
-                        <div className="flex justify-between mb-2">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                                <Star className="w-4 h-4 text-orange-500" /> Close Rate
-                            </label>
-                            <span className="text-orange-400 font-bold font-mono text-lg">{closeRate}%</span>
-                        </div>
-                        <input
-                            type="range" min="1" max="100" step="1"
-                            value={closeRate} onChange={(e) => setCloseRate(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
-                        />
-                    </div>
-
-                    {/* Price */}
-                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 hover:border-green-500/50 transition-colors">
-                        <div className="flex justify-between mb-2">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                                <DollarSign className="w-4 h-4 text-green-500" /> Offer Price
-                            </label>
-                            <span className="text-green-400 font-bold font-mono text-lg">${price}</span>
-                        </div>
-                        <input
-                            type="range" min="100" max="10000" step="100"
-                            value={price} onChange={(e) => setPrice(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-green-500"
-                        />
-                    </div>
-                </div>
-
-                {/* RESULTS DASHBOARD */}
-                <div className="flex gap-6 items-center border-l border-slate-700 pl-8">
-
-                    {/* Visual Funnel Metrics */}
-                    <div className="flex flex-col gap-1 text-right">
-                        <div className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Pipeline Health</div>
-                        <div className="flex items-center gap-4 justify-end">
-                            <div className="flex flex-col items-center">
-                                <span className="text-xl font-bold text-white">{leads}</span>
-                                <span className="text-[10px] text-slate-500 uppercase font-bold">Leads</span>
-                            </div>
-                            <div className="w-px h-8 bg-slate-700" />
-                            <div className="flex flex-col items-center">
-                                <span className="text-xl font-bold text-white">{sales}</span>
-                                <span className="text-[10px] text-slate-500 uppercase font-bold">Sales</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* BIG REVENUE BOX */}
-                    <div className="bg-gradient-to-br from-green-900/40 to-emerald-900/20 border border-green-500/30 p-4 rounded-2xl min-w-[280px] shadow-lg shadow-green-900/20 relative group overflow-hidden">
-                        <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <DollarSign className="w-20 h-20 text-green-400" />
-                        </div>
-
-                        <div className="text-xs font-bold text-green-400 uppercase tracking-widest mb-1">Projected Revenue</div>
-                        <div className="text-4xl font-black text-white tracking-tight mb-2">
-                            ${revenue.toLocaleString()}
-                        </div>
-
-                        {improvement > 0 ? (
-                            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-bold">
-                                <TrendingUp className="w-3 h-3" />
-                                +${improvement.toLocaleString()} vs Baseline
-                            </div>
-                        ) : (
-                            <div className="text-slate-500 text-xs font-bold">No change vs Baseline</div>
-                        )}
-                    </div>
-
-                </div>
             </div>
         </div>
     );
@@ -297,9 +366,18 @@ const CustomerJourneyBuilder = ({ industry }) => {
         const newOffer = [];
 
         if (ind.model) {
-            ind.model.lead.activeBlocks.forEach(bid => newTraffic.push({ id: String(idCounter++), blockId: bid, type: 'lead' }));
-            ind.model.funnel.activeBlocks.forEach(bid => newFunnel.push({ id: String(idCounter++), blockId: bid, type: 'funnel' }));
-            ind.model.offer.activeBlocks.forEach(bid => newOffer.push({ id: String(idCounter++), blockId: bid, type: 'offer' }));
+            ind.model.lead.activeBlocks.forEach(bid => {
+                const block = UNIQUE_BLOCKS.find(b => b.id === bid);
+                newTraffic.push({ id: String(idCounter++), blockId: bid, type: 'lead', customTitle: block ? block.name : 'Unknown' });
+            });
+            ind.model.funnel.activeBlocks.forEach(bid => {
+                const block = UNIQUE_BLOCKS.find(b => b.id === bid);
+                newFunnel.push({ id: String(idCounter++), blockId: bid, type: 'funnel', customTitle: block ? block.name : 'Unknown' });
+            });
+            ind.model.offer.activeBlocks.forEach(bid => {
+                const block = UNIQUE_BLOCKS.find(b => b.id === bid);
+                newOffer.push({ id: String(idCounter++), blockId: bid, type: 'offer', customTitle: block ? block.name : 'Unknown' });
+            });
         }
         setTraffic(newTraffic);
         setFunnel(newFunnel);
@@ -307,14 +385,27 @@ const CustomerJourneyBuilder = ({ industry }) => {
     };
 
     const handleAddBlock = (blockId, type) => {
-        // Map type to section just in case, though we pass section explicitly roughly
-        const newBlock = { id: Date.now().toString(), blockId, type, image: null };
+        const block = UNIQUE_BLOCKS.find(b => b.id === blockId);
+        const newBlock = {
+            id: Date.now().toString(),
+            blockId,
+            type,
+            image: null,
+            customTitle: block ? block.name : 'New Block'
+        };
 
         if (activeSection === 'traffic') setTraffic(prev => [...prev, newBlock]);
         if (activeSection === 'funnel') setFunnel(prev => [...prev, newBlock]);
         if (activeSection === 'offer') setOffer(prev => [...prev, newBlock]);
 
         setPickerOpen(false);
+    };
+
+    const handleUpdateTitle = (id, section, newTitle) => {
+        const updateList = (list) => list.map(item => item.id === id ? { ...item, customTitle: newTitle } : item);
+        if (section === 'traffic') setTraffic(updateList(traffic));
+        if (section === 'funnel') setFunnel(updateList(funnel));
+        if (section === 'offer') setOffer(updateList(offer));
     };
 
     const handleDelete = (id, section) => {
@@ -357,7 +448,8 @@ const CustomerJourneyBuilder = ({ industry }) => {
                 </div>
 
                 {/* --- MAIN BUILDER GRID --- */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full items-start">
+                {/* --- MAIN BUILDER GRID --- */}
+                <div className="flex flex-col gap-12 w-full max-w-4xl">
 
                     {/* COL 1: TRAFFIC (Grid Layout) */}
                     <div className="flex flex-col gap-4">
@@ -369,14 +461,19 @@ const CustomerJourneyBuilder = ({ industry }) => {
                             <span className="text-xs font-mono text-slate-500">{traffic.length} Sources</span>
                         </div>
 
-                        <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 min-h-[400px]">
-                            <Reorder.Group axis="y" values={traffic} onReorder={setTraffic} className="grid grid-cols-2 gap-4">
+                        <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 min-h-[200px]">
+                            <Reorder.Group axis="y" values={traffic} onReorder={setTraffic} className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                                 {traffic.map(item => (
                                     <Reorder.Item key={item.id} value={item} className="relative group">
-                                        <div className="bg-slate-800 rounded-xl p-3 border border-slate-700 hover:border-blue-500 transition-colors shadow-lg relative">
+                                        <div className="bg-slate-800 rounded-xl p-3 border border-slate-700 hover:border-blue-500 transition-colors shadow-lg relative h-full">
                                             <div className="flex justify-between items-start mb-2">
-                                                <span className="text-[10px] font-bold text-slate-400 uppercase">{UNIQUE_BLOCKS.find(b => b.id === item.blockId)?.name}</span>
-                                                <GripVertical className="w-4 h-4 text-slate-600 cursor-grab active:cursor-grabbing" />
+                                                {/* EDITABLE TITLE */}
+                                                <input
+                                                    value={item.customTitle}
+                                                    onChange={(e) => handleUpdateTitle(item.id, 'traffic', e.target.value)}
+                                                    className="bg-transparent text-[10px] font-bold text-slate-400 uppercase truncate w-full focus:text-white focus:outline-none"
+                                                />
+                                                <GripVertical className="w-4 h-4 text-slate-600 cursor-grab active:cursor-grabbing shrink-0" />
                                             </div>
                                             <BlockVisualizer
                                                 blockId={item.blockId}
@@ -402,11 +499,13 @@ const CustomerJourneyBuilder = ({ industry }) => {
                         </div>
                     </div>
 
+                    {/* Arrow Down */}
+                    <div className="flex justify-center -my-6 z-10">
+                        <ArrowDown className="w-8 h-8 text-slate-600 animate-bounce" />
+                    </div>
+
                     {/* COL 2: FUNNEL (Vertical Stack - Chronological) */}
                     <div className="flex flex-col gap-4 relative">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden lg:block absolute top-[100px] -left-6 w-8 h-0.5 bg-gradient-to-r from-blue-900 to-purple-900" />
-
                         <div className="flex items-center justify-between px-2">
                             <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
@@ -415,11 +514,11 @@ const CustomerJourneyBuilder = ({ industry }) => {
                             <span className="text-xs font-mono text-slate-500">Ordered</span>
                         </div>
 
-                        <div className="bg-[#161321]/80 border border-purple-500/20 rounded-3xl p-6 min-h-[500px] flex flex-col items-center relative">
+                        <div className="bg-[#161321]/80 border border-purple-500/20 rounded-3xl p-6 min-h-[300px] flex flex-col items-center relative">
                             {/* Line going down */}
                             <div className="absolute top-6 bottom-6 left-1/2 w-0.5 bg-slate-800 -z-10" />
 
-                            <Reorder.Group axis="y" values={funnel} onReorder={setFunnel} className="w-full space-y-6">
+                            <Reorder.Group axis="y" values={funnel} onReorder={setFunnel} className="w-full space-y-6 max-w-2xl">
                                 {funnel.map((item, idx) => (
                                     <Reorder.Item key={item.id} value={item} className="relative group w-full">
                                         <div className="flex items-center gap-4">
@@ -431,7 +530,12 @@ const CustomerJourneyBuilder = ({ industry }) => {
                                             {/* Card */}
                                             <div className="flex-1 bg-slate-900/80 border border-slate-700 p-4 rounded-xl hover:border-purple-500 transition-all shadow-xl backdrop-blur-md relative">
                                                 <div className="flex justify-between items-center mb-3">
-                                                    <span className="text-xs font-bold text-white tracking-wide uppercase">{UNIQUE_BLOCKS.find(b => b.id === item.blockId)?.name}</span>
+                                                    {/* EDITABLE TITLE */}
+                                                    <input
+                                                        value={item.customTitle}
+                                                        onChange={(e) => handleUpdateTitle(item.id, 'funnel', e.target.value)}
+                                                        className="bg-transparent text-xs font-bold text-white tracking-wide uppercase w-full focus:text-purple-400 focus:outline-none"
+                                                    />
                                                     <GripVertical className="w-4 h-4 text-slate-600 cursor-grab active:cursor-grabbing" />
                                                 </div>
 
@@ -467,10 +571,13 @@ const CustomerJourneyBuilder = ({ industry }) => {
                         </div>
                     </div>
 
+                    {/* Arrow Down */}
+                    <div className="flex justify-center -my-6 z-10">
+                        <ArrowDown className="w-8 h-8 text-slate-600 animate-bounce" />
+                    </div>
+
                     {/* COL 3: OFFER (Grouped) */}
                     <div className="flex flex-col gap-4 relative">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden lg:block absolute top-[200px] -left-6 w-8 h-0.5 bg-gradient-to-r from-purple-900 to-green-900" />
 
                         <div className="flex items-center justify-between px-2">
                             <div className="flex items-center gap-2">
@@ -486,7 +593,12 @@ const CustomerJourneyBuilder = ({ industry }) => {
                                     <Reorder.Item key={item.id} value={item} className="relative group">
                                         <div className="bg-[#052e16] border border-green-500/30 p-4 rounded-xl hover:border-green-400 transition-all shadow-lg relative">
                                             <div className="flex justify-between items-center mb-3">
-                                                <span className="text-xs font-bold text-green-400 tracking-wide uppercase">{UNIQUE_BLOCKS.find(b => b.id === item.blockId)?.name}</span>
+                                                {/* EDITABLE TITLE */}
+                                                <input
+                                                    value={item.customTitle}
+                                                    onChange={(e) => handleUpdateTitle(item.id, 'offer', e.target.value)}
+                                                    className="bg-transparent text-xs font-bold text-green-400 tracking-wide uppercase w-full focus:text-white focus:outline-none"
+                                                />
                                                 <GripVertical className="w-4 h-4 text-green-800 cursor-grab active:cursor-grabbing" />
                                             </div>
                                             <BlockVisualizer
