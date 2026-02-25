@@ -80,19 +80,14 @@ function App() {
 
       <div className="flex flex-col lg:flex-row min-h-screen">
 
-        {/* Sidebar Navigation (Desktop) / Drawer (Mobile) */}
-        <motion.nav
-          initial={false}
-          animate={{
-            width: isSidebarVisible ? 256 : 0,
-            x: isSidebarVisible ? 0 : -256,
-            opacity: isSidebarVisible ? 1 : 0
-          }}
-          transition={{ duration: 0.3, type: 'spring', bounce: 0, stiffness: 100 }}
+        {/* Sidebar Navigation */}
+        <nav
           className={`
-            fixed lg:sticky top-0 left-0 h-screen bg-[#0B1120] border-r border-slate-800 z-40
-            flex flex-col overflow-visible whitespace-nowrap
-            ${!isSidebarVisible && 'pointer-events-none'}
+            fixed lg:sticky top-[68px] lg:top-0 left-0 h-[calc(100vh-68px)] lg:h-screen bg-[#0B1120] border-r border-slate-800 z-40
+            flex flex-col overflow-x-hidden whitespace-nowrap transition-all duration-300 ease-in-out
+            ${isNavOpen ? 'w-64 translate-x-0 opacity-100' : '-translate-x-full w-64 opacity-0 lg:translate-x-0 lg:opacity-100'}
+            ${isSidebarVisible ? 'lg:w-64 lg:translate-x-0 lg:opacity-100' : 'lg:w-0 lg:-translate-x-full lg:opacity-0'}
+            ${(!isSidebarVisible && !isNavOpen) ? 'pointer-events-none' : ''}
           `}
         >
           <div className="p-8 flex items-center justify-between">
@@ -135,13 +130,13 @@ function App() {
            ... (Hidden) ...
           </div> */}
 
-        </motion.nav>
+        </nav>
 
         {/* Toggle Button (When Sidebar Hidden) */}
         {!isSidebarVisible && (
           <button
             onClick={() => setIsSidebarVisible(true)}
-            className="fixed top-6 left-6 z-50 p-3 bg-slate-800 border border-slate-700 rounded-full shadow-lg text-slate-400 hover:text-white hover:scale-110 transition-all hover:bg-slate-700"
+            className="hidden lg:flex fixed top-6 left-6 z-50 p-3 bg-slate-800 border border-slate-700 rounded-full shadow-lg text-slate-400 hover:text-white hover:scale-110 transition-all hover:bg-slate-700"
           >
             <Menu className="w-6 h-6" />
           </button>
