@@ -327,18 +327,20 @@ const Particle = ({ startX, mode, onComplete, id }) => {
         const bounceLeft = randomX > 0; // if on right, bounce right
 
         keyframes = {
-            top: [0, 120, 240, 320, 100], // Drop to 320, BOUNCE UP to 100
+            top: [0, 120, 240, 260, 220, 500], // Hit surface, bounce up slightly, fall out
             left: [
                 `calc(50% + ${randomX}px)`,
                 `calc(50% + ${randomX * 0.7}px)`,
                 `calc(50% + ${randomX * 0.4}px)`,
                 `50%`,
+                bounceLeft ? `calc(50% + ${randomX * 1.5 + 40}px)` : `calc(50% - ${Math.abs(randomX) * 1.5 + 40}px)`,
                 bounceLeft ? `calc(50% + 300px)` : `calc(50% - 300px)` // Fly out sideways
             ],
-            backgroundColor: ['#4ade80', '#4ade80', '#ef4444', '#ef4444', '#ef4444'],
-            opacity: [0, 1, 1, 1, 0], // Stay visible during bounce
-            scale: [1, 1, 1, 1.5, 0.5]
+            backgroundColor: ['#4ade80', '#4ade80', '#4ade80', '#ef4444', '#ef4444', '#ef4444'],
+            opacity: [0, 1, 1, 1, 1, 0],
+            scale: [1, 1, 1, 1.2, 1, 0.5]
         };
+        duration = 2.0;
         exitResult = 'reject';
     }
 
@@ -351,8 +353,8 @@ const Particle = ({ startX, mode, onComplete, id }) => {
             finalX = (id % 2 === 0) ? -140 : 140;
         }
         if (exitResult === 'reject') {
-            finalY = 200; // Visual marker for "loss" text
-            finalX = 150;
+            finalY = 240; // Visual marker for "loss" text where it bounced
+            finalX = (id % 2 === 0) ? -100 : 100;
         }
 
         onComplete(exitResult, finalX, finalY);
