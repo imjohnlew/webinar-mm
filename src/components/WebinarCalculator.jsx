@@ -43,8 +43,8 @@ const InputField = ({ label, value, onChange, prefix = '', suffix = '', icon: Ic
 
 const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProjected = false, presetsNode }) => {
     return (
-        <div className={`w-full min-w-max p-4 rounded-2xl border ${isProjected ? 'bg-slate-900/50 border-blue-500/30' : 'bg-slate-800/30 border-slate-700/50'}`}>
-            <div className="flex items-center justify-between gap-2 mb-4">
+        <div className={`w-full lg:w-max p-4 rounded-2xl border ${isProjected ? 'bg-slate-900/50 border-blue-500/30' : 'bg-slate-800/30 border-slate-700/50'}`}>
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className={`text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded ${isProjected ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-400'}`}>
                     {title}
                 </div>
@@ -53,7 +53,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                 )}
             </div>
 
-            <div className="flex items-start justify-between gap-4 flex-nowrap pb-4 px-4 min-w-[1000px]">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 lg:gap-4 pb-4 px-4 w-full lg:min-w-[1000px]">
                 <InputField
                     label="Ad Spend"
                     value={values.adSpend}
@@ -65,7 +65,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     metricLabel=""
                 />
 
-                <div className="text-slate-700 font-light text-xl mt-8">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
 
                 <InputField
                     label="Ad Clicks/Views"
@@ -75,7 +75,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     color={isProjected ? "text-blue-400" : "text-slate-500"}
                 />
 
-                <div className="text-slate-700 font-light text-xl mt-8">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
 
                 <InputField
                     label="Opt-in"
@@ -99,7 +99,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     }
                 />
 
-                <div className="text-slate-700 font-light text-xl mt-8">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
 
                 <InputField
                     label="Show Up Rate"
@@ -118,7 +118,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     )}
                 />
 
-                <div className="text-slate-700 font-light text-xl mt-8">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
 
                 <InputField
                     label="Closing"
@@ -137,7 +137,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     )}
                 />
 
-                <div className="text-slate-700 font-light text-xl mt-8">×</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2">×</div>
 
                 <InputField
                     label="Price"
@@ -449,10 +449,10 @@ const WebinarCalculator = () => {
                         <p className="text-slate-400 mt-2">Test out different funnel metrics to see how it affects your bottom line.</p>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 overflow-x-auto pb-4 -mx-4 px-8 lg:mx-0 lg:px-0 lg:pb-0 hide-scrollbar scroll-smooth">
                         <button
                             onClick={() => setIsDynamicShape(!isDynamicShape)}
-                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border whitespace-nowrap shrink-0
                                 ${isDynamicShape
                                     ? 'bg-purple-600/20 text-purple-400 border-purple-500/50 hover:bg-purple-600/30'
                                     : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700 hover:text-white'
@@ -464,7 +464,7 @@ const WebinarCalculator = () => {
 
                         <button
                             onClick={() => setShowAdSpend(!showAdSpend)}
-                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border whitespace-nowrap shrink-0
                                 ${showAdSpend
                                     ? 'bg-red-600/20 text-red-400 border-red-500/50 hover:bg-red-600/30'
                                     : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700 hover:text-white'
@@ -476,7 +476,7 @@ const WebinarCalculator = () => {
 
                         <button
                             onClick={() => setShowProfitSplit(!showProfitSplit)}
-                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border whitespace-nowrap shrink-0
                                 ${showProfitSplit
                                     ? 'bg-emerald-600/20 text-emerald-400 border-emerald-500/50 hover:bg-emerald-600/30'
                                     : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700 hover:text-white'
@@ -488,7 +488,7 @@ const WebinarCalculator = () => {
 
                         <button
                             onClick={() => setShowProjected(!showProjected)}
-                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border whitespace-nowrap shrink-0
                                 ${showProjected
                                     ? 'bg-blue-600/20 text-blue-400 border-blue-500/50 hover:bg-blue-600/30'
                                     : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700 hover:text-white'
@@ -520,12 +520,12 @@ const WebinarCalculator = () => {
 
                 {showProfitSplit && (
                     <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 flex flex-col gap-4 max-w-4xl mx-auto w-full animate-in fade-in slide-in-from-bottom-4">
-                        <div className="flex justify-between items-end">
-                            <div>
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                            <div className="max-w-xl">
                                 <h3 className="text-lg font-bold text-white mb-1">Profit Split Configuration</h3>
                                 <p className="text-sm text-slate-400">Adjust the profit share between Marketer and Expert. (Total Profit = Revenue - Ad Spend)</p>
                             </div>
-                            <div className="text-sm font-bold bg-slate-900 px-4 py-2 rounded-lg border border-slate-700 flex whitespace-nowrap">
+                            <div className="text-sm font-bold bg-slate-900 px-4 py-2 lg:py-3 rounded-lg border border-slate-700 flex whitespace-nowrap w-full md:w-auto justify-center shadow-inner">
                                 <span className="text-blue-400">Marketer: {marketerSplit}%</span>
                                 <span className="text-slate-500 mx-2">|</span>
                                 <span className="text-purple-400">Expert: {100 - marketerSplit}%</span>
@@ -550,7 +550,7 @@ const WebinarCalculator = () => {
                     </div>
                 )}
 
-                <div className="flex flex-col gap-6 overflow-x-auto w-full pb-8">
+                <div className="flex flex-col gap-6 overflow-x-auto w-full pb-8 px-1">
                     {/* 1. CURRENT SCENARIO */}
                     <FunnelRow
                         title="Current Scenario"
@@ -576,37 +576,7 @@ const WebinarCalculator = () => {
                     )}
                 </div>
 
-                {showProfitSplit && (
-                    <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 flex flex-col gap-4 w-full animate-in fade-in slide-in-from-bottom-4">
-                        <div className="flex justify-between items-end">
-                            <div>
-                                <h3 className="text-lg font-bold text-white mb-1">Profit Split Configuration</h3>
-                                <p className="text-sm text-slate-400">Adjust the profit share between Marketer and Expert. (Total Profit = Revenue - Ad Spend)</p>
-                            </div>
-                            <div className="text-sm font-bold bg-slate-900 px-4 py-2 rounded-lg border border-slate-700 flex whitespace-nowrap">
-                                <span className="text-blue-400">Marketer: {marketerSplit}%</span>
-                                <span className="text-slate-500 mx-2">|</span>
-                                <span className="text-purple-400">Expert: {100 - marketerSplit}%</span>
-                            </div>
-                        </div>
 
-                        <div className="relative pt-4 pb-2">
-                            <input
-                                type="range"
-                                min="0"
-                                max="100"
-                                step="5"
-                                value={marketerSplit}
-                                onChange={(e) => setMarketerSplit(Number(e.target.value))}
-                                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                            />
-                            <div className="flex justify-between text-xs font-bold text-slate-500 mt-3 uppercase tracking-wider">
-                                <span className="text-blue-400">Marketer</span>
-                                <span className="text-purple-400">Expert</span>
-                            </div>
-                        </div>
-                    </div>
-                )}
 
                 {/* Scaling Tables */}
                 <div className="flex flex-col lg:flex-row gap-6 w-full animate-in fade-in duration-500">

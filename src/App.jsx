@@ -143,7 +143,7 @@ function App() {
         )}
 
         {/* Main Content */}
-        <main className="flex-1 relative overflow-y-auto h-screen">
+        <main className="flex-1 min-w-0 relative overflow-y-auto h-screen overflow-x-hidden">
           <div id="pdf-export-container" className="min-h-full">
             <AnimatePresence mode="wait">
               <motion.div
