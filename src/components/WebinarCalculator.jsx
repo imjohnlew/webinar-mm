@@ -21,23 +21,21 @@ const InputField = ({ label, value, onChange, prefix = '', suffix = '', icon: Ic
         </div>
 
         {/* Result Metric Below */}
-        <div className="flex flex-col items-center justify-start min-h-[4rem]">
-            {metric !== undefined && (
-                <>
-                    <span className={`text-3xl font-black ${metricColor} leading-none mb-1`}>
-                        {typeof metric === 'number' ? metric.toLocaleString() : metric}
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 text-center">
-                        {metricLabel}
-                    </span>
-                    {subMetric && (
-                        <div className="text-sm font-black whitespace-nowrap mt-1">
-                            {subMetric}
-                        </div>
-                    )}
-                </>
-            )}
-        </div>
+        {metric !== undefined && (
+            <div className="flex flex-col items-center justify-start min-h-[4rem]">
+                <span className={`text-3xl font-black ${metricColor} leading-none mb-1`}>
+                    {typeof metric === 'number' ? metric.toLocaleString() : metric}
+                </span>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 text-center">
+                    {metricLabel}
+                </span>
+                {subMetric && (
+                    <div className="text-sm font-black whitespace-nowrap mt-1">
+                        {subMetric}
+                    </div>
+                )}
+            </div>
+        )}
     </div>
 );
 
@@ -65,7 +63,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     metricLabel=""
                 />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
 
                 <InputField
                     label="Ad Clicks/Views"
@@ -75,7 +73,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     color={isProjected ? "text-blue-400" : "text-slate-500"}
                 />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
 
                 <InputField
                     label="Opt-in"
@@ -99,7 +97,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     }
                 />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
 
                 <InputField
                     label="Show Up Rate"
@@ -118,7 +116,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     )}
                 />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2 rotate-90 lg:rotate-0">→</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
 
                 <InputField
                     label="Closing"
@@ -137,7 +135,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     )}
                 />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 my-2">×</div>
+                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center">×</div>
 
                 <InputField
                     label="Price"
