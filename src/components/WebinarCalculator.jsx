@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { Target, Calendar, Star, DollarSign, Users, Eye, EyeOff, MonitorPlay, LayoutTemplate, PieChart } from 'lucide-react';
+import { Target, Calendar, Star, DollarSign, Users, Eye, EyeOff, MonitorPlay, LayoutTemplate, PieChart, Info, Zap } from 'lucide-react';
 
-const InputField = ({ label, value, onChange, prefix = '', suffix = '', icon: Icon, color = 'text-slate-400', metric, metricLabel, metricColor = 'text-white', subMetric }) => (
+const Tooltip = ({ content }) => (
+    <div className="relative group/tip inline-flex items-center cursor-help ml-1">
+        <Info className="w-3 h-3 text-slate-600 hover:text-slate-300 transition-colors" />
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-slate-950 border border-slate-600 rounded-lg text-[11px] text-slate-200 opacity-0 group-hover/tip:opacity-100 transition-opacity duration-200 pointer-events-none z-50 shadow-xl whitespace-nowrap">
+            {content}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-600" />
+        </div>
+    </div>
+);
+
+const InputField = ({ label, value, onChange, prefix = '', suffix = '', icon: Icon, color = 'text-slate-400', metric, metricLabel, metricColor = 'text-white', subMetric, tooltip, calcBreakdown }) => (
     <div className="flex flex-col items-center gap-4">
         {/* Input Block */}
         <div className="flex flex-col gap-1 w-32">
             <label className={`text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 ${color} mb-1`}>
                 <Icon className="w-3 h-3" /> {label}
+                {tooltip && <Tooltip content={tooltip} />}
             </label>
             <div className="relative group w-full">
                 <input
@@ -29,6 +40,11 @@ const InputField = ({ label, value, onChange, prefix = '', suffix = '', icon: Ic
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 text-center">
                     {metricLabel}
                 </span>
+                {calcBreakdown && (
+                    <span className="text-[11px] text-slate-400 font-mono text-center leading-tight mt-0.5">
+                        {calcBreakdown}
+                    </span>
+                )}
                 {subMetric && (
                     <div className="text-sm font-black whitespace-nowrap mt-1">
                         {subMetric}
@@ -39,16 +55,38 @@ const InputField = ({ label, value, onChange, prefix = '', suffix = '', icon: Ic
     </div>
 );
 
-const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProjected = false, presetsNode }) => {
+const Arrow = () => (
+    <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center">
+        <span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span>
+    </div>
+);
+
+const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProjected = false, presetsNode, directMode, directLeadsValue, setDirectLeads, onToggleDirectMode }) => {
+    const leadsBreakdown = directMode ? null : `${values.traffic.toLocaleString()} × ${values.optIn}% = ${metrics.leads.toLocaleString()}`;
+    const attendeesBreakdown = `${metrics.leads.toLocaleString()} × ${values.apptRate}% = ${metrics.appointments.toLocaleString()}`;
+    const salesBreakdown = `${metrics.appointments.toLocaleString()} × ${values.closeRate}% = ${metrics.sales.toLocaleString()}`;
+    const revenueBreakdown = `${metrics.sales.toLocaleString()} × RM ${values.price.toLocaleString()} = RM ${metrics.revenue.toLocaleString()}`;
+
     return (
         <div className={`w-full lg:w-max p-4 rounded-2xl border ${isProjected ? 'bg-slate-900/50 border-blue-500/30' : 'bg-slate-800/30 border-slate-700/50'}`}>
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className={`text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded ${isProjected ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-400'}`}>
                     {title}
                 </div>
-                {presetsNode && (
-                    <div>{presetsNode}</div>
-                )}
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={onToggleDirectMode}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all border whitespace-nowrap
+                            ${directMode
+                                ? 'bg-yellow-600/20 text-yellow-400 border-yellow-500/50 hover:bg-yellow-600/30'
+                                : 'bg-slate-800 text-slate-500 border-slate-700 hover:text-white hover:bg-slate-700'
+                            }`}
+                    >
+                        <Zap className="w-3 h-3" />
+                        {directMode ? 'Direct Mode On' : 'Direct Mode'}
+                    </button>
+                    {presetsNode && <div>{presetsNode}</div>}
+                </div>
             </div>
 
             <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 lg:gap-4 pb-4 px-4 w-full lg:min-w-[1000px]">
@@ -63,41 +101,64 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     metricLabel=""
                 />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
+                <Arrow />
 
-                <InputField
-                    label="Ad Clicks/Views"
-                    value={values.traffic}
-                    onChange={handlers.setTraffic}
-                    icon={Users}
-                    color={isProjected ? "text-blue-400" : "text-slate-500"}
-                />
+                {directMode ? (
+                    <InputField
+                        label="Leads (Direct)"
+                        value={directLeadsValue}
+                        onChange={setDirectLeads}
+                        icon={Target}
+                        color={isProjected ? "text-purple-400" : "text-slate-500"}
+                        metric={`RM ${metrics.cpl.toFixed(2)}`}
+                        metricLabel="CPL"
+                        metricColor="text-yellow-400"
+                        calcBreakdown={`RM ${values.adSpend.toLocaleString()} ÷ ${directLeadsValue} = RM ${metrics.cpl.toFixed(2)}`}
+                        subMetric={comparisons.leadsDiff ? (
+                            <span className={comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}>
+                                {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
+                            </span>
+                        ) : null}
+                    />
+                ) : (
+                    <>
+                        <InputField
+                            label="Landing Page Views"
+                            value={values.traffic}
+                            onChange={handlers.setTraffic}
+                            icon={Users}
+                            color={isProjected ? "text-blue-400" : "text-slate-500"}
+                        />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
+                        <Arrow />
 
-                <InputField
-                    label="Opt-in"
-                    value={values.optIn}
-                    onChange={handlers.setOptIn}
-                    suffix="%"
-                    icon={Target}
-                    color={isProjected ? "text-purple-400" : "text-slate-500"}
-                    metric={metrics.leads}
-                    metricLabel="Leads"
-                    metricColor="text-white"
-                    subMetric={
-                        <div className="flex flex-col items-center">
-                            <span className="text-yellow-400 font-black text-lg mt-2 mb-1">CPL: RM {metrics.cpl.toFixed(2)}</span>
-                            {comparisons.leadsDiff && (
-                                <span className={comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}>
-                                    {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
-                                </span>
-                            )}
-                        </div>
-                    }
-                />
+                        <InputField
+                            label="Opt-in"
+                            value={values.optIn}
+                            onChange={handlers.setOptIn}
+                            suffix="%"
+                            icon={Target}
+                            color={isProjected ? "text-purple-400" : "text-slate-500"}
+                            metric={metrics.leads}
+                            metricLabel="Leads"
+                            metricColor="text-white"
+                            tooltip="Clicks × Opt-In Rate = Leads"
+                            calcBreakdown={leadsBreakdown}
+                            subMetric={
+                                <div className="flex flex-col items-center">
+                                    <span className="text-yellow-400 font-black text-lg mt-2 mb-1">CPL: RM {metrics.cpl.toFixed(2)}</span>
+                                    {comparisons.leadsDiff && (
+                                        <span className={comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}>
+                                            {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
+                                        </span>
+                                    )}
+                                </div>
+                            }
+                        />
+                    </>
+                )}
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
+                <Arrow />
 
                 <InputField
                     label="Show Up Rate"
@@ -109,6 +170,8 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     metric={metrics.appointments}
                     metricLabel="Attendees"
                     metricColor={isProjected ? "text-pink-200" : "text-white"}
+                    tooltip="Leads × Show Up Rate = Attendees"
+                    calcBreakdown={attendeesBreakdown}
                     subMetric={comparisons.apptsDiff && (
                         <span className={comparisons.apptsDiff > 0 ? "text-green-400" : "text-red-400"}>
                             {comparisons.apptsDiff > 0 ? '+' : ''}{comparisons.apptsDiff.toLocaleString()}
@@ -116,7 +179,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     )}
                 />
 
-                <div className="text-slate-700 font-light text-2xl lg:text-xl lg:mt-8 flex items-center justify-center"><span className="lg:hidden">↓</span><span className="hidden lg:inline">→</span></div>
+                <Arrow />
 
                 <InputField
                     label="Closing"
@@ -128,6 +191,8 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     metric={metrics.sales}
                     metricLabel="Sales"
                     metricColor={isProjected ? "text-green-200" : "text-white"}
+                    tooltip="Attendees × Closing Rate = Sales"
+                    calcBreakdown={salesBreakdown}
                     subMetric={comparisons.salesDiff && (
                         <span className={comparisons.salesDiff > 0 ? "text-green-400" : "text-red-400"}>
                             {comparisons.salesDiff > 0 ? '+' : ''}{comparisons.salesDiff.toLocaleString()}
@@ -147,6 +212,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     metric={`RM ${metrics.revenue.toLocaleString()}`}
                     metricLabel="Revenue"
                     metricColor={isProjected ? "text-green-400" : "text-white"}
+                    calcBreakdown={revenueBreakdown}
                     subMetric={
                         <div className="flex flex-col items-center">
                             <span className="text-emerald-400 font-black text-lg mt-2 mb-1">ROAS: {metrics.roas}X</span>
@@ -163,7 +229,39 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
     );
 };
 
-const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showProfitSplit = false, showAdSpend = false, comparisons = {} }) => {
+const FunnelInput = ({ value, onChange, color, width = 'w-12' }) => (
+    <input
+        type="number"
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        min="0"
+        max="100"
+        className={`${width} bg-transparent ${color} font-black text-sm text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none`}
+    />
+);
+
+const CalcIcon = ({ id, text, color = 'text-white', activeCalc, setActiveCalc }) => {
+    const isActive = activeCalc === id;
+    return (
+        <div className="relative flex items-center justify-center mt-2">
+            <button
+                onClick={(e) => { e.stopPropagation(); setActiveCalc(isActive ? null : id); }}
+                className={`p-1 rounded-full transition-all ${isActive ? 'bg-white/20 text-white' : 'text-white/40 hover:text-white/80'}`}
+            >
+                <Info className="w-4 h-4" />
+            </button>
+            {isActive && (
+                <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 bg-slate-950 border border-slate-600 rounded-lg text-sm font-mono font-bold whitespace-nowrap z-50 shadow-xl pointer-events-none">
+                    <span className={color}>{text}</span>
+                    <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-slate-600" />
+                </div>
+            )}
+        </div>
+    );
+};
+
+const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showProfitSplit = false, showAdSpend = false, comparisons = {}, handlers, directMode = false, directLeadsValue, setDirectLeads }) => {
+    const [activeCalc, setActiveCalc] = React.useState(null);
     // Dynamic widths based on percentages vs maximum expected
     // If rate >= max, it caps at the original default width
     const minW = isDynamic ? 45 : 85;
@@ -181,83 +279,147 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
         <div className={`flex flex-col items-center w-full ${isExpanded ? 'max-w-[560px]' : 'max-w-[280px]'} mx-auto gap-1 transition-all duration-500`}>
             <h4 className="text-white font-bold mb-4">{metrics.title}</h4>
 
-            {/* Traffic Top */}
-            <div className="w-full bg-blue-900/40 border border-blue-500/50 rounded-t-2xl py-6 flex flex-col items-center justify-center relative overflow-hidden group shadow-lg z-10">
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-500/20 to-transparent pointer-events-none" />
-                <span className="text-xs text-blue-300 font-bold tracking-widest uppercase mb-1">Landing Page Views</span>
-                <span className="text-3xl font-black text-white">{metrics.traffic.toLocaleString()}</span>
-            </div>
-
-            {/* Conversation % Divider 1 */}
-            <div className="relative w-full flex justify-center items-center z-20 -my-4">
-                <div className="bg-slate-800 border-2 border-slate-700 text-slate-300 text-[10px] uppercase tracking-wider font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 whitespace-nowrap">
-                    <span className="text-purple-400 font-black text-sm">{metrics.optIn}%</span> OPT-IN RATE
+            {/* Ad Spend — always visible, editable */}
+            <div className="w-full bg-slate-900/80 border border-slate-700 rounded-2xl py-3 px-5 flex items-center justify-between shadow-lg z-10 mb-2">
+                <span className="text-xs text-slate-400 font-bold tracking-widest uppercase">Ad Spend</span>
+                <div className="flex items-center gap-1">
+                    <span className="text-slate-500 text-sm font-mono">RM</span>
+                    <input
+                        type="number"
+                        value={metrics.adSpend}
+                        onChange={(e) => handlers?.setAdSpend(Number(e.target.value))}
+                        className="w-24 bg-transparent text-red-400 text-xl font-black text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
                 </div>
             </div>
 
-            {/* Leads Level */}
-            <div
-                className="bg-purple-900/40 border border-purple-500/50 pt-8 pb-6 flex flex-col items-center justify-center relative shadow-lg group z-10 transition-all duration-500"
-                style={{ width: `${optInWidth}%` }}
-            >
-                <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none" />
-                <span className="text-xs text-purple-300 font-bold tracking-widest uppercase mb-1">Leads</span>
-                <span className="text-3xl font-black text-white">{metrics.leads.toLocaleString()}</span>
-                {comparisons.leadsDiff !== undefined && comparisons.leadsDiff !== 0 && (
-                    <span className={`text-sm font-black mb-[-8px] tracking-wide ${comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}`}>
-                        {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
-                    </span>
-                )}
-            </div>
+            {directMode ? (
+                /* Direct Mode: skip traffic + opt-in, show full-width editable Leads block */
+                <div className="w-full bg-purple-900/40 border border-purple-500/50 rounded-t-2xl py-6 flex flex-col items-center justify-center relative shadow-lg z-10">
+                    <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none rounded-t-2xl" />
+                    <span className="text-[10px] text-purple-300 font-bold tracking-widest uppercase mb-1">Leads (Direct)</span>
+                    <input
+                        type="number"
+                        value={directLeadsValue ?? metrics.leads}
+                        onChange={(e) => setDirectLeads?.(Number(e.target.value))}
+                        className="w-32 bg-transparent text-white text-4xl font-black text-center focus:outline-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <div className="flex items-center gap-2 mt-1">
+                        <span className="text-yellow-400 text-base font-black tracking-wide">CPL: RM {metrics.cpl.toFixed(2)}</span>
+                        <CalcIcon id="leads-direct" text={`RM ${metrics.adSpend.toLocaleString()} ÷ ${metrics.leads.toLocaleString()} = RM ${metrics.cpl.toFixed(2)}`} color="text-yellow-400" activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
+                    </div>
+                    {comparisons.leadsDiff !== undefined && comparisons.leadsDiff !== 0 && (
+                        <span className={`text-sm font-black tracking-wide ${comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}`}>
+                            {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
+                        </span>
+                    )}
+                </div>
+            ) : (
+                <>
+                    {/* Traffic Top */}
+                    <div className="w-full bg-blue-900/40 border border-blue-500/50 rounded-t-2xl py-6 flex flex-col items-center justify-center relative overflow-hidden group shadow-lg z-10">
+                        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/20 to-transparent pointer-events-none" />
+                        <span className="text-xs text-blue-300 font-bold tracking-widest uppercase mb-1">Landing Page Views</span>
+                        <span className="text-3xl font-black text-white">{metrics.traffic.toLocaleString()}</span>
+                    </div>
 
-            {/* Conversation % Divider 2 */}
+                    {/* Opt-In Rate Divider */}
+                    <div className="relative w-full flex justify-center items-center z-20 -my-4">
+                        <div className="bg-slate-800 border-2 border-slate-700 text-slate-300 text-[10px] uppercase tracking-wider font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 whitespace-nowrap">
+                            <FunnelInput value={metrics.optIn} onChange={handlers?.setOptIn ?? (() => {})} color="text-purple-400" />
+                            % OPT-IN RATE
+                        </div>
+                    </div>
+
+                    {/* Leads Level */}
+                    <div
+                        className="bg-purple-900/40 border border-purple-500/50 pt-8 pb-5 flex flex-col items-center justify-center relative shadow-lg z-10 transition-all duration-500"
+                        style={{ width: `${optInWidth}%` }}
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none" />
+                        <span className="text-xs text-purple-300 font-bold tracking-widest uppercase mb-1">Leads</span>
+                        <span className="text-3xl font-black text-white">{metrics.leads.toLocaleString()}</span>
+                        <div className="flex items-center gap-2 mt-1">
+                            <span className="text-yellow-400 text-sm font-black tracking-wide">CPL: RM {metrics.cpl.toFixed(2)}</span>
+                            <CalcIcon id="leads" text={`${metrics.traffic.toLocaleString()} × ${metrics.optIn}% = ${metrics.leads.toLocaleString()}`} activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
+                        </div>
+                        {comparisons.leadsDiff !== undefined && comparisons.leadsDiff !== 0 && (
+                            <span className={`text-sm font-black tracking-wide ${comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}`}>
+                                {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
+                            </span>
+                        )}
+                    </div>
+                </>
+            )}
+
+            {/* Show Up Rate Divider */}
             <div className="relative w-full flex justify-center items-center z-20 -my-4">
                 <div className="bg-slate-800 border-2 border-slate-700 text-slate-300 text-[10px] uppercase tracking-wider font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 whitespace-nowrap">
-                    <span className="text-pink-400 font-black text-sm">{metrics.apptRate}%</span> SHOW UP RATE
+                    <FunnelInput value={metrics.apptRate} onChange={handlers?.setApptRate ?? (() => {})} color="text-pink-400" />
+                    % SHOW UP RATE
                 </div>
             </div>
 
             {/* Attendees Level */}
             <div
-                className="bg-pink-900/40 border border-pink-500/50 pt-8 pb-6 flex flex-col items-center justify-center relative shadow-lg group z-10 transition-all duration-500"
+                className="bg-pink-900/40 border border-pink-500/50 pt-8 pb-5 flex flex-col items-center justify-center relative shadow-lg z-10 transition-all duration-500"
                 style={{ width: `${apptWidth}%` }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-pink-500/10 to-transparent pointer-events-none" />
                 <span className="text-xs text-pink-300 font-bold tracking-widest uppercase mb-1">Attendees</span>
                 <span className="text-3xl font-black text-white">{metrics.appointments.toLocaleString()}</span>
+                <CalcIcon id="attendees" text={`${metrics.leads.toLocaleString()} × ${metrics.apptRate}% = ${metrics.appointments.toLocaleString()}`} activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
                 {comparisons.apptsDiff !== undefined && comparisons.apptsDiff !== 0 && (
-                    <span className={`text-sm font-black mb-[-8px] tracking-wide ${comparisons.apptsDiff > 0 ? "text-green-400" : "text-red-400"}`}>
+                    <span className={`text-sm font-black tracking-wide ${comparisons.apptsDiff > 0 ? "text-green-400" : "text-red-400"}`}>
                         {comparisons.apptsDiff > 0 ? '+' : ''}{comparisons.apptsDiff.toLocaleString()}
                     </span>
                 )}
             </div>
 
-            {/* Conversation % Divider 3 */}
+            {/* Closing Rate Divider */}
             <div className="relative w-full flex justify-center items-center z-20 -my-4">
                 <div className="bg-slate-800 border-2 border-slate-700 text-slate-300 text-[10px] uppercase tracking-wider font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 whitespace-nowrap">
-                    <span className="text-orange-400 font-black text-sm">{metrics.closeRate}%</span> CLOSING RATE
+                    <FunnelInput value={metrics.closeRate} onChange={handlers?.setCloseRate ?? (() => {})} color="text-orange-400" />
+                    % CLOSING RATE
                 </div>
             </div>
 
-            {/* Sales Level Base */}
+            {/* Sales Level */}
             <div
-                className="bg-orange-900/40 border border-orange-500/50 pt-8 pb-6 flex flex-col items-center justify-center relative rounded-b-2xl shadow-lg group z-10 transition-all duration-500"
+                className="bg-orange-900/40 border border-orange-500/50 pt-8 pb-5 flex flex-col items-center justify-center relative rounded-b-2xl shadow-lg z-10 transition-all duration-500"
                 style={{ width: `${closeWidth}%` }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-orange-500/10 to-transparent pointer-events-none" />
                 <span className="text-xs text-orange-300 font-bold tracking-widest uppercase mb-1">Sales</span>
                 <span className="text-3xl font-black text-white">{metrics.sales.toLocaleString()}</span>
+                <CalcIcon id="sales" text={`${metrics.appointments.toLocaleString()} × ${metrics.closeRate}% = ${metrics.sales.toLocaleString()}`} activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
                 {comparisons.salesDiff !== undefined && comparisons.salesDiff !== 0 && (
-                    <span className={`text-sm font-black mb-[-8px] tracking-wide ${comparisons.salesDiff > 0 ? "text-green-400" : "text-red-400"}`}>
+                    <span className={`text-sm font-black tracking-wide ${comparisons.salesDiff > 0 ? "text-green-400" : "text-red-400"}`}>
                         {comparisons.salesDiff > 0 ? '+' : ''}{comparisons.salesDiff.toLocaleString()}
                     </span>
                 )}
             </div>
 
+            {/* Price × Sales */}
+            <div className="w-full flex items-center justify-center gap-2 mt-4 mb-1">
+                <span className="text-slate-600 text-lg font-light">×</span>
+                <div className="bg-slate-800/80 border border-slate-700 rounded-xl py-2 px-4 flex items-center gap-2">
+                    <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Price</span>
+                    <span className="text-slate-500 text-sm font-mono">RM</span>
+                    <input
+                        type="number"
+                        value={metrics.price}
+                        onChange={(e) => handlers?.setPrice(Number(e.target.value))}
+                        className="w-20 bg-transparent text-white text-lg font-black text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                </div>
+            </div>
+
             {/* Revenue Base */}
-            <div className="mt-6 p-5 rounded-2xl bg-green-900/30 border border-green-500 shadow-[0_0_30px_rgba(34,197,94,0.1)] text-center w-full transform transition-all hover:scale-105">
+            <div className="mt-2 p-5 rounded-2xl bg-green-900/30 border border-green-500 shadow-[0_0_30px_rgba(34,197,94,0.1)] text-center w-full transform transition-all hover:scale-105">
                 <span className="text-sm text-green-300 font-bold tracking-widest uppercase block mb-1">Total Revenue</span>
                 <span className="text-4xl font-black text-green-400">RM {metrics.revenue.toLocaleString()}</span>
+                <CalcIcon id="revenue" text={`${metrics.sales.toLocaleString()} × RM ${metrics.price?.toLocaleString()} = RM ${metrics.revenue.toLocaleString()}`} color="text-green-400" activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
                 {comparisons.revenueDiff !== undefined && comparisons.revenueDiff !== 0 && (
                     <span className={`text-base font-black tracking-wide block mt-1 ${comparisons.revenueDiff > 0 ? "text-green-300" : "text-red-400"}`}>
                         {comparisons.revenueDiff > 0 ? '+' : ''}RM {comparisons.revenueDiff.toLocaleString()}
@@ -379,10 +541,23 @@ const WebinarCalculator = () => {
     const [showProfitSplit, setShowProfitSplit] = useState(false);
     const [showAdSpend, setShowAdSpend] = useState(false);
     const [marketerSplit, setMarketerSplit] = useState(50);
+    const [directMode, setDirectMode] = useState(false);
+    const [curDirectLeads, setCurDirectLeads] = useState(50);
+    const [projDirectLeads, setProjDirectLeads] = useState(250);
+
+    const handleToggleDirectMode = () => {
+        if (!directMode) {
+            const curLeads = Math.floor(curTraffic * (curOptIn / 100));
+            const projLeads = Math.floor(traffic * (optIn / 100));
+            setCurDirectLeads(curLeads);
+            setProjDirectLeads(projLeads);
+        }
+        setDirectMode(d => !d);
+    };
 
     // Helper to calculate metrics
-    const calculateMetrics = (t, s, o, a, c, p, title) => {
-        const leads = Math.floor(t * (o / 100));
+    const calculateMetrics = (t, s, o, a, c, p, title, directLeadsOverride = null) => {
+        const leads = directLeadsOverride !== null ? directLeadsOverride : Math.floor(t * (o / 100));
         const appointments = Math.floor(leads * (a / 100));
         const sales = Math.floor(appointments * (c / 100));
         const revenue = sales * p;
@@ -393,11 +568,11 @@ const WebinarCalculator = () => {
         const marketerProfit = Math.floor(profit * (marketerSplit / 100));
         const expertProfit = profit - marketerProfit;
 
-        return { traffic: t, adSpend: s, optIn: o, apptRate: a, closeRate: c, leads, appointments, sales, revenue, profit, marketerProfit, expertProfit, marketerSplit, cpl, roas, title };
+        return { traffic: t, adSpend: s, optIn: o, apptRate: a, closeRate: c, price: p, leads, appointments, sales, revenue, profit, marketerProfit, expertProfit, marketerSplit, cpl, roas, title };
     };
 
-    const projected = calculateMetrics(traffic, adSpend, optIn, apptRate, closeRate, price, "Projected Funnel");
-    const current = calculateMetrics(curTraffic, curAdSpend, curOptIn, curApptRate, curCloseRate, curPrice, "Current Funnel");
+    const projected = calculateMetrics(traffic, adSpend, optIn, apptRate, closeRate, price, "Projected Funnel", directMode ? projDirectLeads : null);
+    const current = calculateMetrics(curTraffic, curAdSpend, curOptIn, curApptRate, curCloseRate, curPrice, "Current Funnel", directMode ? curDirectLeads : null);
 
     // Diffs
     const comparisons = {
@@ -448,6 +623,18 @@ const WebinarCalculator = () => {
                     </div>
 
                     <div className="flex items-center gap-3 overflow-x-auto pb-4 -mx-4 px-8 lg:mx-0 lg:px-0 lg:pb-0 hide-scrollbar scroll-smooth">
+                        <button
+                            onClick={handleToggleDirectMode}
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border whitespace-nowrap shrink-0
+                                ${directMode
+                                    ? 'bg-yellow-600/20 text-yellow-400 border-yellow-500/50 hover:bg-yellow-600/30'
+                                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700 hover:text-white'
+                                }`}
+                        >
+                            <Zap className="w-4 h-4" />
+                            {directMode ? 'Direct Mode On' : 'Direct Mode'}
+                        </button>
+
                         <button
                             onClick={() => setIsDynamicShape(!isDynamicShape)}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-bold text-sm transition-all border whitespace-nowrap shrink-0
@@ -501,7 +688,7 @@ const WebinarCalculator = () => {
                 <div className="flex flex-col lg:flex-row gap-8 w-full">
                     {/* Visual Funnels Section */}
                     <div className={`flex lg:flex-row flex-col gap-12 flex-1 items-start justify-center bg-slate-900 border border-slate-800 p-10 rounded-[2rem] shadow-xl transition-all duration-500`}>
-                        <CalculatorVisualFunnel metrics={current} isDynamic={isDynamicShape} isExpanded={!showProjected} showProfitSplit={showProfitSplit} />
+                        <CalculatorVisualFunnel metrics={current} isDynamic={isDynamicShape} isExpanded={!showProjected} showProfitSplit={showProfitSplit} directMode={directMode} directLeadsValue={curDirectLeads} setDirectLeads={setCurDirectLeads} handlers={{ setOptIn: setCurOptIn, setApptRate: setCurApptRate, setCloseRate: setCurCloseRate, setAdSpend: setCurAdSpend, setPrice: setCurPrice }} />
 
                         {showProjected && (
                             <>
@@ -509,7 +696,7 @@ const WebinarCalculator = () => {
                                     →
                                 </div>
                                 <div className="animate-in fade-in slide-in-from-right-8 duration-500 w-full max-w-[560px] lg:max-w-[280px]">
-                                    <CalculatorVisualFunnel metrics={projected} isDynamic={isDynamicShape} comparisons={comparisons} showProfitSplit={showProfitSplit} />
+                                    <CalculatorVisualFunnel metrics={projected} isDynamic={isDynamicShape} comparisons={comparisons} showProfitSplit={showProfitSplit} directMode={directMode} directLeadsValue={projDirectLeads} setDirectLeads={setProjDirectLeads} handlers={{ setOptIn, setApptRate, setCloseRate, setAdSpend, setPrice }} />
                                 </div>
                             </>
                         )}
@@ -557,6 +744,10 @@ const WebinarCalculator = () => {
                         metrics={current}
                         isProjected={false}
                         presetsNode={presetsDropdown}
+                        directMode={directMode}
+                        directLeadsValue={curDirectLeads}
+                        setDirectLeads={setCurDirectLeads}
+                        onToggleDirectMode={handleToggleDirectMode}
                     />
 
                     {/* 2. PROJECTED SCENARIO */}
@@ -569,6 +760,10 @@ const WebinarCalculator = () => {
                                 metrics={projected}
                                 comparisons={comparisons}
                                 isProjected={true}
+                                directMode={directMode}
+                                directLeadsValue={projDirectLeads}
+                                setDirectLeads={setProjDirectLeads}
+                                onToggleDirectMode={handleToggleDirectMode}
                             />
                         </div>
                     )}
