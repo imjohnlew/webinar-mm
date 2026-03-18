@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Target, Calendar, Star, DollarSign, Users, Eye, EyeOff, MonitorPlay, LayoutTemplate, PieChart, Info, Zap } from 'lucide-react';
+import { Target, Calendar, Star, DollarSign, Users, Eye, EyeOff, MonitorPlay, LayoutTemplate, PieChart, Info, Zap, Pencil } from 'lucide-react';
 
 const Tooltip = ({ content }) => (
     <div className="relative group/tip inline-flex items-center cursor-help ml-1">
@@ -236,7 +236,7 @@ const FunnelInput = ({ value, onChange, color, width = 'w-12' }) => (
         onChange={(e) => onChange(Number(e.target.value))}
         min="0"
         max="100"
-        className={`${width} bg-transparent ${color} font-black text-sm text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none`}
+        className={`${width} bg-transparent ${color} font-black text-xl text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none`}
     />
 );
 
@@ -280,29 +280,33 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
             <h4 className="text-white font-bold mb-4">{metrics.title}</h4>
 
             {/* Ad Spend — always visible, editable */}
-            <div className="w-full bg-slate-900/80 border border-slate-700 rounded-2xl py-3 px-5 flex items-center justify-between shadow-lg z-10 mb-2">
-                <span className="text-xs text-slate-400 font-bold tracking-widest uppercase">Ad Spend</span>
+            <div className="w-full bg-slate-900/80 border border-slate-500 rounded-2xl py-3 px-5 flex items-center justify-between shadow-lg z-10 mb-2 ring-1 ring-slate-500/30">
+                <span className="text-xs text-slate-300 font-bold tracking-widest uppercase flex items-center gap-1.5">
+                    <Pencil className="w-3 h-3 text-slate-400" /> Ad Spend
+                </span>
                 <div className="flex items-center gap-1">
                     <span className="text-slate-500 text-sm font-mono">RM</span>
                     <input
                         type="number"
                         value={metrics.adSpend}
                         onChange={(e) => handlers?.setAdSpend(Number(e.target.value))}
-                        className="w-24 bg-transparent text-red-400 text-xl font-black text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none"
+                        className="w-24 bg-transparent text-red-400 text-xl font-black text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none cursor-text"
                     />
                 </div>
             </div>
 
             {directMode ? (
                 /* Direct Mode: skip traffic + opt-in, show full-width editable Leads block */
-                <div className="w-full bg-purple-900/40 border border-purple-500/50 rounded-t-2xl py-6 flex flex-col items-center justify-center relative shadow-lg z-10">
+                <div className="w-full bg-purple-900/40 border-2 border-purple-400 rounded-t-2xl py-6 flex flex-col items-center justify-center relative shadow-lg z-10 ring-1 ring-purple-400/20">
                     <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-transparent pointer-events-none rounded-t-2xl" />
-                    <span className="text-[10px] text-purple-300 font-bold tracking-widest uppercase mb-1">Leads (Direct)</span>
+                    <span className="text-[10px] text-purple-200 font-bold tracking-widest uppercase mb-1 flex items-center gap-1.5">
+                        <Pencil className="w-3 h-3 text-purple-300" /> Leads (Direct)
+                    </span>
                     <input
                         type="number"
                         value={directLeadsValue ?? metrics.leads}
                         onChange={(e) => setDirectLeads?.(Number(e.target.value))}
-                        className="w-32 bg-transparent text-white text-4xl font-black text-center focus:outline-none [&::-webkit-inner-spin-button]:appearance-none"
+                        className="w-32 bg-transparent text-white text-4xl font-black text-center focus:outline-none [&::-webkit-inner-spin-button]:appearance-none cursor-text"
                     />
                     <div className="flex items-center gap-2 mt-1">
                         <span className="text-yellow-400 text-base font-black tracking-wide">CPL: RM {metrics.cpl.toFixed(2)}</span>
@@ -325,7 +329,8 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
 
                     {/* Opt-In Rate Divider */}
                     <div className="relative w-full flex justify-center items-center z-20 -my-4">
-                        <div className="bg-slate-800 border-2 border-slate-700 text-slate-300 text-[10px] uppercase tracking-wider font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 whitespace-nowrap">
+                        <div className="bg-slate-800 border-2 border-purple-500/60 text-slate-200 text-sm uppercase tracking-wider font-bold px-5 py-2.5 rounded-full shadow-xl flex items-center gap-2 whitespace-nowrap ring-1 ring-purple-500/20">
+                            <Pencil className="w-2.5 h-2.5 text-purple-400" />
                             <FunnelInput value={metrics.optIn} onChange={handlers?.setOptIn ?? (() => {})} color="text-purple-400" />
                             % OPT-IN RATE
                         </div>
@@ -354,7 +359,8 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
 
             {/* Show Up Rate Divider */}
             <div className="relative w-full flex justify-center items-center z-20 -my-4">
-                <div className="bg-slate-800 border-2 border-slate-700 text-slate-300 text-[10px] uppercase tracking-wider font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 whitespace-nowrap">
+                <div className="bg-slate-800 border-2 border-pink-500/60 text-slate-200 text-sm uppercase tracking-wider font-bold px-5 py-2.5 rounded-full shadow-xl flex items-center gap-2 whitespace-nowrap ring-1 ring-pink-500/20">
+                    <Pencil className="w-2.5 h-2.5 text-pink-400" />
                     <FunnelInput value={metrics.apptRate} onChange={handlers?.setApptRate ?? (() => {})} color="text-pink-400" />
                     % SHOW UP RATE
                 </div>
@@ -378,7 +384,8 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
 
             {/* Closing Rate Divider */}
             <div className="relative w-full flex justify-center items-center z-20 -my-4">
-                <div className="bg-slate-800 border-2 border-slate-700 text-slate-300 text-[10px] uppercase tracking-wider font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 whitespace-nowrap">
+                <div className="bg-slate-800 border-2 border-orange-500/60 text-slate-200 text-sm uppercase tracking-wider font-bold px-5 py-2.5 rounded-full shadow-xl flex items-center gap-2 whitespace-nowrap ring-1 ring-orange-500/20">
+                    <Pencil className="w-2.5 h-2.5 text-orange-400" />
                     <FunnelInput value={metrics.closeRate} onChange={handlers?.setCloseRate ?? (() => {})} color="text-orange-400" />
                     % CLOSING RATE
                 </div>
@@ -403,14 +410,15 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
             {/* Price × Sales */}
             <div className="w-full flex items-center justify-center gap-2 mt-4 mb-1">
                 <span className="text-slate-600 text-lg font-light">×</span>
-                <div className="bg-slate-800/80 border border-slate-700 rounded-xl py-2 px-4 flex items-center gap-2">
-                    <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Price</span>
+                <div className="bg-slate-800/80 border border-slate-500 rounded-xl py-2 px-4 flex items-center gap-2 ring-1 ring-slate-500/20">
+                    <Pencil className="w-3 h-3 text-slate-400" />
+                    <span className="text-xs text-slate-300 font-bold uppercase tracking-wider">Price</span>
                     <span className="text-slate-500 text-sm font-mono">RM</span>
                     <input
                         type="number"
                         value={metrics.price}
                         onChange={(e) => handlers?.setPrice(Number(e.target.value))}
-                        className="w-20 bg-transparent text-white text-lg font-black text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none"
+                        className="w-20 bg-transparent text-white text-lg font-black text-right focus:outline-none [&::-webkit-inner-spin-button]:appearance-none cursor-text"
                     />
                 </div>
             </div>
