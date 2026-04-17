@@ -169,7 +169,7 @@ function App() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="p-4 md:p-8 lg:p-12"
+                className="p-4 md:p-6 lg:p-8"
               >
                 {renderContent()}
               </motion.div>

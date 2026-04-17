@@ -49,8 +49,7 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
     const stage = stages.find(s => s.id === activeId);
 
     return (
-        <div className="w-full flex justify-center py-8">
-            <div className="w-full max-w-[1400px] flex flex-col gap-8">
+        <div className="w-full flex flex-col gap-8 py-8">
 
                 {/* Header */}
                 <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -250,7 +249,6 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
                 </>
                 )}
 
-            </div>
         </div>
     );
 };
