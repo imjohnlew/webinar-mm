@@ -73,12 +73,12 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
 
                 {/* ── FUNNEL OVERVIEW ── */}
                 {funnelView && (
-                    <div className="pb-2">
-                        <div className="flex items-start gap-3">
+                    <div className="overflow-x-auto pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
+                        <div className="flex items-start gap-3 min-w-0">
                             {stages.map((s, i) => (
                                 <React.Fragment key={s.id}>
                                     <div
-                                        className="flex flex-col items-center cursor-pointer group flex-1 min-w-0"
+                                        className="flex flex-col items-center cursor-pointer group flex-1 min-w-[200px]"
                                         onClick={() => { setActiveId(s.id); setFunnelView(false); }}
                                     >
                                         <div className={`w-full py-3 px-3 ${s.bg} text-white text-center rounded-xl mb-3 group-hover:brightness-110 transition-all`}>
