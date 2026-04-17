@@ -74,34 +74,47 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
                 {/* ── FUNNEL OVERVIEW ── */}
                 {funnelView && (
                     <div className="overflow-x-auto pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
-                        <div className="flex items-start gap-3 min-w-0">
+
+                        {/* Row 1: headers — items-stretch equalises height across all cards */}
+                        <div className="flex items-stretch gap-3 min-w-0 mb-3">
                             {stages.map((s, i) => (
-                                <React.Fragment key={s.id}>
+                                <React.Fragment key={s.id + '-h'}>
                                     <div
-                                        className="flex flex-col items-center cursor-pointer group flex-1 min-w-[200px]"
+                                        className={`flex-1 min-w-[200px] py-3 px-3 ${s.bg} text-white text-center rounded-xl cursor-pointer hover:brightness-110 transition-all`}
                                         onClick={() => { setActiveId(s.id); setFunnelView(false); }}
                                     >
-                                        <div className={`w-full py-3 px-3 ${s.bg} text-white text-center rounded-xl mb-3 group-hover:brightness-110 transition-all`}>
-                                            <s.icon className="w-4 h-4 mx-auto mb-1 opacity-80" />
-                                            <div className="font-black text-sm leading-tight">{s.label}</div>
-                                            <div className="text-[10px] opacity-70 mt-0.5">{s.sublabel}</div>
-                                            {s.price && <div className="text-[10px] font-bold mt-1.5 bg-black/20 rounded px-2 py-0.5 inline-block">{s.price}</div>}
-                                            {s.conversion && <div className="text-[10px] font-bold mt-1 opacity-80">{s.conversion} {s.conversionNote}</div>}
-                                        </div>
-                                        <div className="w-full overflow-hidden">
-                                            <BrowserFrame url={s.url || 'yoursite.com'}>
-                                                {s.mockup}
-                                            </BrowserFrame>
-                                        </div>
+                                        <s.icon className="w-4 h-4 mx-auto mb-1 opacity-80" />
+                                        <div className="font-black text-sm leading-tight">{s.label}</div>
+                                        <div className="text-[10px] opacity-70 mt-0.5">{s.sublabel}</div>
+                                        {s.price && <div className="text-[10px] font-bold mt-1.5 bg-black/20 rounded px-2 py-0.5 inline-block">{s.price}</div>}
+                                        {s.conversion && <div className="text-[10px] font-bold mt-1 opacity-80">{s.conversion} {s.conversionNote}</div>}
+                                    </div>
+                                    {i < stages.length - 1 && <div className="w-9 shrink-0" />}
+                                </React.Fragment>
+                            ))}
+                        </div>
+
+                        {/* Row 2: mockups — all start at the same top */}
+                        <div className="flex items-start gap-3 min-w-0">
+                            {stages.map((s, i) => (
+                                <React.Fragment key={s.id + '-m'}>
+                                    <div
+                                        className="flex-1 min-w-[200px] overflow-hidden cursor-pointer"
+                                        onClick={() => { setActiveId(s.id); setFunnelView(false); }}
+                                    >
+                                        <BrowserFrame url={s.url || 'yoursite.com'}>
+                                            {s.mockup}
+                                        </BrowserFrame>
                                     </div>
                                     {i < stages.length - 1 && (
-                                        <div className="flex items-start pt-24 shrink-0">
+                                        <div className="flex items-start pt-4 shrink-0 w-9 justify-center">
                                             <ArrowRight className="w-6 h-6 text-slate-500" />
                                         </div>
                                     )}
                                 </React.Fragment>
                             ))}
                         </div>
+
                         <p className="text-[11px] text-slate-500 mt-5">Click any stage to inspect it in detail</p>
                     </div>
                 )}
