@@ -89,7 +89,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
     const leadsBreakdown = directMode ? null : `${values.traffic.toLocaleString()} × ${values.optIn}% = ${metrics.leads.toLocaleString()}`;
     const attendeesBreakdown = `${metrics.leads.toLocaleString()} × ${values.apptRate}% = ${metrics.appointments.toLocaleString()}`;
     const salesBreakdown = `${metrics.appointments.toLocaleString()} × ${values.closeRate}% = ${metrics.sales.toLocaleString()}`;
-    const revenueBreakdown = `${metrics.sales.toLocaleString()} × RM ${values.price.toLocaleString()} = RM ${metrics.revenue.toLocaleString()}`;
+    const revenueBreakdown = `${metrics.sales.toLocaleString()} × $${values.price.toLocaleString()} = $${metrics.revenue.toLocaleString()}`;
 
     return (
         <div className={`w-full lg:w-max p-4 rounded-2xl border ${isProjected ? 'bg-slate-900/50 border-blue-500/30' : 'bg-slate-800/30 border-slate-700/50'}`}>
@@ -118,7 +118,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     label="Ad Spend"
                     value={values.adSpend}
                     onChange={handlers.setAdSpend}
-                    prefix="RM "
+                    prefix="$"
                     icon={MonitorPlay}
                     color={isProjected ? "text-blue-400" : "text-slate-500"}
                     metric={undefined}
@@ -134,10 +134,10 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                         onChange={setDirectLeads}
                         icon={Target}
                         color={isProjected ? "text-purple-400" : "text-slate-500"}
-                        metric={`RM ${metrics.cpl.toFixed(2)}`}
+                        metric={`$${metrics.cpl.toFixed(2)}`}
                         metricLabel="CPL"
                         metricColor="text-yellow-400"
-                        calcBreakdown={`RM ${values.adSpend.toLocaleString()} ÷ ${directLeadsValue} = RM ${metrics.cpl.toFixed(2)}`}
+                        calcBreakdown={`$${values.adSpend.toLocaleString()} ÷ ${directLeadsValue} = $${metrics.cpl.toFixed(2)}`}
                         subMetric={comparisons.leadsDiff ? (
                             <span className={comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}>
                                 {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
@@ -170,7 +170,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                             calcBreakdown={leadsBreakdown}
                             subMetric={
                                 <div className="flex flex-col items-center">
-                                    <span className="text-yellow-400 font-black text-lg mt-2 mb-1">CPL: RM {metrics.cpl.toFixed(2)}</span>
+                                    <span className="text-yellow-400 font-black text-lg mt-2 mb-1">CPL: ${metrics.cpl.toFixed(2)}</span>
                                     {comparisons.leadsDiff && (
                                         <span className={comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}>
                                             {comparisons.leadsDiff > 0 ? '+' : ''}{comparisons.leadsDiff.toLocaleString()}
@@ -230,10 +230,10 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                     label="Price"
                     value={values.price}
                     onChange={handlers.setPrice}
-                    prefix="RM "
+                    prefix="$"
                     icon={DollarSign}
                     color={isProjected ? "text-green-400" : "text-slate-500"}
-                    metric={`RM ${metrics.revenue.toLocaleString()}`}
+                    metric={`$${metrics.revenue.toLocaleString()}`}
                     metricLabel="Revenue"
                     metricColor={isProjected ? "text-green-400" : "text-white"}
                     calcBreakdown={revenueBreakdown}
@@ -242,7 +242,7 @@ const FunnelRow = ({ title, values, handlers, metrics, comparisons = {}, isProje
                             <span className="text-emerald-400 font-black text-lg mt-2 mb-1">ROAS: {metrics.roas}X</span>
                             {comparisons.revenueDiff && (
                                 <span className={comparisons.revenueDiff > 0 ? "text-green-400" : "text-red-400"}>
-                                    {comparisons.revenueDiff > 0 ? '+' : ''}RM {comparisons.revenueDiff.toLocaleString()}
+                                    {comparisons.revenueDiff > 0 ? '+' : ''}${comparisons.revenueDiff.toLocaleString()}
                                 </span>
                             )}
                         </div>
@@ -304,7 +304,7 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
                     <Pencil className="w-3 h-3 text-slate-400" /> Ad Spend
                 </span>
                 <div className="flex items-center gap-1">
-                    <span className="text-slate-500 text-sm font-mono">RM</span>
+                    <span className="text-slate-500 text-sm font-mono">$</span>
                     <input
                         type="number"
                         value={metrics.adSpend}
@@ -327,8 +327,8 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
                         className="w-32 bg-transparent text-white text-4xl font-black text-center focus:outline-none [&::-webkit-inner-spin-button]:appearance-none cursor-text"
                     />
                     <div className="flex items-center gap-2 mt-1">
-                        <span className="text-yellow-400 text-base font-black tracking-wide">CPL: RM {metrics.cpl.toFixed(2)}</span>
-                        <CalcIcon id="leads-direct" text={`RM ${metrics.adSpend.toLocaleString()} ÷ ${metrics.leads.toLocaleString()} Leads = RM ${metrics.cpl.toFixed(2)} CPL`} color="text-yellow-400" activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
+                        <span className="text-yellow-400 text-base font-black tracking-wide">CPL: ${metrics.cpl.toFixed(2)}</span>
+                        <CalcIcon id="leads-direct" text={`$${metrics.adSpend.toLocaleString()} ÷ ${metrics.leads.toLocaleString()} Leads = $${metrics.cpl.toFixed(2)} CPL`} color="text-yellow-400" activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
                     </div>
                     {comparisons.leadsDiff !== undefined && comparisons.leadsDiff !== 0 && (
                         <span className={`text-sm font-black tracking-wide ${comparisons.leadsDiff > 0 ? "text-green-400" : "text-red-400"}`}>
@@ -363,7 +363,7 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
                         <span className="text-xs text-purple-300 font-bold tracking-widest uppercase mb-1">Leads</span>
                         <span className="text-3xl font-black text-white">{metrics.leads.toLocaleString()}</span>
                         <div className="flex items-center gap-2 mt-1">
-                            <span className="text-yellow-400 text-sm font-black tracking-wide">CPL: RM {metrics.cpl.toFixed(2)}</span>
+                            <span className="text-yellow-400 text-sm font-black tracking-wide">CPL: ${metrics.cpl.toFixed(2)}</span>
                             <CalcIcon id="leads" text={`${metrics.traffic.toLocaleString()} × ${metrics.optIn}% ${labels.optInRateLabel} = ${metrics.leads.toLocaleString()} Leads`} activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
                         </div>
                         {comparisons.leadsDiff !== undefined && comparisons.leadsDiff !== 0 && (
@@ -431,7 +431,7 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
                 <div className="bg-slate-800/80 border border-slate-500 rounded-xl py-2 px-4 flex items-center gap-2 ring-1 ring-slate-500/20">
                     <Pencil className="w-3 h-3 text-slate-400" />
                     <span className="text-xs text-slate-300 font-bold uppercase tracking-wider">Price</span>
-                    <span className="text-slate-500 text-sm font-mono">RM</span>
+                    <span className="text-slate-500 text-sm font-mono">$</span>
                     <input
                         type="number"
                         value={metrics.price}
@@ -444,11 +444,11 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
             {/* Revenue */}
             <div className="mt-2 p-5 rounded-2xl bg-green-900/30 border border-green-500 shadow-[0_0_30px_rgba(34,197,94,0.1)] text-center w-full transform transition-all hover:scale-105">
                 <span className="text-sm text-green-300 font-bold tracking-widest uppercase block mb-1">Total Revenue</span>
-                <span className="text-4xl font-black text-green-400">RM {metrics.revenue.toLocaleString()}</span>
-                <CalcIcon id="revenue" text={`${metrics.sales.toLocaleString()} Sales × RM ${metrics.price?.toLocaleString()} = RM ${metrics.revenue.toLocaleString()}`} color="text-green-400" activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
+                <span className="text-4xl font-black text-green-400">${metrics.revenue.toLocaleString()}</span>
+                <CalcIcon id="revenue" text={`${metrics.sales.toLocaleString()} Sales × $${metrics.price?.toLocaleString()} = $${metrics.revenue.toLocaleString()}`} color="text-green-400" activeCalc={activeCalc} setActiveCalc={setActiveCalc} />
                 {comparisons.revenueDiff !== undefined && comparisons.revenueDiff !== 0 && (
                     <span className={`text-base font-black tracking-wide block mt-1 ${comparisons.revenueDiff > 0 ? "text-green-300" : "text-red-400"}`}>
-                        {comparisons.revenueDiff > 0 ? '+' : ''}RM {comparisons.revenueDiff.toLocaleString()}
+                        {comparisons.revenueDiff > 0 ? '+' : ''}${comparisons.revenueDiff.toLocaleString()}
                     </span>
                 )}
             </div>
@@ -456,10 +456,10 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
             {showAdSpend && (
                 <div className="mt-2 p-3 rounded-2xl bg-red-900/20 border border-red-500/30 text-center w-full max-w-[80%] opacity-90 mx-auto animate-in fade-in slide-in-from-top-2">
                     <span className="text-[10px] text-red-300 font-bold tracking-widest uppercase block mb-0.5">Minus Ad Spend</span>
-                    <span className="text-xl font-black text-red-400">-RM {metrics.adSpend.toLocaleString()}</span>
+                    <span className="text-xl font-black text-red-400">-${metrics.adSpend.toLocaleString()}</span>
                     {comparisons.adSpendDiff !== undefined && comparisons.adSpendDiff !== 0 && (
                         <span className={`text-xs font-black tracking-wide block ${comparisons.adSpendDiff < 0 ? "text-green-400" : "text-red-400"}`}>
-                            {comparisons.adSpendDiff > 0 ? '+' : ''}RM {comparisons.adSpendDiff.toLocaleString()}
+                            {comparisons.adSpendDiff > 0 ? '+' : ''}${comparisons.adSpendDiff.toLocaleString()}
                         </span>
                     )}
                 </div>
@@ -470,18 +470,18 @@ const CalculatorVisualFunnel = ({ metrics, isDynamic, isExpanded = false, showPr
                     <div className="text-center mb-4">
                         <span className="text-xs text-slate-400 font-bold tracking-widest uppercase block mb-1">Total Profit</span>
                         <span className={`text-2xl font-black ${metrics.profit >= 0 ? 'text-white' : 'text-red-400'}`}>
-                            RM {metrics.profit.toLocaleString()}
+                            ${metrics.profit.toLocaleString()}
                         </span>
                     </div>
                     {metrics.profit > 0 && (
                         <div className="flex gap-2 w-full">
                             <div className="flex-1 p-3 rounded-xl bg-blue-900/30 border border-blue-800/50 text-center flex flex-col justify-center">
                                 <span className="text-[10px] text-blue-400 font-bold tracking-widest uppercase block mb-1">Marketer ({metrics.marketerSplit}%)</span>
-                                <span className="text-base font-black text-blue-300 truncate">RM {metrics.marketerProfit.toLocaleString()}</span>
+                                <span className="text-base font-black text-blue-300 truncate">${metrics.marketerProfit.toLocaleString()}</span>
                             </div>
                             <div className="flex-1 p-3 rounded-xl bg-purple-900/30 border border-purple-800/50 text-center flex flex-col justify-center">
                                 <span className="text-[10px] text-purple-400 font-bold tracking-widest uppercase block mb-1">Expert ({100 - metrics.marketerSplit}%)</span>
-                                <span className="text-base font-black text-purple-300 truncate">RM {metrics.expertProfit.toLocaleString()}</span>
+                                <span className="text-base font-black text-purple-300 truncate">${metrics.expertProfit.toLocaleString()}</span>
                             </div>
                         </div>
                     )}
@@ -523,13 +523,13 @@ const ScalingTable = ({ metrics, title, isProjected, showSplit, showAdSpend }) =
                         {multipliers.map((m) => (
                             <tr key={m} className={`hover:bg-slate-800/30 transition-colors ${m === 1 ? 'bg-slate-800/10' : ''}`}>
                                 <td className="px-4 py-3 font-bold text-white whitespace-nowrap">{m} <span className="text-slate-500 font-normal text-xs ml-1">month{m > 1 ? 's' : ''}</span></td>
-                                <td className="px-4 py-3 font-bold text-green-300 whitespace-nowrap">RM {(metrics.revenue * m).toLocaleString()}</td>
-                                {showAdSpend && <td className="px-4 py-3 font-bold text-red-400 opacity-90 whitespace-nowrap">-RM {(metrics.adSpend * m).toLocaleString()}</td>}
-                                <td className={`px-4 py-3 font-black whitespace-nowrap ${metrics.profit >= 0 ? "text-green-400" : "text-red-400"}`}>RM {(metrics.profit * m).toLocaleString()}</td>
+                                <td className="px-4 py-3 font-bold text-green-300 whitespace-nowrap">${(metrics.revenue * m).toLocaleString()}</td>
+                                {showAdSpend && <td className="px-4 py-3 font-bold text-red-400 opacity-90 whitespace-nowrap">-${(metrics.adSpend * m).toLocaleString()}</td>}
+                                <td className={`px-4 py-3 font-black whitespace-nowrap ${metrics.profit >= 0 ? "text-green-400" : "text-red-400"}`}>${(metrics.profit * m).toLocaleString()}</td>
                                 {showSplit && metrics.profit > 0 && (
                                     <>
-                                        <td className="px-4 py-3 font-bold text-blue-300 whitespace-nowrap">RM {(metrics.marketerProfit * m).toLocaleString()}</td>
-                                        <td className="px-4 py-3 font-bold text-purple-300 whitespace-nowrap">RM {(metrics.expertProfit * m).toLocaleString()}</td>
+                                        <td className="px-4 py-3 font-bold text-blue-300 whitespace-nowrap">${(metrics.marketerProfit * m).toLocaleString()}</td>
+                                        <td className="px-4 py-3 font-bold text-purple-300 whitespace-nowrap">${(metrics.expertProfit * m).toLocaleString()}</td>
                                     </>
                                 )}
                             </tr>
