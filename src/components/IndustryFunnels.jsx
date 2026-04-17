@@ -1,149 +1,149 @@
 import React, { useState } from 'react';
 import { Users, Calendar, Check, Shield, Clock, Star, Phone, FileText, MapPin, Award, Search, Zap, Heart, Scale, BookOpen, TrendingUp } from 'lucide-react';
-import FunnelTemplate, { Bar } from './FunnelTemplate';
+import FunnelTemplate, { Bar, VideoFrame } from './FunnelTemplate';
 
 // ─── DENTAL MOCKUPS ────────────────────────────────────────────────────────────
 
 const DentalAdMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-[9px] text-slate-700">
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
         <div className="p-2.5 flex items-center gap-1.5">
-            <div className="w-7 h-7 rounded-full bg-teal-600 flex items-center justify-center text-white font-black text-[8px]">🦷</div>
-            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[7px] text-slate-400 mt-0.5">Sponsored</div></div>
+            <div className="w-7 h-7 rounded-full bg-teal-600 flex items-center justify-center text-white font-black text-[11px]">🦷</div>
+            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[10px] text-slate-400 mt-0.5">Sponsored</div></div>
         </div>
         <div className="px-2.5 pb-1.5">
-            <div className="font-bold text-slate-800 text-[8px] leading-tight">⚡ LIMITED SPOTS: Free Teeth Whitening Consultation This Week Only</div>
-            <div className="text-[7px] text-slate-500 mt-0.5">Valued at $150 — yours FREE for [City] residents</div>
+            <div className="font-bold text-slate-800 text-[11px] leading-tight">⚡ LIMITED SPOTS: Free Teeth Whitening Consultation This Week Only</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Valued at $150 — yours FREE for [City] residents</div>
         </div>
         <div className="w-full aspect-video bg-gradient-to-r from-teal-500 to-cyan-500 flex flex-col items-center justify-center gap-1 relative">
             <div className="flex gap-3 items-end">
                 <div className="text-center">
-                    <div className="text-[7px] text-teal-100 font-bold mb-0.5">BEFORE</div>
+                    <div className="text-[10px] text-teal-100 font-bold mb-0.5">BEFORE</div>
                     <div className="w-12 h-10 bg-yellow-200 rounded flex items-center justify-center text-[14px]">😬</div>
                 </div>
-                <div className="text-white font-black text-[10px]">→</div>
+                <div className="text-white font-black text-sm">→</div>
                 <div className="text-center">
-                    <div className="text-[7px] text-teal-100 font-bold mb-0.5">AFTER</div>
+                    <div className="text-[10px] text-teal-100 font-bold mb-0.5">AFTER</div>
                     <div className="w-12 h-10 bg-white rounded flex items-center justify-center text-[14px]">😁</div>
                 </div>
             </div>
-            <div className="absolute top-1.5 left-1.5 bg-red-500 text-white text-[7px] font-black px-1.5 py-0.5 rounded">FREE CONSULT</div>
+            <div className="absolute top-1.5 left-1.5 bg-red-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded">FREE CONSULT</div>
         </div>
         <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
-            <div><div className="text-[7px] text-slate-400">[Clinic Name] Dental</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
-            <div className="bg-teal-600 text-white text-[7px] font-bold px-2.5 py-1 rounded">Book Free Visit</div>
+            <div><div className="text-[10px] text-slate-400">[Clinic Name] Dental</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
+            <div className="bg-teal-600 text-white text-[10px] font-bold px-2.5 py-1 rounded">Book Free Visit</div>
         </div>
     </div>
 );
 
 const DentalLandingMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-teal-700 px-3 py-1.5 flex items-center justify-between">
-            <div className="text-white font-black text-[9px]">🦷 [Clinic Name] Dental</div>
-            <div className="flex items-center gap-1 text-teal-200 text-[7px]"><Phone className="w-2 h-2" /> (555) 123-4567</div>
+            <div className="text-white font-black text-xs">🦷 [Clinic Name] Dental</div>
+            <div className="flex items-center gap-1 text-teal-200 text-[10px]"><Phone className="w-2 h-2" /> (555) 123-4567</div>
         </div>
         <div className="bg-gradient-to-br from-teal-50 to-cyan-50 p-3 text-center space-y-2">
             <div className="font-black text-slate-900 text-[11px] leading-tight">Claim Your FREE Smile Assessment<br/>— [City] Residents Only</div>
-            <div className="text-[7px] text-slate-500">Valued at $150 · No obligation · Limited spots available this week</div>
+            <div className="text-[10px] text-slate-500">Valued at $150 · No obligation · Limited spots available this week</div>
             <div className="w-full aspect-[16/7] bg-teal-100 rounded-lg flex items-center justify-center gap-4 border border-teal-200">
-                <div className="text-center"><div className="text-[20px]">👨‍⚕️</div><div className="text-[7px] font-bold text-teal-700">Dr. [Name]</div><div className="text-[6px] text-teal-500">15+ yrs experience</div></div>
+                <div className="text-center"><div className="text-[20px]">👨‍⚕️</div><div className="text-[10px] font-bold text-teal-700">Dr. [Name]</div><div className="text-[9px] text-teal-500">15+ yrs experience</div></div>
                 <div className="space-y-1">
-                    {['⭐⭐⭐⭐⭐ Google Reviews', '200+ Happy Patients', 'Same-Week Appointments'].map(t => <div key={t} className="text-[7px] text-teal-700 font-bold">{t}</div>)}
+                    {['⭐⭐⭐⭐⭐ Google Reviews', '200+ Happy Patients', 'Same-Week Appointments'].map(t => <div key={t} className="text-[10px] text-teal-700 font-bold">{t}</div>)}
                 </div>
             </div>
             {['No out-of-pocket cost for your assessment', 'Includes full smile scan + whitening plan', 'Walk out knowing exactly what your smile needs'].map(b => (
-                <div key={b} className="flex items-center gap-1 text-[8px] text-slate-600 text-left"><Check className="w-2.5 h-2.5 text-teal-500 shrink-0" /> {b}</div>
+                <div key={b} className="flex items-center gap-1 text-[11px] text-slate-600 text-left"><Check className="w-2.5 h-2.5 text-teal-500 shrink-0" /> {b}</div>
             ))}
             <div className="space-y-1.5 pt-1">
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[8px] text-slate-400">Your Full Name</div>
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[8px] text-slate-400">Phone Number</div>
-                <div className="w-full bg-teal-600 text-white font-black text-[10px] py-2 rounded">Claim My Free Assessment →</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400">Your Full Name</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400">Phone Number</div>
+                <div className="w-full bg-teal-600 text-white font-black text-sm py-2 rounded">Claim My Free Assessment →</div>
             </div>
-            <div className="flex items-center justify-center gap-1 text-[7px] text-slate-400"><Shield className="w-2 h-2" /> We never share your details · No spam</div>
+            <div className="flex items-center justify-center gap-1 text-[10px] text-slate-400"><Shield className="w-2 h-2" /> We never share your details · No spam</div>
         </div>
     </div>
 );
 
 const DentalQuizMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-teal-700 px-3 py-2">
-            <div className="text-white font-black text-[9px]">Quick Smile Quiz — 30 seconds</div>
+            <div className="text-white font-black text-xs">Quick Smile Quiz — 30 seconds</div>
             <div className="flex gap-0.5 mt-1.5">
                 {[1,2,3].map(i => <div key={i} className={`h-1 flex-1 rounded-full ${i === 1 ? 'bg-white' : 'bg-teal-500'}`} />)}
             </div>
         </div>
         <div className="p-3 space-y-3">
-            <div className="font-black text-slate-800 text-[10px]">Question 1 of 3: How would you describe your smile right now?</div>
+            <div className="font-black text-slate-800 text-sm">Question 1 of 3: How would you describe your smile right now?</div>
             {['I love it — just want to maintain it', 'It\'s okay but I\'d love it whiter', 'I\'m self-conscious about it', 'I avoid smiling in photos'].map(opt => (
                 <div key={opt} className="border-2 border-slate-200 hover:border-teal-400 rounded-lg px-3 py-2.5 cursor-pointer flex items-center gap-2">
                     <div className="w-3.5 h-3.5 rounded-full border-2 border-slate-300 shrink-0" />
-                    <span className="text-[8px] text-slate-700">{opt}</span>
+                    <span className="text-[11px] text-slate-700">{opt}</span>
                 </div>
             ))}
-            <div className="w-full bg-teal-600 text-white font-black text-[9px] py-2 rounded text-center">Next Question →</div>
-            <div className="text-[7px] text-slate-400 text-center">No commitment · Results in 30 seconds</div>
+            <div className="w-full bg-teal-600 text-white font-black text-xs py-2 rounded text-center">Next Question →</div>
+            <div className="text-[10px] text-slate-400 text-center">No commitment · Results in 30 seconds</div>
         </div>
     </div>
 );
 
 const DentalBookingMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-r from-teal-600 to-cyan-600 px-3 py-3 text-center">
-            <div className="text-white font-black text-[10px]">🎉 You qualify! Pick your free appointment time</div>
-            <div className="text-teal-100 text-[7px] mt-0.5">Only 3 spots left this week — book now to secure yours</div>
+            <div className="text-white font-black text-sm">🎉 You qualify! Pick your free appointment time</div>
+            <div className="text-teal-100 text-[10px] mt-0.5">Only 3 spots left this week — book now to secure yours</div>
         </div>
         <div className="p-3 space-y-2">
             <div className="grid grid-cols-4 gap-1">
                 {['Mon 14', 'Tue 15', 'Wed 16', 'Thu 17'].map((d, i) => (
                     <div key={d} className={`border rounded p-1.5 text-center cursor-pointer ${i === 1 ? 'border-teal-500 bg-teal-50' : 'border-slate-200'}`}>
-                        <div className="text-[7px] font-black text-slate-700">{d}</div>
-                        <div className="text-[6px] text-slate-400">Available</div>
+                        <div className="text-[10px] font-black text-slate-700">{d}</div>
+                        <div className="text-[9px] text-slate-400">Available</div>
                     </div>
                 ))}
             </div>
             <div className="grid grid-cols-3 gap-1">
                 {['9:00 AM', '10:30 AM', '2:00 PM', '3:30 PM', '4:00 PM', '5:00 PM'].map((t, i) => (
-                    <div key={t} className={`border rounded px-1 py-1.5 text-center text-[7px] font-bold cursor-pointer ${i === 2 ? 'border-teal-500 bg-teal-500 text-white' : 'border-slate-200 text-slate-600'}`}>{t}</div>
+                    <div key={t} className={`border rounded px-1 py-1.5 text-center text-[10px] font-bold cursor-pointer ${i === 2 ? 'border-teal-500 bg-teal-500 text-white' : 'border-slate-200 text-slate-600'}`}>{t}</div>
                 ))}
             </div>
             <div className="bg-teal-50 border border-teal-200 rounded-lg p-2 space-y-1">
-                <div className="font-bold text-teal-700 text-[8px]">Your Appointment:</div>
-                <div className="text-[7px] text-teal-600">📅 Tuesday, Jan 15 at 2:00 PM</div>
-                <div className="text-[7px] text-teal-600">📍 [Clinic Name], [Address]</div>
-                <div className="text-[7px] text-teal-600">⏱ 30-minute free assessment</div>
+                <div className="font-bold text-teal-700 text-[11px]">Your Appointment:</div>
+                <div className="text-[10px] text-teal-600">📅 Tuesday, Jan 15 at 2:00 PM</div>
+                <div className="text-[10px] text-teal-600">📍 [Clinic Name], [Address]</div>
+                <div className="text-[10px] text-teal-600">⏱ 30-minute free assessment</div>
             </div>
-            <div className="w-full bg-teal-600 text-white font-black text-[10px] py-2 rounded text-center">Confirm My Appointment →</div>
+            <div className="w-full bg-teal-600 text-white font-black text-sm py-2 rounded text-center">Confirm My Appointment →</div>
         </div>
     </div>
 );
 
 const DentalConfirmMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-r from-teal-500 to-green-500 px-3 py-3 text-center">
             <div className="text-3xl mb-0.5">✅</div>
-            <div className="text-white font-black text-[10px]">Appointment Confirmed!</div>
-            <div className="text-teal-100 text-[7px]">See you Tuesday at 2:00 PM</div>
+            <div className="text-white font-black text-sm">Appointment Confirmed!</div>
+            <div className="text-teal-100 text-[10px]">See you Tuesday at 2:00 PM</div>
         </div>
         <div className="p-3 space-y-2">
             <div className="border border-teal-200 rounded-lg p-2 bg-teal-50 space-y-1">
-                <div className="font-bold text-teal-700 text-[8px]">Appointment Details:</div>
-                <div className="text-[7px] text-teal-600">📅 Tuesday, Jan 15 · 2:00 PM</div>
-                <div className="text-[7px] text-teal-600">📍 [Clinic Name] · [Address]</div>
-                <div className="text-[7px] text-teal-600">🅿️ Free parking available</div>
+                <div className="font-bold text-teal-700 text-[11px]">Appointment Details:</div>
+                <div className="text-[10px] text-teal-600">📅 Tuesday, Jan 15 · 2:00 PM</div>
+                <div className="text-[10px] text-teal-600">📍 [Clinic Name] · [Address]</div>
+                <div className="text-[10px] text-teal-600">🅿️ Free parking available</div>
             </div>
             <div className="grid grid-cols-3 gap-1">
                 {['Add to Google', 'Add to Apple', 'Add to Outlook'].map(c => (
-                    <div key={c} className="border border-slate-200 rounded text-center py-1.5 text-[6.5px] font-bold text-slate-600 cursor-pointer">📅 {c}</div>
+                    <div key={c} className="border border-slate-200 rounded text-center py-1.5 text-[9px] font-bold text-slate-600 cursor-pointer">📅 {c}</div>
                 ))}
             </div>
             <div className="border border-slate-200 rounded-lg p-2 space-y-1.5">
-                <div className="font-bold text-slate-700 text-[8px]">What to Bring:</div>
+                <div className="font-bold text-slate-700 text-[11px]">What to Bring:</div>
                 {['Valid ID', 'Insurance card (if applicable)', 'List of any current medications'].map(s => (
-                    <div key={s} className="flex items-center gap-1 text-[7px] text-slate-600"><Check className="w-2 h-2 text-green-500 shrink-0" /> {s}</div>
+                    <div key={s} className="flex items-center gap-1 text-[10px] text-slate-600"><Check className="w-2 h-2 text-green-500 shrink-0" /> {s}</div>
                 ))}
             </div>
             <div className="bg-slate-800 text-white rounded-lg p-2 text-center space-y-0.5">
-                <div className="text-[7px] text-slate-400">Questions? Call us directly:</div>
-                <div className="font-black text-[10px] text-teal-400">(555) 123-4567</div>
+                <div className="text-[10px] text-slate-400">Questions? Call us directly:</div>
+                <div className="font-black text-sm text-teal-400">(555) 123-4567</div>
             </div>
         </div>
     </div>
@@ -152,154 +152,154 @@ const DentalConfirmMockup = () => (
 // ─── LAWYER MOCKUPS ────────────────────────────────────────────────────────────
 
 const LawyerAdMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-[9px] text-slate-700">
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
         <div className="p-2.5 flex items-center gap-1.5">
-            <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-white font-black text-[7px]">⚖️</div>
-            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[7px] text-slate-400 mt-0.5">Sponsored</div></div>
+            <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-white font-black text-[10px]">⚖️</div>
+            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[10px] text-slate-400 mt-0.5">Sponsored</div></div>
         </div>
         <div className="px-2.5 pb-1.5">
-            <div className="font-bold text-slate-800 text-[8px] leading-tight">Were You Injured? You May Be Entitled to Compensation.</div>
-            <div className="text-[7px] text-slate-500 mt-0.5">Free case review · No fee unless you win · [City] attorneys</div>
+            <div className="font-bold text-slate-800 text-[11px] leading-tight">Were You Injured? You May Be Entitled to Compensation.</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Free case review · No fee unless you win · [City] attorneys</div>
         </div>
         <div className="w-full aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center justify-center gap-2 relative">
-            <div className="absolute top-1.5 left-1.5 bg-yellow-500 text-black text-[7px] font-black px-1.5 py-0.5 rounded">FREE CASE REVIEW</div>
-            <div className="text-white font-black text-[10px] text-center px-4 leading-tight">Don't Let the Insurance<br/>Company Win</div>
+            <div className="absolute top-1.5 left-1.5 bg-yellow-500 text-black text-[10px] font-black px-1.5 py-0.5 rounded">FREE CASE REVIEW</div>
+            <div className="text-white font-black text-sm text-center px-4 leading-tight">Don't Let the Insurance<br/>Company Win</div>
             <div className="flex gap-3 text-center">
-                {['$2.4M', '$890K', '$1.1M'].map(a => <div key={a}><div className="text-yellow-400 font-black text-[9px]">{a}</div><div className="text-[6px] text-slate-400">Recovered</div></div>)}
+                {['$2.4M', '$890K', '$1.1M'].map(a => <div key={a}><div className="text-yellow-400 font-black text-xs">{a}</div><div className="text-[9px] text-slate-400">Recovered</div></div>)}
             </div>
         </div>
         <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
-            <div><div className="text-[7px] text-slate-400">[Law Firm Name]</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
-            <div className="bg-yellow-500 text-black text-[7px] font-black px-2.5 py-1 rounded">Get Free Review</div>
+            <div><div className="text-[10px] text-slate-400">[Law Firm Name]</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
+            <div className="bg-yellow-500 text-black text-[10px] font-black px-2.5 py-1 rounded">Get Free Review</div>
         </div>
     </div>
 );
 
 const LawyerLandingMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-slate-900 px-3 py-1.5 flex items-center justify-between">
-            <div className="text-white font-black text-[9px] flex items-center gap-1">⚖️ [Law Firm Name]</div>
-            <div className="flex items-center gap-1 text-yellow-400 text-[7px] font-bold"><Phone className="w-2 h-2" /> Free: (555) 000-1234</div>
+            <div className="text-white font-black text-xs flex items-center gap-1">⚖️ [Law Firm Name]</div>
+            <div className="flex items-center gap-1 text-yellow-400 text-[10px] font-bold"><Phone className="w-2 h-2" /> Free: (555) 000-1234</div>
         </div>
         <div className="bg-gradient-to-br from-slate-800 to-slate-900 px-3 py-4 text-center space-y-2">
-            <div className="text-yellow-400 text-[7px] font-bold uppercase tracking-widest">FREE CASE EVALUATION</div>
+            <div className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest">FREE CASE EVALUATION</div>
             <div className="text-white font-black text-[11px] leading-tight">Find Out If You Have a<br/>Winning Case — In 5 Minutes</div>
-            <div className="text-slate-300 text-[7px]">No fee unless we win · Trusted by 1,200+ clients in [State]</div>
+            <div className="text-slate-300 text-[10px]">No fee unless we win · Trusted by 1,200+ clients in [State]</div>
             <div className="flex justify-center gap-3">
                 {['Car Accidents', 'Slip & Fall', 'Medical Malpractice', 'Workplace Injury'].map(t => (
-                    <div key={t} className="bg-yellow-500/20 border border-yellow-500/40 text-yellow-300 text-[6px] font-bold px-1.5 py-0.5 rounded">{t}</div>
+                    <div key={t} className="bg-yellow-500/20 border border-yellow-500/40 text-yellow-300 text-[9px] font-bold px-1.5 py-0.5 rounded">{t}</div>
                 ))}
             </div>
         </div>
         <div className="p-3 space-y-2">
             {['Free consultation — no obligation', 'We handle everything — you focus on recovery', 'No win, no fee — zero financial risk to you'].map(b => (
-                <div key={b} className="flex items-center gap-1 text-[8px] text-slate-600"><Check className="w-2.5 h-2.5 text-yellow-500 shrink-0" /> {b}</div>
+                <div key={b} className="flex items-center gap-1 text-[11px] text-slate-600"><Check className="w-2.5 h-2.5 text-yellow-500 shrink-0" /> {b}</div>
             ))}
             <div className="space-y-1.5">
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400">Your Full Name</div>
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400">Phone Number</div>
-                <select className="w-full border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400 appearance-none">
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400">Your Full Name</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400">Phone Number</div>
+                <select className="w-full border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400 appearance-none">
                     <option>Type of case...</option>
                 </select>
-                <div className="w-full bg-yellow-500 text-black font-black text-[10px] py-2 rounded text-center">Get My Free Case Review →</div>
+                <div className="w-full bg-yellow-500 text-black font-black text-sm py-2 rounded text-center">Get My Free Case Review →</div>
             </div>
-            <div className="text-[7px] text-slate-400 text-center">Available 24/7 · Respond within 1 hour</div>
+            <div className="text-[10px] text-slate-400 text-center">Available 24/7 · Respond within 1 hour</div>
         </div>
     </div>
 );
 
 const LawyerIntakeMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-slate-900 px-3 py-2">
-            <div className="text-white font-black text-[9px]">Tell Us About Your Case</div>
+            <div className="text-white font-black text-xs">Tell Us About Your Case</div>
             <div className="flex gap-0.5 mt-1.5">
                 {[1,2,3,4].map(i => <div key={i} className={`h-1 flex-1 rounded-full ${i <= 2 ? 'bg-yellow-500' : 'bg-slate-700'}`} />)}
             </div>
-            <div className="text-[6.5px] text-slate-400 mt-0.5">Step 2 of 4 — Incident Details</div>
+            <div className="text-[9px] text-slate-400 mt-0.5">Step 2 of 4 — Incident Details</div>
         </div>
         <div className="p-3 space-y-2.5">
             <div className="space-y-1">
-                <div className="text-[7px] font-bold text-slate-600">When did the incident occur?</div>
+                <div className="text-[10px] font-bold text-slate-600">When did the incident occur?</div>
                 <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 flex items-center gap-1">
                     <Calendar className="w-2.5 h-2.5 text-slate-400" /><Bar w="w-2/3" h="h-1.5" color="bg-slate-200" />
                 </div>
             </div>
             <div className="space-y-1">
-                <div className="text-[7px] font-bold text-slate-600">Where did it happen?</div>
+                <div className="text-[10px] font-bold text-slate-600">Where did it happen?</div>
                 <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 flex items-center gap-1">
                     <MapPin className="w-2.5 h-2.5 text-slate-400" /><Bar w="w-3/4" h="h-1.5" color="bg-slate-200" />
                 </div>
             </div>
             <div className="space-y-1">
-                <div className="text-[7px] font-bold text-slate-600">Have you seen a doctor?</div>
+                <div className="text-[10px] font-bold text-slate-600">Have you seen a doctor?</div>
                 <div className="grid grid-cols-3 gap-1">
                     {['Yes', 'No', 'Scheduling Now'].map(o => (
-                        <div key={o} className={`border rounded px-2 py-1.5 text-center text-[7px] font-bold cursor-pointer ${o === 'Yes' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-slate-200 text-slate-500'}`}>{o}</div>
+                        <div key={o} className={`border rounded px-2 py-1.5 text-center text-[10px] font-bold cursor-pointer ${o === 'Yes' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-slate-200 text-slate-500'}`}>{o}</div>
                     ))}
                 </div>
             </div>
             <div className="space-y-1">
-                <div className="text-[7px] font-bold text-slate-600">Briefly describe what happened:</div>
+                <div className="text-[10px] font-bold text-slate-600">Briefly describe what happened:</div>
                 <div className="border border-slate-200 rounded p-2 bg-slate-50 h-10"><Bar w="w-3/4" h="h-1.5" color="bg-slate-200" /></div>
             </div>
-            <div className="w-full bg-yellow-500 text-black font-black text-[9px] py-2 rounded text-center">Continue →</div>
+            <div className="w-full bg-yellow-500 text-black font-black text-xs py-2 rounded text-center">Continue →</div>
         </div>
     </div>
 );
 
 const LawyerCallMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-slate-900 px-3 py-3 text-center">
-            <div className="text-yellow-400 font-black text-[10px]">Your Case Looks Strong.</div>
-            <div className="text-slate-300 text-[7px] mt-0.5">Schedule your FREE 15-minute attorney call now</div>
+            <div className="text-yellow-400 font-black text-sm">Your Case Looks Strong.</div>
+            <div className="text-slate-300 text-[10px] mt-0.5">Schedule your FREE 15-minute attorney call now</div>
         </div>
         <div className="p-3 space-y-2">
             <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-2 space-y-1">
-                <div className="font-bold text-yellow-700 text-[8px]">Why act now?</div>
+                <div className="font-bold text-yellow-700 text-[11px]">Why act now?</div>
                 {['Statutes of limitation — you have limited time to file', 'Evidence disappears fast — we need to act immediately', 'Insurance companies build their case from day one'].map(r => (
-                    <div key={r} className="flex items-start gap-1 text-[7px] text-yellow-700"><Clock className="w-2 h-2 shrink-0 mt-0.5" /> {r}</div>
+                    <div key={r} className="flex items-start gap-1 text-[10px] text-yellow-700"><Clock className="w-2 h-2 shrink-0 mt-0.5" /> {r}</div>
                 ))}
             </div>
             <div className="grid grid-cols-3 gap-1">
                 {['Mon', 'Tue', 'Wed'].map((d, i) => (
                     <div key={d} className={`border rounded p-1.5 text-center cursor-pointer ${i === 1 ? 'border-yellow-500 bg-yellow-50' : 'border-slate-200'}`}>
-                        <div className="text-[7px] font-black text-slate-700">{d}</div>
-                        {['10 AM', '2 PM', '4 PM'].slice(i, i+1).map(t => <div key={t} className="text-[6px] text-slate-400 mt-0.5">{t} avail</div>)}
+                        <div className="text-[10px] font-black text-slate-700">{d}</div>
+                        {['10 AM', '2 PM', '4 PM'].slice(i, i+1).map(t => <div key={t} className="text-[9px] text-slate-400 mt-0.5">{t} avail</div>)}
                     </div>
                 ))}
             </div>
-            <div className="w-full bg-yellow-500 text-black font-black text-[9px] py-2 rounded text-center">Schedule My Attorney Call →</div>
-            <div className="flex items-center gap-1 justify-center text-[7px] text-slate-500"><Phone className="w-2 h-2" /> Or call now: (555) 000-1234</div>
+            <div className="w-full bg-yellow-500 text-black font-black text-xs py-2 rounded text-center">Schedule My Attorney Call →</div>
+            <div className="flex items-center gap-1 justify-center text-[10px] text-slate-500"><Phone className="w-2 h-2" /> Or call now: (555) 000-1234</div>
         </div>
     </div>
 );
 
 const LawyerConfirmMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-slate-900 px-3 py-3 text-center">
             <div className="text-2xl mb-0.5">✅</div>
-            <div className="text-white font-black text-[10px]">Call Confirmed — We're on Your Side</div>
-            <div className="text-slate-400 text-[7px]">An attorney will call you at the scheduled time</div>
+            <div className="text-white font-black text-sm">Call Confirmed — We're on Your Side</div>
+            <div className="text-slate-400 text-[10px]">An attorney will call you at the scheduled time</div>
         </div>
         <div className="p-3 space-y-2">
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-2 space-y-1">
-                <div className="font-bold text-slate-700 text-[8px]">Your Call Details:</div>
-                <div className="text-[7px] text-slate-600">📅 Tuesday at 2:00 PM</div>
-                <div className="text-[7px] text-slate-600">📞 We'll call you at [your number]</div>
-                <div className="text-[7px] text-slate-600">⏱ 15 minutes · Confidential</div>
+                <div className="font-bold text-slate-700 text-[11px]">Your Call Details:</div>
+                <div className="text-[10px] text-slate-600">📅 Tuesday at 2:00 PM</div>
+                <div className="text-[10px] text-slate-600">📞 We'll call you at [your number]</div>
+                <div className="text-[10px] text-slate-600">⏱ 15 minutes · Confidential</div>
             </div>
             <div className="border border-slate-200 rounded-lg p-2 space-y-1.5">
-                <div className="font-bold text-slate-700 text-[8px]">To Prepare for Your Call:</div>
+                <div className="font-bold text-slate-700 text-[11px]">To Prepare for Your Call:</div>
                 {['Write down the date, time, and location of the incident', 'Have photos or any documentation ready', 'Note any witnesses or their contact info'].map((s, i) => (
-                    <div key={s} className="flex items-start gap-1.5 text-[7px] text-slate-600">
-                        <div className="w-3 h-3 rounded-full bg-slate-800 text-white font-black flex items-center justify-center text-[6px] shrink-0">{i+1}</div> {s}
+                    <div key={s} className="flex items-start gap-1.5 text-[10px] text-slate-600">
+                        <div className="w-3 h-3 rounded-full bg-slate-800 text-white font-black flex items-center justify-center text-[9px] shrink-0">{i+1}</div> {s}
                     </div>
                 ))}
             </div>
             <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-2 text-center">
-                <div className="text-[7px] text-yellow-700 font-bold">Need to talk sooner?</div>
-                <div className="text-yellow-600 font-black text-[10px]">(555) 000-1234</div>
-                <div className="text-[6px] text-yellow-600">Available 24/7 for emergencies</div>
+                <div className="text-[10px] text-yellow-700 font-bold">Need to talk sooner?</div>
+                <div className="text-yellow-600 font-black text-sm">(555) 000-1234</div>
+                <div className="text-[9px] text-yellow-600">Available 24/7 for emergencies</div>
             </div>
         </div>
     </div>
@@ -308,102 +308,102 @@ const LawyerConfirmMockup = () => (
 // ─── COACH MOCKUPS ────────────────────────────────────────────────────────────
 
 const CoachAdMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-[9px] text-slate-700">
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
         <div className="p-2.5 flex items-center gap-1.5">
-            <div className="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center text-white font-black text-[8px]">🎯</div>
-            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[7px] text-slate-400 mt-0.5">Sponsored</div></div>
+            <div className="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center text-white font-black text-[11px]">🎯</div>
+            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[10px] text-slate-400 mt-0.5">Sponsored</div></div>
         </div>
         <div className="px-2.5 pb-1.5">
-            <div className="font-bold text-slate-800 text-[8px] leading-tight">If You're Stuck at [Revenue/Goal] And Ready to Break Through — This is For You</div>
-            <div className="text-[7px] text-slate-500 mt-0.5">Book a FREE 30-min strategy session with [Coach Name]</div>
+            <div className="font-bold text-slate-800 text-[11px] leading-tight">If You're Stuck at [Revenue/Goal] And Ready to Break Through — This is For You</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Book a FREE 30-min strategy session with [Coach Name]</div>
         </div>
         <div className="w-full aspect-video bg-gradient-to-br from-purple-600 to-indigo-700 flex flex-col items-center justify-center gap-1.5 relative">
-            <div className="absolute top-1.5 left-1.5 bg-yellow-400 text-black text-[7px] font-black px-1.5 py-0.5 rounded">FREE SESSION</div>
+            <div className="absolute top-1.5 left-1.5 bg-yellow-400 text-black text-[10px] font-black px-1.5 py-0.5 rounded">FREE SESSION</div>
             <div className="w-10 h-10 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-[18px]">👤</div>
-            <div className="text-white font-black text-[9px] text-center px-3">[Coach Name]<br/><span className="font-normal text-purple-200 text-[7px]">[Credential / Result]</span></div>
+            <div className="text-white font-black text-xs text-center px-3">[Coach Name]<br/><span className="font-normal text-purple-200 text-[10px]">[Credential / Result]</span></div>
             <div className="flex gap-2">
-                {['500+ Clients', '$2M+ Results', '5⭐ Reviews'].map(s => <div key={s} className="bg-white/10 text-white text-[6px] font-bold px-1.5 py-0.5 rounded">{s}</div>)}
+                {['500+ Clients', '$2M+ Results', '5⭐ Reviews'].map(s => <div key={s} className="bg-white/10 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">{s}</div>)}
             </div>
         </div>
         <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
-            <div><div className="text-[7px] text-slate-400">[Coach Name] Coaching</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
-            <div className="bg-purple-600 text-white text-[7px] font-bold px-2.5 py-1 rounded">Apply Now</div>
+            <div><div className="text-[10px] text-slate-400">[Coach Name] Coaching</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
+            <div className="bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded">Apply Now</div>
         </div>
     </div>
 );
 
 const CoachLandingMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-br from-purple-700 to-indigo-800 px-3 py-4 text-center space-y-1.5">
-            <div className="text-purple-200 text-[7px] font-bold uppercase tracking-widest">FREE STRATEGY SESSION</div>
+            <div className="text-purple-200 text-[10px] font-bold uppercase tracking-widest">FREE STRATEGY SESSION</div>
             <div className="text-white font-black text-[12px] leading-tight">Ready to [Specific Outcome]<br/>in the Next 90 Days?</div>
-            <div className="text-purple-200 text-[7px]">Apply for a complimentary session with [Coach Name] — limited availability</div>
+            <div className="text-purple-200 text-[10px]">Apply for a complimentary session with [Coach Name] — limited availability</div>
             <div className="flex justify-center gap-2 pt-1">
-                <div className="flex items-center gap-1 bg-white/10 rounded-full px-2 py-0.5 text-[6px] text-purple-200 font-bold"><Star className="w-2 h-2 fill-yellow-400 text-yellow-400" /> 4.9/5 from 200+ sessions</div>
+                <div className="flex items-center gap-1 bg-white/10 rounded-full px-2 py-0.5 text-[9px] text-purple-200 font-bold"><Star className="w-2 h-2 fill-yellow-400 text-yellow-400" /> 4.9/5 from 200+ sessions</div>
             </div>
         </div>
         <div className="p-3 space-y-2">
-            <div className="text-[8px] text-slate-600 text-center">In this free 30-minute call, you'll walk away with a crystal-clear action plan for your next 90 days — even if we never work together.</div>
+            <div className="text-[11px] text-slate-600 text-center">In this free 30-minute call, you'll walk away with a crystal-clear action plan for your next 90 days — even if we never work together.</div>
             {['Your #1 bottleneck identified and solved', 'A 3-step roadmap specific to your situation', 'Honest feedback on what\'s holding you back'].map(b => (
-                <div key={b} className="flex items-center gap-1 text-[8px] text-slate-600"><Zap className="w-2.5 h-2.5 text-purple-500 shrink-0" /> {b}</div>
+                <div key={b} className="flex items-center gap-1 text-[11px] text-slate-600"><Zap className="w-2.5 h-2.5 text-purple-500 shrink-0" /> {b}</div>
             ))}
             <div className="space-y-1.5">
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400">Your Name</div>
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400">Email Address</div>
-                <div className="w-full bg-purple-600 text-white font-black text-[10px] py-2 rounded text-center">Apply for My Free Session →</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400">Your Name</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400">Email Address</div>
+                <div className="w-full bg-purple-600 text-white font-black text-sm py-2 rounded text-center">Apply for My Free Session →</div>
             </div>
-            <div className="text-[7px] text-slate-400 text-center">Spots are limited — we only accept 5 new clients per month</div>
+            <div className="text-[10px] text-slate-400 text-center">Spots are limited — we only accept 5 new clients per month</div>
         </div>
     </div>
 );
 
 const CoachApplicationMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-purple-700 px-3 py-2">
-            <div className="text-white font-black text-[9px]">Application — Tell Me About Your Goals</div>
+            <div className="text-white font-black text-xs">Application — Tell Me About Your Goals</div>
             <div className="flex gap-0.5 mt-1.5">
                 {[1,2,3].map(i => <div key={i} className={`h-1 flex-1 rounded-full ${i <= 2 ? 'bg-white' : 'bg-purple-500'}`} />)}
             </div>
-            <div className="text-[6.5px] text-purple-200 mt-0.5">Step 2 of 3</div>
+            <div className="text-[9px] text-purple-200 mt-0.5">Step 2 of 3</div>
         </div>
         <div className="p-3 space-y-2.5">
             <div className="space-y-1">
-                <div className="text-[7px] font-bold text-slate-600">What's your current monthly revenue / situation?</div>
+                <div className="text-[10px] font-bold text-slate-600">What's your current monthly revenue / situation?</div>
                 <div className="grid grid-cols-2 gap-1">
                     {['$0 – just starting', '$1K–$5K/month', '$5K–$15K/month', '$15K+/month'].map(o => (
-                        <div key={o} className={`border rounded px-2 py-1.5 text-[7px] font-bold cursor-pointer ${o === '$1K–$5K/month' ? 'border-purple-500 bg-purple-50 text-purple-700' : 'border-slate-200 text-slate-500'}`}>{o}</div>
+                        <div key={o} className={`border rounded px-2 py-1.5 text-[10px] font-bold cursor-pointer ${o === '$1K–$5K/month' ? 'border-purple-500 bg-purple-50 text-purple-700' : 'border-slate-200 text-slate-500'}`}>{o}</div>
                     ))}
                 </div>
             </div>
             <div className="space-y-1">
-                <div className="text-[7px] font-bold text-slate-600">What's your #1 goal in the next 90 days?</div>
+                <div className="text-[10px] font-bold text-slate-600">What's your #1 goal in the next 90 days?</div>
                 <div className="border border-slate-200 rounded p-2 bg-slate-50 h-10"><Bar w="w-3/4" h="h-1.5" color="bg-slate-200" /></div>
             </div>
             <div className="space-y-1">
-                <div className="text-[7px] font-bold text-slate-600">What's your biggest obstacle right now?</div>
+                <div className="text-[10px] font-bold text-slate-600">What's your biggest obstacle right now?</div>
                 <div className="grid grid-cols-2 gap-1">
                     {['No clear strategy', 'Not enough leads', 'Mindset/confidence', 'Time management'].map(o => (
-                        <div key={o} className="border border-slate-200 rounded px-2 py-1.5 text-[7px] text-slate-500 cursor-pointer">{o}</div>
+                        <div key={o} className="border border-slate-200 rounded px-2 py-1.5 text-[10px] text-slate-500 cursor-pointer">{o}</div>
                     ))}
                 </div>
             </div>
-            <div className="w-full bg-purple-600 text-white font-black text-[9px] py-2 rounded text-center">Continue to Booking →</div>
+            <div className="w-full bg-purple-600 text-white font-black text-xs py-2 rounded text-center">Continue to Booking →</div>
         </div>
     </div>
 );
 
 const CoachBookingMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-3 text-center">
-            <div className="text-white font-black text-[10px]">🎉 You're a Great Fit! Book Your Session</div>
-            <div className="text-purple-100 text-[7px] mt-0.5">Only 2 spots left this week — first come, first served</div>
+            <div className="text-white font-black text-sm">🎉 You're a Great Fit! Book Your Session</div>
+            <div className="text-purple-100 text-[10px] mt-0.5">Only 2 spots left this week — first come, first served</div>
         </div>
         <div className="p-3 space-y-2">
             <div className="bg-purple-50 border border-purple-200 rounded-lg p-2 flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-purple-200 flex items-center justify-center text-[14px] shrink-0">👤</div>
                 <div>
-                    <div className="font-bold text-purple-700 text-[7px]">[Coach Name]</div>
-                    <div className="text-[6px] text-purple-500">30-min Free Strategy Session</div>
+                    <div className="font-bold text-purple-700 text-[10px]">[Coach Name]</div>
+                    <div className="text-[9px] text-purple-500">30-min Free Strategy Session</div>
                     <div className="flex gap-1 mt-0.5">
                         {['Zoom', 'Free', 'No pitch'].map(t => <div key={t} className="bg-purple-100 text-purple-600 text-[5.5px] font-bold px-1 py-0.5 rounded">{t}</div>)}
                     </div>
@@ -412,47 +412,41 @@ const CoachBookingMockup = () => (
             <div className="grid grid-cols-4 gap-1">
                 {['Mon 14', 'Tue 15', 'Thu 17', 'Fri 18'].map((d, i) => (
                     <div key={d} className={`border rounded p-1.5 text-center cursor-pointer ${i === 2 ? 'border-purple-500 bg-purple-50' : 'border-slate-200'}`}>
-                        <div className="text-[6.5px] font-black text-slate-700">{d}</div>
+                        <div className="text-[9px] font-black text-slate-700">{d}</div>
                     </div>
                 ))}
             </div>
             <div className="grid grid-cols-3 gap-1">
                 {['9:00 AM', '11:00 AM', '2:00 PM', '3:30 PM', '5:00 PM', '6:00 PM'].map((t, i) => (
-                    <div key={t} className={`border rounded px-1 py-1.5 text-center text-[7px] font-bold cursor-pointer ${i === 3 ? 'border-purple-500 bg-purple-500 text-white' : 'border-slate-200 text-slate-600'}`}>{t}</div>
+                    <div key={t} className={`border rounded px-1 py-1.5 text-center text-[10px] font-bold cursor-pointer ${i === 3 ? 'border-purple-500 bg-purple-500 text-white' : 'border-slate-200 text-slate-600'}`}>{t}</div>
                 ))}
             </div>
-            <div className="w-full bg-purple-600 text-white font-black text-[9px] py-2 rounded text-center">Confirm My Free Session →</div>
+            <div className="w-full bg-purple-600 text-white font-black text-xs py-2 rounded text-center">Confirm My Free Session →</div>
         </div>
     </div>
 );
 
 const CoachConfirmMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-3 text-center">
             <div className="text-2xl mb-0.5">🚀</div>
-            <div className="text-white font-black text-[10px]">You're Booked! See You Soon.</div>
-            <div className="text-purple-100 text-[7px]">Thursday at 3:30 PM via Zoom</div>
+            <div className="text-white font-black text-sm">You're Booked! See You Soon.</div>
+            <div className="text-purple-100 text-[10px]">Thursday at 3:30 PM via Zoom</div>
         </div>
         <div className="p-3 space-y-2">
-            <div className="text-[8px] text-slate-600 text-center">A calendar invite and Zoom link are on their way to your inbox.</div>
+            <div className="text-[11px] text-slate-600 text-center">A calendar invite and Zoom link are on their way to your inbox.</div>
             <div className="border border-slate-200 rounded-lg p-2 space-y-1.5">
-                <div className="font-bold text-slate-700 text-[8px]">To Get the Most From Your Call:</div>
+                <div className="font-bold text-slate-700 text-[11px]">To Get the Most From Your Call:</div>
                 {['Watch this 10-min video before we meet', 'Write down your top 3 goals for the next 90 days', 'Come ready to be honest about what\'s holding you back'].map((s, i) => (
-                    <div key={s} className="flex items-start gap-1.5 text-[7px] text-slate-600">
-                        <div className="w-3 h-3 rounded-full bg-purple-600 text-white font-black flex items-center justify-center text-[6px] shrink-0">{i+1}</div> {s}
+                    <div key={s} className="flex items-start gap-1.5 text-[10px] text-slate-600">
+                        <div className="w-3 h-3 rounded-full bg-purple-600 text-white font-black flex items-center justify-center text-[9px] shrink-0">{i+1}</div> {s}
                     </div>
                 ))}
             </div>
-            <div className="w-full aspect-video bg-slate-800 rounded-lg flex items-center justify-center relative">
-                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                    <div className="w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-white ml-0.5" />
-                </div>
-                <div className="absolute bottom-1.5 left-2 right-2 h-1 bg-slate-600 rounded-full"><div className="w-0 h-full bg-purple-400 rounded-full" /></div>
-                <div className="absolute top-1.5 right-1.5 text-[6px] text-slate-400 bg-black/50 px-1 py-0.5 rounded">10:24</div>
-            </div>
+            <VideoFrame progress={0} time="0:00" duration="10:24" gradient="from-purple-900 to-indigo-900" />
             <div className="bg-purple-50 border border-purple-200 rounded-lg p-2 text-center">
-                <div className="text-[7px] font-bold text-purple-700">Questions before the call?</div>
-                <div className="text-[7px] text-purple-500 mt-0.5">[coach@email.com]</div>
+                <div className="text-[10px] font-bold text-purple-700">Questions before the call?</div>
+                <div className="text-[10px] text-purple-500 mt-0.5">[coach@email.com]</div>
             </div>
         </div>
     </div>

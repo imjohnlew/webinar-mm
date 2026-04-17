@@ -1,16 +1,16 @@
 import React from 'react';
 import { Play, ShoppingCart, Zap, Gift, Award, Users, Check, Star, Shield, Clock } from 'lucide-react';
-import FunnelTemplate, { Bar } from './FunnelTemplate';
+import FunnelTemplate, { Bar, VideoFrame } from './FunnelTemplate';
 
 // ─── Page Mockups ─────────────────────────────────────────────────────────────
 
 const AdMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-[9px] text-slate-700">
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-xs text-slate-700">
         <div className="p-2.5 flex items-center gap-1.5">
-            <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[8px]">P</div>
+            <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[11px]">P</div>
             <div className="flex flex-col gap-0.5">
                 <Bar w="w-20" h="h-1.5" color="bg-slate-300" />
-                <div className="text-[7px] text-slate-400">Sponsored · <span className="text-blue-500">🌐</span></div>
+                <div className="text-[10px] text-slate-400">Sponsored · <span className="text-blue-500">🌐</span></div>
             </div>
         </div>
         <div className="px-2.5 pb-1.5 space-y-1">
@@ -18,22 +18,22 @@ const AdMockup = () => (
             <Bar w="w-4/5" h="h-1.5" color="bg-slate-200" />
         </div>
         <div className="w-full aspect-video bg-gradient-to-br from-blue-500 to-purple-600 flex flex-col items-center justify-center gap-1 relative">
-            <div className="absolute top-1.5 left-1.5 bg-yellow-400 text-black text-[7px] font-black px-1.5 py-0.5 rounded">🔥 FREE TRAINING</div>
-            <div className="text-white font-black text-[10px] text-center px-3 leading-tight">How To [Get Result]<br/>Without [Pain Point]</div>
-            <div className="mt-1 bg-white/20 text-white text-[7px] font-bold px-2 py-0.5 rounded-full">WATCH NOW →</div>
+            <div className="absolute top-1.5 left-1.5 bg-yellow-400 text-black text-[10px] font-black px-1.5 py-0.5 rounded">🔥 FREE TRAINING</div>
+            <div className="text-white font-black text-sm text-center px-3 leading-tight">How To [Get Result]<br/>Without [Pain Point]</div>
+            <div className="mt-1 bg-white/20 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">WATCH NOW →</div>
         </div>
         <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
             <div>
-                <div className="text-[7px] text-slate-400">yoursite.com</div>
+                <div className="text-[10px] text-slate-400">yoursite.com</div>
                 <Bar w="w-24" h="h-1.5" color="bg-slate-300" className="mt-0.5" />
             </div>
-            <div className="bg-blue-600 text-white text-[7px] font-bold px-2.5 py-1 rounded">Learn More</div>
+            <div className="bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded">Learn More</div>
         </div>
         <div className="px-2.5 py-1.5 flex items-center justify-between border-t border-slate-100">
-            <div className="flex items-center gap-0.5 text-[7px] text-slate-400">
+            <div className="flex items-center gap-0.5 text-[10px] text-slate-400">
                 <span>👍❤️😮</span> <span className="ml-0.5">2.4k</span>
             </div>
-            <div className="flex gap-2 text-[7px] text-slate-400">
+            <div className="flex gap-2 text-[10px] text-slate-400">
                 <span>Like</span><span>Comment</span><span>Share</span>
             </div>
         </div>
@@ -41,43 +41,36 @@ const AdMockup = () => (
 );
 
 const SalesPageMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-[9px]">
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-xs">
         <div className="bg-slate-900 px-3 py-1.5 flex items-center justify-between">
             <Bar w="w-12" h="h-2" color="bg-slate-600" />
-            <div className="bg-orange-500 text-white text-[7px] font-bold px-2 py-0.5 rounded">Buy Now</div>
+            <div className="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">Buy Now</div>
         </div>
-        <div className="bg-red-600 text-white text-[8px] font-black text-center py-1 flex items-center justify-center gap-1">
+        <div className="bg-red-600 text-white text-[11px] font-black text-center py-1 flex items-center justify-center gap-1">
             <Clock className="w-2.5 h-2.5" /> LIMITED TIME OFFER — Expires Soon
         </div>
         <div className="p-3 space-y-2">
             <div className="text-center space-y-1">
-                <div className="font-black text-slate-900 text-[10px] leading-tight">
+                <div className="font-black text-slate-900 text-sm leading-tight">
                     "Discover The Exact System To<br/>[Achieve Outcome] In [Timeframe]"
                 </div>
-                <div className="text-[8px] text-slate-500">Even if you're a complete beginner with no experience</div>
+                <div className="text-[11px] text-slate-500">Even if you're a complete beginner with no experience</div>
             </div>
-            <div className="w-full aspect-video bg-slate-800 rounded flex items-center justify-center relative">
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                    <Play className="w-4 h-4 text-white fill-white ml-0.5" />
-                </div>
-                <div className="absolute bottom-1 left-0 right-0 h-1 bg-slate-700 mx-2 rounded-full">
-                    <div className="w-1/3 h-full bg-red-500 rounded-full" />
-                </div>
-            </div>
+            <VideoFrame progress={30} time="3:15" duration="18:42" />
             {['Get [Result] in just [X] days', 'Works even if [Objection 1]', 'No [Pain Point] required', 'Step-by-step system — anyone can do it'].map(b => (
-                <div key={b} className="flex items-start gap-1 text-[8px] text-slate-700">
+                <div key={b} className="flex items-start gap-1 text-[11px] text-slate-700">
                     <Check className="w-2.5 h-2.5 text-green-500 mt-0.5 shrink-0" /> {b}
                 </div>
             ))}
             <div className="text-center space-y-0.5">
-                <div className="text-[8px] text-slate-400 line-through">$197</div>
+                <div className="text-[11px] text-slate-400 line-through">$197</div>
                 <div className="text-xl font-black text-orange-500">$27</div>
-                <div className="text-[7px] text-slate-500">One-time payment · Instant access</div>
+                <div className="text-[10px] text-slate-500">One-time payment · Instant access</div>
             </div>
-            <div className="w-full bg-orange-500 text-white font-black text-[10px] py-2 rounded text-center">
+            <div className="w-full bg-orange-500 text-white font-black text-sm py-2 rounded text-center">
                 YES! Give Me Instant Access →
             </div>
-            <div className="flex items-center justify-center gap-1 text-[7px] text-slate-500">
+            <div className="flex items-center justify-center gap-1 text-[10px] text-slate-500">
                 <Shield className="w-2.5 h-2.5 text-green-500" /> 30-Day Money Back Guarantee
             </div>
         </div>
@@ -85,24 +78,24 @@ const SalesPageMockup = () => (
 );
 
 const OrderPageMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-[9px]">
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-xs">
         <div className="bg-slate-900 px-3 py-1.5">
             <Bar w="w-16" h="h-2" color="bg-slate-600" />
         </div>
         <div className="p-3 space-y-2">
-            <div className="font-black text-slate-900 text-[10px] text-center">🔒 Secure Checkout</div>
-            <div className="text-[8px] text-slate-500 text-center">You're one step away from [Outcome]</div>
+            <div className="font-black text-slate-900 text-sm text-center">🔒 Secure Checkout</div>
+            <div className="text-[11px] text-slate-500 text-center">You're one step away from [Outcome]</div>
             <div className="space-y-1.5">
                 {['Full Name', 'Email Address'].map(f => (
                     <div key={f}>
-                        <div className="text-[7px] text-slate-500 mb-0.5">{f}</div>
+                        <div className="text-[10px] text-slate-500 mb-0.5">{f}</div>
                         <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50">
                             <Bar w="w-3/4" h="h-1.5" color="bg-slate-200" />
                         </div>
                     </div>
                 ))}
                 <div>
-                    <div className="text-[7px] text-slate-500 mb-0.5">Card Number</div>
+                    <div className="text-[10px] text-slate-500 mb-0.5">Card Number</div>
                     <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 flex items-center justify-between">
                         <Bar w="w-3/4" h="h-1.5" color="bg-slate-200" />
                         <div className="flex gap-0.5">
@@ -118,15 +111,15 @@ const OrderPageMockup = () => (
                         <Check className="w-2 h-2 text-white" />
                     </div>
                     <div>
-                        <div className="font-black text-yellow-700 text-[8px]">⚡ YES — Add [Bonus Product] for only $27!</div>
-                        <div className="text-[7px] text-yellow-600 mt-0.5">This exclusive add-on complements your order perfectly. One click to add!</div>
+                        <div className="font-black text-yellow-700 text-[11px]">⚡ YES — Add [Bonus Product] for only $27!</div>
+                        <div className="text-[10px] text-yellow-600 mt-0.5">This exclusive add-on complements your order perfectly. One click to add!</div>
                     </div>
                 </div>
             </div>
-            <div className="w-full bg-green-500 text-white font-black text-[10px] py-2 rounded text-center">
+            <div className="w-full bg-green-500 text-white font-black text-sm py-2 rounded text-center">
                 Complete My Order → $27
             </div>
-            <div className="flex items-center justify-center gap-2 text-[7px] text-slate-400">
+            <div className="flex items-center justify-center gap-2 text-[10px] text-slate-400">
                 <Shield className="w-2.5 h-2.5" /> SSL Secured · Safe Checkout
             </div>
         </div>
@@ -134,30 +127,26 @@ const OrderPageMockup = () => (
 );
 
 const Oto1Mockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-[9px]">
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-xs">
         <div className="bg-orange-500 px-3 py-2 text-center">
-            <div className="text-white font-black text-[9px]">⚡ WAIT — Your Order Is Being Processed!</div>
-            <div className="text-orange-100 text-[7px]">Read this before you go to your confirmation page</div>
+            <div className="text-white font-black text-xs">⚡ WAIT — Your Order Is Being Processed!</div>
+            <div className="text-orange-100 text-[10px]">Read this before you go to your confirmation page</div>
         </div>
         <div className="p-3 space-y-2">
-            <div className="font-black text-slate-900 text-[10px] text-center leading-tight">
+            <div className="font-black text-slate-900 text-sm text-center leading-tight">
                 "Add [Premium Product] To Your Order<br/>For Just $97 — One Time Only"
             </div>
-            <div className="w-full aspect-video bg-slate-800 rounded flex items-center justify-center">
-                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                    <Play className="w-3.5 h-3.5 text-white fill-white ml-0.5" />
-                </div>
-            </div>
-            <div className="text-[8px] text-slate-600 text-center">This is a ONE-TIME offer and will never be shown again</div>
+            <VideoFrame progress={0} time="0:00" duration="8:24" />
+            <div className="text-[11px] text-slate-600 text-center">This is a ONE-TIME offer and will never be shown again</div>
             {['[Advanced Feature 1]', '[Done-For-You Templates]', '[Private Community Access]'].map(b => (
-                <div key={b} className="flex items-center gap-1 text-[8px] text-slate-700">
+                <div key={b} className="flex items-center gap-1 text-[11px] text-slate-700">
                     <Star className="w-2.5 h-2.5 text-orange-400 fill-orange-400 shrink-0" /> {b}
                 </div>
             ))}
-            <div className="w-full bg-orange-500 text-white font-black text-[9px] py-2 rounded text-center">
+            <div className="w-full bg-orange-500 text-white font-black text-xs py-2 rounded text-center">
                 YES! Add This To My Order → +$97
             </div>
-            <div className="w-full text-center text-[7px] text-slate-400 underline py-1">
+            <div className="w-full text-center text-[10px] text-slate-400 underline py-1">
                 No thanks, I don't want this upgrade
             </div>
         </div>
@@ -165,31 +154,31 @@ const Oto1Mockup = () => (
 );
 
 const DownsellMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-[9px]">
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-xs">
         <div className="bg-slate-700 px-3 py-2 text-center">
-            <div className="text-white font-black text-[9px]">Wait — Before You Leave!</div>
+            <div className="text-white font-black text-xs">Wait — Before You Leave!</div>
         </div>
         <div className="p-3 space-y-2">
-            <div className="text-[8px] text-slate-500 text-center">I understand $97 might feel like a stretch right now...</div>
-            <div className="font-black text-slate-900 text-[10px] text-center leading-tight">
+            <div className="text-[11px] text-slate-500 text-center">I understand $97 might feel like a stretch right now...</div>
+            <div className="font-black text-slate-900 text-sm text-center leading-tight">
                 "Get The Core Of [Upsell] For Just $47"
             </div>
             <div className="bg-slate-50 rounded-lg p-2 border border-slate-200 space-y-1">
-                <div className="text-[8px] font-bold text-slate-700">What you still get:</div>
+                <div className="text-[11px] font-bold text-slate-700">What you still get:</div>
                 {['[Core Feature 1]', '[Core Feature 2]', '[Partial Access]'].map(b => (
-                    <div key={b} className="flex items-center gap-1 text-[8px] text-slate-600">
+                    <div key={b} className="flex items-center gap-1 text-[11px] text-slate-600">
                         <Check className="w-2.5 h-2.5 text-green-500 shrink-0" /> {b}
                     </div>
                 ))}
             </div>
             <div className="text-center">
-                <div className="text-[8px] text-slate-400 line-through">$97</div>
+                <div className="text-[11px] text-slate-400 line-through">$97</div>
                 <div className="text-lg font-black text-slate-800">$47</div>
             </div>
-            <div className="w-full bg-slate-800 text-white font-black text-[9px] py-2 rounded text-center">
+            <div className="w-full bg-slate-800 text-white font-black text-xs py-2 rounded text-center">
                 YES — I'll Take The Lite Version
             </div>
-            <div className="w-full text-center text-[7px] text-slate-400 underline py-0.5">
+            <div className="w-full text-center text-[10px] text-slate-400 underline py-0.5">
                 No thanks, I'll pass on this too
             </div>
         </div>
@@ -197,30 +186,30 @@ const DownsellMockup = () => (
 );
 
 const ThankYouMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-[9px]">
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-xs">
         <div className="bg-gradient-to-r from-green-500 to-emerald-600 px-3 py-3 text-center">
             <div className="text-2xl mb-0.5">🎉</div>
-            <div className="text-white font-black text-[10px]">Payment Confirmed!</div>
-            <div className="text-green-100 text-[7px]">Welcome to [Product Name]</div>
+            <div className="text-white font-black text-sm">Payment Confirmed!</div>
+            <div className="text-green-100 text-[10px]">Welcome to [Product Name]</div>
         </div>
         <div className="p-3 space-y-2">
-            <div className="text-[8px] text-slate-700 text-center">Check your email for your receipt and access details</div>
-            <div className="w-full bg-green-500 text-white font-black text-[9px] py-2 rounded text-center">
+            <div className="text-[11px] text-slate-700 text-center">Check your email for your receipt and access details</div>
+            <div className="w-full bg-green-500 text-white font-black text-xs py-2 rounded text-center">
                 Access [Product Name] Now →
             </div>
             <div className="border border-slate-200 rounded-lg p-2 space-y-1.5">
-                <div className="text-[8px] font-bold text-slate-700">Your Next Steps:</div>
+                <div className="text-[11px] font-bold text-slate-700">Your Next Steps:</div>
                 {['Join our private community', 'Watch the welcome video', 'Complete Module 1 today'].map((s, i) => (
-                    <div key={s} className="flex items-center gap-1.5 text-[8px] text-slate-600">
-                        <div className="w-3.5 h-3.5 rounded-full bg-green-100 text-green-600 font-black flex items-center justify-center text-[7px] shrink-0">{i + 1}</div>
+                    <div key={s} className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                        <div className="w-3.5 h-3.5 rounded-full bg-green-100 text-green-600 font-black flex items-center justify-center text-[10px] shrink-0">{i + 1}</div>
                         {s}
                     </div>
                 ))}
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 text-center space-y-1">
-                <div className="text-[8px] font-bold text-blue-700">Want faster results?</div>
-                <div className="text-[7px] text-blue-500">Book a free strategy call with our team →</div>
-                <div className="bg-blue-600 text-white text-[7px] font-bold px-3 py-1 rounded inline-block">Book My Call</div>
+                <div className="text-[11px] font-bold text-blue-700">Want faster results?</div>
+                <div className="text-[10px] text-blue-500">Book a free strategy call with our team →</div>
+                <div className="bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded inline-block">Book My Call</div>
             </div>
         </div>
     </div>

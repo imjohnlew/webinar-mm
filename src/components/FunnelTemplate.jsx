@@ -1,8 +1,30 @@
 import React, { useState } from 'react';
-import { ArrowRight, TrendingUp, Shield } from 'lucide-react';
+import { ArrowRight, TrendingUp, Shield, Play } from 'lucide-react';
 
 export const Bar = ({ w = 'w-full', h = 'h-2', color = 'bg-slate-200', className = '' }) => (
     <div className={`${h} ${w} ${color} rounded-full ${className}`} />
+);
+
+export const VideoFrame = ({ progress = 35, time = '4:32', duration = '12:45', gradient = 'from-slate-700 to-slate-900' }) => (
+    <div className={`w-full aspect-video bg-gradient-to-br ${gradient} rounded relative overflow-hidden`}>
+        {/* Faint scan-line texture */}
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.15) 3px, rgba(255,255,255,0.15) 4px)' }} />
+        {/* Big play button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-2xl ring-4 ring-white/30">
+                <Play className="w-8 h-8 text-slate-800 fill-slate-800 ml-1" />
+            </div>
+        </div>
+        {/* Time stamp */}
+        <div className="absolute bottom-4 right-2 text-white text-[9px] font-mono bg-black/60 px-1.5 py-0.5 rounded">
+            {time} / {duration}
+        </div>
+        {/* Progress bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/50">
+            <div className="h-full bg-red-500" style={{ width: `${progress}%` }} />
+            <div className="absolute top-1/2 -translate-y-1/2 bg-red-500 w-3 h-3 rounded-full shadow" style={{ left: `calc(${progress}% - 6px)` }} />
+        </div>
+    </div>
 );
 
 export const BrowserFrame = ({ children, url = 'yoursite.com', zoom = 1 }) => (

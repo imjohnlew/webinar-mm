@@ -5,35 +5,35 @@ import FunnelTemplate, { Bar } from './FunnelTemplate';
 // ─── Mockups ───────────────────────────────────────────────────────────────────
 
 const EntryAdMockup = () => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-[9px] text-slate-700">
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 text-xs text-slate-700">
         <div className="p-2.5 flex items-center gap-1.5">
-            <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[8px]">P</div>
+            <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[11px]">P</div>
             <div className="flex flex-col gap-0.5">
                 <Bar w="w-20" h="h-1.5" color="bg-slate-300" />
-                <div className="text-[7px] text-slate-400">Sponsored</div>
+                <div className="text-[10px] text-slate-400">Sponsored</div>
             </div>
         </div>
         <div className="px-2.5 pb-1.5">
-            <div className="font-bold text-slate-800 text-[8px] leading-tight">
+            <div className="font-bold text-slate-800 text-[11px] leading-tight">
                 Want to know how I went from [Problem] to [Result] in [Timeframe]? 🤯
             </div>
-            <div className="text-[7px] text-slate-500 mt-0.5">Comment <span className="font-black text-blue-600">"YES"</span> below and I'll send you the exact blueprint for FREE 👇</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Comment <span className="font-black text-blue-600">"YES"</span> below and I'll send you the exact blueprint for FREE 👇</div>
         </div>
         <div className="w-full aspect-video bg-gradient-to-br from-blue-500 to-indigo-600 flex flex-col items-center justify-center gap-1 relative">
-            <div className="text-white font-black text-[10px] text-center px-3 leading-tight">
+            <div className="text-white font-black text-sm text-center px-3 leading-tight">
                 [Scroll-Stopping Image or Video]
             </div>
-            <div className="bg-white/20 text-white text-[7px] font-bold px-2 py-0.5 rounded-full">Comment "YES" to get it →</div>
+            <div className="bg-white/20 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Comment "YES" to get it →</div>
         </div>
         <div className="px-2.5 py-1.5 bg-slate-50 border-t border-slate-200">
-            <div className="text-[7px] text-slate-500 mb-1">Top Comments:</div>
+            <div className="text-[10px] text-slate-500 mb-1">Top Comments:</div>
             {[['Sarah M.', 'YES please! 🙋‍♀️'], ['John K.', 'YES! Need this'], ['Maria L.', 'YES 🔥']].map(([n, c]) => (
-                <div key={n} className="text-[7px] text-slate-600 mb-0.5"><span className="font-bold">{n}:</span> {c}</div>
+                <div key={n} className="text-[10px] text-slate-600 mb-0.5"><span className="font-bold">{n}:</span> {c}</div>
             ))}
         </div>
         <div className="px-2.5 py-1.5 flex items-center justify-between">
-            <div className="flex items-center gap-0.5 text-[7px] text-slate-400"><span>👍❤️😮</span><span className="ml-0.5">4.7k</span></div>
-            <div className="flex gap-2 text-[7px] text-slate-400"><span>Like</span><span>Comment</span><span>Share</span></div>
+            <div className="flex items-center gap-0.5 text-[10px] text-slate-400"><span>👍❤️😮</span><span className="ml-0.5">4.7k</span></div>
+            <div className="flex gap-2 text-[10px] text-slate-400"><span>Like</span><span>Comment</span><span>Share</span></div>
         </div>
     </div>
 );
@@ -43,16 +43,16 @@ const BotBubble = ({ text, isBot = true, quickReplies = [] }) => (
         {isBot && (
             <div className="flex items-center gap-1 mb-0.5">
                 <div className="w-3.5 h-3.5 rounded-full bg-blue-600 flex items-center justify-center text-[5px] text-white font-black">P</div>
-                <span className="text-[6px] text-slate-500 font-bold">Page Name</span>
+                <span className="text-[9px] text-slate-500 font-bold">Page Name</span>
             </div>
         )}
-        <div className={`px-2 py-1.5 rounded-2xl text-[7px] leading-relaxed max-w-[80%] ${isBot ? 'bg-slate-100 text-slate-700 rounded-tl-sm' : 'bg-blue-500 text-white rounded-tr-sm'}`}>
+        <div className={`px-2 py-1.5 rounded-2xl text-[10px] leading-relaxed max-w-[80%] ${isBot ? 'bg-slate-100 text-slate-700 rounded-tl-sm' : 'bg-blue-500 text-white rounded-tr-sm'}`}>
             {text}
         </div>
         {quickReplies.length > 0 && (
             <div className="flex gap-1 flex-wrap mt-0.5">
                 {quickReplies.map(r => (
-                    <div key={r} className="border border-blue-400 text-blue-600 text-[6px] font-bold px-1.5 py-0.5 rounded-full cursor-pointer">{r}</div>
+                    <div key={r} className="border border-blue-400 text-blue-600 text-[9px] font-bold px-1.5 py-0.5 rounded-full cursor-pointer">{r}</div>
                 ))}
             </div>
         )}
@@ -60,13 +60,13 @@ const BotBubble = ({ text, isBot = true, quickReplies = [] }) => (
 );
 
 const BotWelcomeMockup = () => (
-    <div className="bg-slate-100 text-[9px]">
+    <div className="bg-slate-100 text-xs">
         {/* Messenger header */}
         <div className="bg-white px-3 py-2 border-b border-slate-200 flex items-center gap-2 shadow-sm">
-            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[7px]">P</div>
+            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[10px]">P</div>
             <div>
-                <div className="font-bold text-slate-800 text-[8px]">Page Name</div>
-                <div className="text-[6px] text-green-500 font-bold">● Active Now</div>
+                <div className="font-bold text-slate-800 text-[11px]">Page Name</div>
+                <div className="text-[9px] text-green-500 font-bold">● Active Now</div>
             </div>
         </div>
         <div className="p-3 space-y-2">
@@ -87,19 +87,19 @@ const BotWelcomeMockup = () => (
         </div>
         {/* Input bar */}
         <div className="bg-white border-t border-slate-200 px-3 py-2 flex items-center gap-2">
-            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[7px] text-slate-400">Aa</div>
-            <div className="text-blue-500 text-[7px] font-bold">Send</div>
+            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[10px] text-slate-400">Aa</div>
+            <div className="text-blue-500 text-[10px] font-bold">Send</div>
         </div>
     </div>
 );
 
 const QualifyMockup = () => (
-    <div className="bg-slate-100 text-[9px]">
+    <div className="bg-slate-100 text-xs">
         <div className="bg-white px-3 py-2 border-b border-slate-200 flex items-center gap-2 shadow-sm">
-            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[7px]">P</div>
+            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[10px]">P</div>
             <div>
-                <div className="font-bold text-slate-800 text-[8px]">Page Name</div>
-                <div className="text-[6px] text-green-500 font-bold">● Active Now</div>
+                <div className="font-bold text-slate-800 text-[11px]">Page Name</div>
+                <div className="text-[9px] text-green-500 font-bold">● Active Now</div>
             </div>
         </div>
         <div className="p-3 space-y-2">
@@ -116,30 +116,30 @@ const QualifyMockup = () => (
             />
         </div>
         <div className="bg-white border-t border-slate-200 px-3 py-2 flex items-center gap-2">
-            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[7px] text-slate-400">Aa</div>
-            <div className="text-blue-500 text-[7px] font-bold">Send</div>
+            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[10px] text-slate-400">Aa</div>
+            <div className="text-blue-500 text-[10px] font-bold">Send</div>
         </div>
     </div>
 );
 
 const ValueMockup = () => (
-    <div className="bg-slate-100 text-[9px]">
+    <div className="bg-slate-100 text-xs">
         <div className="bg-white px-3 py-2 border-b border-slate-200 flex items-center gap-2 shadow-sm">
-            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[7px]">P</div>
+            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[10px]">P</div>
             <div>
-                <div className="font-bold text-slate-800 text-[8px]">Page Name</div>
-                <div className="text-[6px] text-green-500 font-bold">● Active Now</div>
+                <div className="font-bold text-slate-800 text-[11px]">Page Name</div>
+                <div className="text-[9px] text-green-500 font-bold">● Active Now</div>
             </div>
         </div>
         <div className="p-3 space-y-2">
             <BotBubble text="Love that goal — totally achievable. Here's the blueprint I promised 👇" />
             {/* PDF/resource card */}
             <div className="bg-white rounded-xl p-2 border border-slate-200 shadow-sm flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-[8px] font-black shrink-0">PDF</div>
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-[11px] font-black shrink-0">PDF</div>
                 <div>
-                    <div className="font-bold text-slate-800 text-[7px]">[Your Free Resource Title]</div>
-                    <div className="text-[6px] text-slate-500">[X]-page guide · Instant access</div>
-                    <div className="text-blue-600 text-[6px] font-bold mt-0.5">Tap to open →</div>
+                    <div className="font-bold text-slate-800 text-[10px]">[Your Free Resource Title]</div>
+                    <div className="text-[9px] text-slate-500">[X]-page guide · Instant access</div>
+                    <div className="text-blue-600 text-[9px] font-bold mt-0.5">Tap to open →</div>
                 </div>
             </div>
             <BotBubble text="Take 10 minutes to go through it — page 3 is the one that changes everything for most people." />
@@ -148,17 +148,17 @@ const ValueMockup = () => (
             <BotBubble text="Amazing! Based on your goals ($10K+/mo), I think I can help you get there faster. Want me to show you how? 👇" quickReplies={['Yes, show me!', 'Maybe later']} />
         </div>
         <div className="bg-white border-t border-slate-200 px-3 py-2 flex items-center gap-2">
-            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[7px] text-slate-400">Aa</div>
-            <div className="text-blue-500 text-[7px] font-bold">Send</div>
+            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[10px] text-slate-400">Aa</div>
+            <div className="text-blue-500 text-[10px] font-bold">Send</div>
         </div>
     </div>
 );
 
 const BookingMockup = () => (
-    <div className="bg-slate-100 text-[9px]">
+    <div className="bg-slate-100 text-xs">
         <div className="bg-white px-3 py-2 border-b border-slate-200 flex items-center gap-2 shadow-sm">
-            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[7px]">P</div>
-            <div><div className="font-bold text-slate-800 text-[8px]">Page Name</div></div>
+            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[10px]">P</div>
+            <div><div className="font-bold text-slate-800 text-[11px]">Page Name</div></div>
         </div>
         <div className="p-3 space-y-2">
             <BotBubble text="Great! I'd love to jump on a free 30-min strategy call with you — no pitch, just a real plan for your situation." />
@@ -166,12 +166,12 @@ const BookingMockup = () => (
             {/* Calendar embed mockup */}
             <div className="bg-white rounded-xl p-2 border border-slate-200 shadow-sm space-y-1.5">
                 <div className="flex items-center justify-between">
-                    <div className="font-bold text-slate-800 text-[8px]">Free Strategy Call — 30 min</div>
+                    <div className="font-bold text-slate-800 text-[11px]">Free Strategy Call — 30 min</div>
                     <Calendar className="w-3 h-3 text-blue-500" />
                 </div>
                 <div className="grid grid-cols-3 gap-1">
                     {['Mon 14', 'Tue 15', 'Wed 16', 'Thu 17', 'Fri 18', 'Mon 21'].map(d => (
-                        <div key={d} className="border border-blue-200 bg-blue-50 text-blue-600 text-[6px] font-bold rounded px-1 py-1 text-center cursor-pointer">{d}</div>
+                        <div key={d} className="border border-blue-200 bg-blue-50 text-blue-600 text-[9px] font-bold rounded px-1 py-1 text-center cursor-pointer">{d}</div>
                     ))}
                 </div>
                 <div className="grid grid-cols-4 gap-1">
@@ -179,21 +179,21 @@ const BookingMockup = () => (
                         <div key={t} className="border border-slate-200 text-slate-600 text-[5.5px] rounded px-0.5 py-1 text-center cursor-pointer">{t}</div>
                     ))}
                 </div>
-                <div className="w-full bg-blue-600 text-white text-[7px] font-bold py-1 rounded text-center">Confirm My Slot →</div>
+                <div className="w-full bg-blue-600 text-white text-[10px] font-bold py-1 rounded text-center">Confirm My Slot →</div>
             </div>
         </div>
         <div className="bg-white border-t border-slate-200 px-3 py-2 flex items-center gap-2">
-            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[7px] text-slate-400">Aa</div>
-            <div className="text-blue-500 text-[7px] font-bold">Send</div>
+            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[10px] text-slate-400">Aa</div>
+            <div className="text-blue-500 text-[10px] font-bold">Send</div>
         </div>
     </div>
 );
 
 const CallConfirmMockup = () => (
-    <div className="bg-slate-100 text-[9px]">
+    <div className="bg-slate-100 text-xs">
         <div className="bg-white px-3 py-2 border-b border-slate-200 flex items-center gap-2 shadow-sm">
-            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[7px]">P</div>
-            <div><div className="font-bold text-slate-800 text-[8px]">Page Name</div></div>
+            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[10px]">P</div>
+            <div><div className="font-bold text-slate-800 text-[11px]">Page Name</div></div>
         </div>
         <div className="p-3 space-y-2">
             <BotBubble text="✅ You're confirmed for [DATE] at [TIME]! A calendar invite is on its way to your email." />
@@ -201,8 +201,8 @@ const CallConfirmMockup = () => (
                 <div className="flex items-center gap-1.5">
                     <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center shrink-0"><Check className="w-3 h-3 text-white" /></div>
                     <div>
-                        <div className="font-bold text-slate-800 text-[7px]">Call Confirmed!</div>
-                        <div className="text-[6px] text-slate-500">[DATE] at [TIME] · 30 min Zoom</div>
+                        <div className="font-bold text-slate-800 text-[10px]">Call Confirmed!</div>
+                        <div className="text-[9px] text-slate-500">[DATE] at [TIME] · 30 min Zoom</div>
                     </div>
                 </div>
             </div>
@@ -213,16 +213,16 @@ const CallConfirmMockup = () => (
                     <div className="w-0 h-0 border-y-4 border-y-transparent border-l-6 border-l-white ml-0.5" />
                 </div>
                 <div>
-                    <div className="font-bold text-slate-800 text-[7px]">Pre-Call Training: [Title]</div>
-                    <div className="text-[6px] text-slate-500">12 min · Watch before our call</div>
-                    <div className="text-blue-600 text-[6px] font-bold">Watch Now →</div>
+                    <div className="font-bold text-slate-800 text-[10px]">Pre-Call Training: [Title]</div>
+                    <div className="text-[9px] text-slate-500">12 min · Watch before our call</div>
+                    <div className="text-blue-600 text-[9px] font-bold">Watch Now →</div>
                 </div>
             </div>
             <BotBubble text="See you on the call — this is going to be good! 🚀" quickReplies={['Can\'t wait!', 'Need to reschedule']} />
         </div>
         <div className="bg-white border-t border-slate-200 px-3 py-2 flex items-center gap-2">
-            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[7px] text-slate-400">Aa</div>
-            <div className="text-blue-500 text-[7px] font-bold">Send</div>
+            <div className="flex-1 bg-slate-100 rounded-full px-2 py-1 text-[10px] text-slate-400">Aa</div>
+            <div className="text-blue-500 text-[10px] font-bold">Send</div>
         </div>
     </div>
 );

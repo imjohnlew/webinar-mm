@@ -1,50 +1,50 @@
 import React from 'react';
 import { Calendar, Video, ShoppingCart, Award, Check, Shield, Clock, Star, Play, Users } from 'lucide-react';
-import FunnelTemplate, { Bar } from './FunnelTemplate';
+import FunnelTemplate, { Bar, VideoFrame } from './FunnelTemplate';
 
 // ─── Mockups ───────────────────────────────────────────────────────────────────
 
 const RegMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-r from-blue-700 to-indigo-700 px-3 py-4 text-center">
-            <div className="text-blue-200 text-[7px] font-bold uppercase tracking-widest mb-1">FREE LIVE WEBINAR</div>
+            <div className="text-blue-200 text-[10px] font-bold uppercase tracking-widest mb-1">FREE LIVE WEBINAR</div>
             <div className="text-white font-black text-[12px] leading-tight mb-1">
                 "How To [Get Result]<br/>In [Timeframe]"
             </div>
-            <div className="text-blue-200 text-[7px]">Even if you've tried everything else and failed</div>
+            <div className="text-blue-200 text-[10px]">Even if you've tried everything else and failed</div>
         </div>
         <div className="p-3 space-y-2">
             <div className="flex items-center gap-2 bg-slate-50 rounded-lg p-2 border border-slate-100">
-                <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[8px] shrink-0">JD</div>
+                <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[11px] shrink-0">JD</div>
                 <div>
-                    <div className="font-bold text-slate-800 text-[8px]">Hosted by [Your Name]</div>
+                    <div className="font-bold text-slate-800 text-[11px]">Hosted by [Your Name]</div>
                     <Bar w="w-28" h="h-1.5" color="bg-slate-200" />
                 </div>
             </div>
             <div className="flex gap-2">
                 <div className="flex-1 bg-blue-50 border border-blue-200 rounded px-2 py-1.5 text-center">
-                    <div className="text-[7px] text-blue-500 font-bold">DATE</div>
-                    <div className="text-[8px] font-black text-blue-700">[DAY, MONTH DD]</div>
+                    <div className="text-[10px] text-blue-500 font-bold">DATE</div>
+                    <div className="text-[11px] font-black text-blue-700">[DAY, MONTH DD]</div>
                 </div>
                 <div className="flex-1 bg-blue-50 border border-blue-200 rounded px-2 py-1.5 text-center">
-                    <div className="text-[7px] text-blue-500 font-bold">TIME</div>
-                    <div className="text-[8px] font-black text-blue-700">[TIME TZ]</div>
+                    <div className="text-[10px] text-blue-500 font-bold">TIME</div>
+                    <div className="text-[11px] font-black text-blue-700">[TIME TZ]</div>
                 </div>
             </div>
-            <div className="font-bold text-slate-700 text-[8px]">What You'll Discover:</div>
+            <div className="font-bold text-slate-700 text-[11px]">What You'll Discover:</div>
             {['How to [Key Outcome 1]', 'The secret to [Key Outcome 2]', 'Why [Common Mistake] fails — and what to do instead'].map(b => (
-                <div key={b} className="flex items-start gap-1 text-[8px] text-slate-600">
+                <div key={b} className="flex items-start gap-1 text-[11px] text-slate-600">
                     <Check className="w-2.5 h-2.5 text-blue-500 shrink-0 mt-0.5" /> {b}
                 </div>
             ))}
             <div className="space-y-1.5 pt-1">
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400">Your First Name</div>
-                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400">Your Best Email</div>
-                <div className="w-full bg-blue-600 text-white font-black text-[10px] py-2 rounded text-center">
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400">Your First Name</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400">Your Best Email</div>
+                <div className="w-full bg-blue-600 text-white font-black text-sm py-2 rounded text-center">
                     Reserve My FREE Spot →
                 </div>
             </div>
-            <div className="flex items-center justify-center gap-1 text-[7px] text-slate-400">
+            <div className="flex items-center justify-center gap-1 text-[10px] text-slate-400">
                 <Shield className="w-2 h-2" /> 100% Free · Spots Limited
             </div>
         </div>
@@ -52,79 +52,75 @@ const RegMockup = () => (
 );
 
 const ConfirmMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-r from-green-500 to-emerald-600 px-3 py-4 text-center">
             <div className="text-3xl mb-1">🎉</div>
             <div className="text-white font-black text-[11px]">You're Registered!</div>
-            <div className="text-green-100 text-[7px] mt-0.5">Check your inbox for the join link</div>
+            <div className="text-green-100 text-[10px] mt-0.5">Check your inbox for the join link</div>
         </div>
         <div className="p-3 space-y-2.5">
             <div className="border border-slate-200 rounded-lg p-2 space-y-1.5 bg-slate-50">
-                <div className="font-bold text-slate-700 text-[8px]">Your Webinar Details:</div>
-                <div className="flex items-center gap-1.5 text-[8px] text-slate-600"><Calendar className="w-2.5 h-2.5 text-blue-500" /> [DAY, MONTH DD] at [TIME TZ]</div>
-                <div className="flex items-center gap-1.5 text-[8px] text-slate-600"><Video className="w-2.5 h-2.5 text-blue-500" /> Zoom Webinar (link in your email)</div>
+                <div className="font-bold text-slate-700 text-[11px]">Your Webinar Details:</div>
+                <div className="flex items-center gap-1.5 text-[11px] text-slate-600"><Calendar className="w-2.5 h-2.5 text-blue-500" /> [DAY, MONTH DD] at [TIME TZ]</div>
+                <div className="flex items-center gap-1.5 text-[11px] text-slate-600"><Video className="w-2.5 h-2.5 text-blue-500" /> Zoom Webinar (link in your email)</div>
             </div>
             <div className="grid grid-cols-3 gap-1">
                 {['Google', 'Outlook', 'iCal'].map(c => (
-                    <div key={c} className="border border-slate-200 rounded text-center py-1.5 text-[7px] font-bold text-slate-600 cursor-pointer">📅 {c}</div>
+                    <div key={c} className="border border-slate-200 rounded text-center py-1.5 text-[10px] font-bold text-slate-600 cursor-pointer">📅 {c}</div>
                 ))}
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-2.5 space-y-1.5">
-                <div className="font-bold text-blue-700 text-[8px]">While You Wait — Join Our Community:</div>
-                <div className="w-full bg-blue-600 text-white font-bold text-[8px] py-1.5 rounded text-center">
+                <div className="font-bold text-blue-700 text-[11px]">While You Wait — Join Our Community:</div>
+                <div className="w-full bg-blue-600 text-white font-bold text-[11px] py-1.5 rounded text-center">
                     👥 Join Our Private Facebook Group →
                 </div>
-                <div className="text-[7px] text-blue-500 text-center">5,247 members already inside</div>
+                <div className="text-[10px] text-blue-500 text-center">5,247 members already inside</div>
             </div>
             <div className="space-y-1">
-                <div className="font-bold text-slate-700 text-[8px]">Watch This First (5 min pre-training):</div>
-                <div className="w-full aspect-video bg-slate-800 rounded flex items-center justify-center">
-                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                        <Play className="w-3 h-3 text-white fill-white ml-0.5" />
-                    </div>
-                </div>
+                <div className="font-bold text-slate-700 text-[11px]">Watch This First (5 min pre-training):</div>
+                <VideoFrame progress={0} time="0:00" duration="5:00" />
             </div>
         </div>
     </div>
 );
 
 const WebinarRoomMockup = () => (
-    <div className="bg-slate-900 text-[9px] text-white">
+    <div className="bg-slate-900 text-xs text-white">
         <div className="bg-slate-800 px-3 py-1.5 flex items-center justify-between">
-            <div className="font-bold text-[8px] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block" /> LIVE · [Your Name]'s Webinar</div>
-            <div className="text-[7px] text-slate-400 flex items-center gap-1"><Users className="w-2.5 h-2.5" /> 847 attending</div>
+            <div className="font-bold text-[11px] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block" /> LIVE · [Your Name]'s Webinar</div>
+            <div className="text-[10px] text-slate-400 flex items-center gap-1"><Users className="w-2.5 h-2.5" /> 847 attending</div>
         </div>
         <div className="flex">
             <div className="flex-1">
                 <div className="w-full aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center justify-center relative">
                     <div className="bg-white/10 rounded-lg p-3 w-4/5 text-center space-y-1.5">
-                        <div className="text-[7px] text-blue-300 font-bold uppercase">THE 3-STEP FRAMEWORK</div>
-                        <div className="text-white font-black text-[10px] leading-tight">How To [Get Result]<br/>Without [Pain Point]</div>
+                        <div className="text-[10px] text-blue-300 font-bold uppercase">THE 3-STEP FRAMEWORK</div>
+                        <div className="text-white font-black text-sm leading-tight">How To [Get Result]<br/>Without [Pain Point]</div>
                         <div className="grid grid-cols-3 gap-1 mt-1">
                             {['STEP 1', 'STEP 2', 'STEP 3'].map(s => (
-                                <div key={s} className="bg-blue-600/30 rounded text-[6px] font-bold text-blue-300 py-1">{s}</div>
+                                <div key={s} className="bg-blue-600/30 rounded text-[9px] font-bold text-blue-300 py-1">{s}</div>
                             ))}
                         </div>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 px-2 py-1.5 bg-slate-800">
-                    <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[6px] font-black">JD</div>
-                    <div className="text-[7px] text-slate-300 font-bold flex-1">[Your Name]</div>
-                    <div className="bg-orange-500 text-white text-[7px] font-black px-2 py-0.5 rounded">🔥 CLAIM OFFER</div>
+                    <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[9px] font-black">JD</div>
+                    <div className="text-[10px] text-slate-300 font-bold flex-1">[Your Name]</div>
+                    <div className="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded">🔥 CLAIM OFFER</div>
                 </div>
             </div>
             <div className="w-24 bg-slate-800 border-l border-slate-700 flex flex-col">
-                <div className="px-2 py-1 border-b border-slate-700 text-[7px] font-bold text-slate-400">LIVE CHAT</div>
+                <div className="px-2 py-1 border-b border-slate-700 text-[10px] font-bold text-slate-400">LIVE CHAT</div>
                 <div className="flex-1 p-1.5 space-y-1.5">
                     {[['Sarah M.', 'This is amazing! 🔥'], ['John K.', 'Taking notes!'], ['Maria L.', 'Mind blown 🤯'], ['Dave R.', 'Where do I sign up?']].map(([n, m]) => (
-                        <div key={n} className="text-[6px]">
+                        <div key={n} className="text-[9px]">
                             <span className="text-blue-400 font-bold">{n}: </span>
                             <span className="text-slate-300">{m}</span>
                         </div>
                     ))}
                 </div>
                 <div className="p-1.5 border-t border-slate-700">
-                    <div className="bg-slate-700 rounded px-1.5 py-1 text-[6px] text-slate-500">Type a message...</div>
+                    <div className="bg-slate-700 rounded px-1.5 py-1 text-[9px] text-slate-500">Type a message...</div>
                 </div>
             </div>
         </div>
@@ -132,34 +128,34 @@ const WebinarRoomMockup = () => (
 );
 
 const OfferPageMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-slate-900 px-3 py-1.5 flex items-center justify-between">
             <Bar w="w-12" h="h-2" color="bg-slate-600" />
-            <div className="text-[7px] text-red-400 flex items-center gap-0.5 font-bold"><Clock className="w-2 h-2" /> OFFER CLOSES IN 23:41:07</div>
+            <div className="text-[10px] text-red-400 flex items-center gap-0.5 font-bold"><Clock className="w-2 h-2" /> OFFER CLOSES IN 23:41:07</div>
         </div>
         <div className="p-3 space-y-2">
             <div className="text-center space-y-1">
                 <div className="font-black text-slate-900 text-[11px] leading-tight">Join [Program Name]<br/>And Get [Outcome] in [Timeframe]</div>
-                <div className="text-[7px] text-slate-500">Exclusively for webinar attendees — price goes up at midnight</div>
+                <div className="text-[10px] text-slate-500">Exclusively for webinar attendees — price goes up at midnight</div>
             </div>
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-2 space-y-1.5">
-                <div className="font-bold text-slate-700 text-[8px]">Everything You Get Today:</div>
+                <div className="font-bold text-slate-700 text-[11px]">Everything You Get Today:</div>
                 {['[Core Program] ($997 value)', '[Bonus 1: Done-For-You Templates] ($297 value)', '[Bonus 2: Private Community] ($197 value)', '[Bonus 3: Live Q&A Calls x4] ($497 value)'].map(i => (
-                    <div key={i} className="flex items-center gap-1 text-[8px] text-slate-600">
+                    <div key={i} className="flex items-center gap-1 text-[11px] text-slate-600">
                         <Star className="w-2 h-2 text-yellow-500 fill-yellow-500 shrink-0" /> {i}
                     </div>
                 ))}
                 <div className="border-t border-slate-200 pt-1.5">
-                    <div className="text-[7px] text-slate-500">Total value: <span className="line-through">$1,988</span></div>
-                    <div className="font-black text-green-600 text-[10px]">Today Only: $997</div>
+                    <div className="text-[10px] text-slate-500">Total value: <span className="line-through">$1,988</span></div>
+                    <div className="font-black text-green-600 text-sm">Today Only: $997</div>
                 </div>
             </div>
             <div className="text-center">
                 <div className="text-2xl font-black text-slate-900">$997</div>
-                <div className="text-[7px] text-slate-500">or 3 payments of $397</div>
+                <div className="text-[10px] text-slate-500">or 3 payments of $397</div>
             </div>
-            <div className="w-full bg-orange-500 text-white font-black text-[10px] py-2 rounded text-center">YES! I Want In Now →</div>
-            <div className="flex items-center justify-center gap-1 text-[7px] text-slate-500">
+            <div className="w-full bg-orange-500 text-white font-black text-sm py-2 rounded text-center">YES! I Want In Now →</div>
+            <div className="flex items-center justify-center gap-1 text-[10px] text-slate-500">
                 <Shield className="w-2 h-2 text-green-500" /> 30-Day Money Back Guarantee
             </div>
         </div>
@@ -167,57 +163,57 @@ const OfferPageMockup = () => (
 );
 
 const WebinarOrderMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-slate-900 px-3 py-1.5"><Bar w="w-16" h="h-2" color="bg-slate-600" /></div>
         <div className="p-3 space-y-2">
-            <div className="font-black text-center text-[10px]">🔒 Secure Order Form</div>
-            <div className="text-[7px] text-red-500 text-center font-bold flex items-center justify-center gap-0.5">
+            <div className="font-black text-center text-sm">🔒 Secure Order Form</div>
+            <div className="text-[10px] text-red-500 text-center font-bold flex items-center justify-center gap-0.5">
                 <Clock className="w-2 h-2" /> Webinar special closes soon
             </div>
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-2 space-y-1">
-                <div className="font-bold text-[8px] text-slate-700">Order Summary</div>
-                <div className="flex justify-between text-[8px]"><span className="text-slate-600">[Program Name]</span><span className="font-bold">$997</span></div>
-                <div className="flex justify-between text-[7px] text-green-600"><span>Webinar Bonus Discount</span><span className="font-bold">-$991</span></div>
-                <div className="border-t border-slate-200 pt-1 flex justify-between text-[8px] font-black"><span>Total Today</span><span className="text-orange-500">$997</span></div>
+                <div className="font-bold text-[11px] text-slate-700">Order Summary</div>
+                <div className="flex justify-between text-[11px]"><span className="text-slate-600">[Program Name]</span><span className="font-bold">$997</span></div>
+                <div className="flex justify-between text-[10px] text-green-600"><span>Webinar Bonus Discount</span><span className="font-bold">-$991</span></div>
+                <div className="border-t border-slate-200 pt-1 flex justify-between text-[11px] font-black"><span>Total Today</span><span className="text-orange-500">$997</span></div>
             </div>
             <div className="space-y-1.5">
                 {['Full Name', 'Email Address'].map(f => (
-                    <div key={f} className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[8px] text-slate-400">{f}</div>
+                    <div key={f} className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 text-[11px] text-slate-400">{f}</div>
                 ))}
                 <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 flex justify-between items-center">
                     <Bar w="w-3/4" h="h-1.5" color="bg-slate-200" />
                     <div className="flex gap-0.5"><div className="w-3 h-2 bg-blue-600 rounded-[2px]" /><div className="w-3 h-2 bg-red-500 rounded-[2px]" /></div>
                 </div>
             </div>
-            <div className="w-full bg-green-500 text-white font-black text-[10px] py-2 rounded text-center">Complete My Order →</div>
-            <div className="flex items-center justify-center gap-1 text-[7px] text-slate-400"><Shield className="w-2 h-2" /> SSL Secured · 30-Day Guarantee</div>
+            <div className="w-full bg-green-500 text-white font-black text-sm py-2 rounded text-center">Complete My Order →</div>
+            <div className="flex items-center justify-center gap-1 text-[10px] text-slate-400"><Shield className="w-2 h-2" /> SSL Secured · 30-Day Guarantee</div>
         </div>
     </div>
 );
 
 const WebinarTYMockup = () => (
-    <div className="bg-white text-[9px] text-slate-700">
+    <div className="bg-white text-xs text-slate-700">
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-3 text-center">
             <div className="text-2xl mb-0.5">🚀</div>
-            <div className="text-white font-black text-[10px]">Welcome to [Program Name]!</div>
-            <div className="text-blue-100 text-[7px]">Your journey to [outcome] starts now</div>
+            <div className="text-white font-black text-sm">Welcome to [Program Name]!</div>
+            <div className="text-blue-100 text-[10px]">Your journey to [outcome] starts now</div>
         </div>
         <div className="p-3 space-y-2">
-            <div className="text-[8px] text-slate-600 text-center">Your receipt is on the way. Access is live now.</div>
-            <div className="w-full bg-blue-600 text-white font-black text-[9px] py-2 rounded text-center">Access [Program Name] Now →</div>
+            <div className="text-[11px] text-slate-600 text-center">Your receipt is on the way. Access is live now.</div>
+            <div className="w-full bg-blue-600 text-white font-black text-xs py-2 rounded text-center">Access [Program Name] Now →</div>
             <div className="border border-slate-200 rounded-lg p-2 space-y-1.5">
-                <div className="font-bold text-slate-700 text-[8px]">Your Next 3 Steps:</div>
+                <div className="font-bold text-slate-700 text-[11px]">Your Next 3 Steps:</div>
                 {['Join the private members community', 'Watch the onboarding video (10 min)', 'Complete your first module today'].map((s, i) => (
-                    <div key={s} className="flex items-center gap-1.5 text-[8px] text-slate-600">
-                        <div className="w-3.5 h-3.5 rounded-full bg-blue-100 text-blue-600 font-black flex items-center justify-center text-[7px] shrink-0">{i + 1}</div>
+                    <div key={s} className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                        <div className="w-3.5 h-3.5 rounded-full bg-blue-100 text-blue-600 font-black flex items-center justify-center text-[10px] shrink-0">{i + 1}</div>
                         {s}
                     </div>
                 ))}
             </div>
             <div className="bg-orange-50 border border-orange-200 rounded-lg p-2 text-center space-y-1">
-                <div className="font-bold text-orange-700 text-[8px]">Want even faster results?</div>
-                <div className="text-[7px] text-orange-600">Book a private 1-on-1 strategy session with our team</div>
-                <div className="bg-orange-500 text-white text-[7px] font-bold px-3 py-1 rounded inline-block">Book My Call →</div>
+                <div className="font-bold text-orange-700 text-[11px]">Want even faster results?</div>
+                <div className="text-[10px] text-orange-600">Book a private 1-on-1 strategy session with our team</div>
+                <div className="bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded inline-block">Book My Call →</div>
             </div>
         </div>
     </div>
