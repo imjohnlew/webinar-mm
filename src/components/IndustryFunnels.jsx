@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Calendar, Check, Shield, Clock, Star, Phone, FileText, MapPin, Award, Search, Zap, Heart, Scale, BookOpen, TrendingUp } from 'lucide-react';
+import { Users, Calendar, Check, Shield, Clock, Star, Phone, FileText, MapPin, Award, Search, Zap, Heart, Scale, BookOpen, TrendingUp, MessageCircle, Video, UserPlus } from 'lucide-react';
 import FunnelTemplate, { Bar, VideoFrame } from './FunnelTemplate';
 
 // ─── DENTAL MOCKUPS ────────────────────────────────────────────────────────────
@@ -598,6 +598,259 @@ const COACH_STAGES = [
     },
 ];
 
+// ─── AI AGENCY MOCKUPS ────────────────────────────────────────────────────────
+
+const AiContentMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="p-2.5 flex items-start gap-2">
+            <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-sm shrink-0">YN</div>
+            <div className="flex-1 min-w-0">
+                <div className="font-bold text-slate-800 text-[11px]">[Your Name]</div>
+                <div className="text-[10px] text-slate-400">2h · 🌐 Public</div>
+            </div>
+        </div>
+        <div className="px-2.5 pb-2 space-y-1.5">
+            <div className="font-bold text-slate-800 text-[11px] leading-snug">❌ Your business is paying staff to do tasks AI can handle in 10 minutes.</div>
+            <div className="text-[10px] text-slate-600 leading-relaxed">Most business owners I talk to have no idea how much time and money they're burning on tasks that AI can automate overnight...</div>
+            <div className="text-blue-500 text-[10px] font-bold">See more</div>
+        </div>
+        <div className="w-full aspect-video bg-gradient-to-br from-blue-600 to-indigo-700 flex flex-col items-center justify-center p-3 text-center gap-1.5">
+            <div className="text-white font-black text-sm">🤖 AI Automation</div>
+            <div className="text-blue-100 text-[10px]">Save 40+ hours/month · For local businesses</div>
+            <div className="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full mt-1">Book a Free Demo →</div>
+        </div>
+        <div className="px-2.5 py-1.5 flex items-center justify-between border-b border-slate-100">
+            <div className="flex items-center gap-1 text-[10px] text-slate-400"><span>👍❤️🔥</span> 47</div>
+            <div className="text-[10px] text-slate-400">12 comments · 8 shares</div>
+        </div>
+        <div className="px-2.5 py-1.5 flex items-center justify-around text-[10px] text-slate-500 font-bold">
+            <span>👍 Like</span><span>💬 Comment</span><span>↗ Share</span>
+        </div>
+    </div>
+);
+
+const AiConnectMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="bg-blue-600 px-3 py-2 flex items-center gap-2">
+            <MessageCircle className="w-4 h-4 text-white" />
+            <div className="text-white font-bold text-[11px]">Messenger</div>
+        </div>
+        <div className="flex">
+            <div className="w-1/3 border-r border-slate-100 divide-y divide-slate-50">
+                {[
+                    { name: 'John D.', msg: 'Hey, loved your post!', time: '2m', unread: true },
+                    { name: 'Sarah M.', msg: 'Thanks for connecting!', time: '15m', unread: true },
+                    { name: 'Mark L.', msg: 'That sounds interesting', time: '1h', unread: false },
+                ].map((c, i) => (
+                    <div key={i} className={`p-2 flex items-start gap-1.5 ${i === 0 ? 'bg-blue-50' : ''}`}>
+                        <div className="w-5 h-5 rounded-full bg-slate-300 shrink-0" />
+                        <div className="min-w-0 flex-1">
+                            <div className="font-bold text-[9px] text-slate-700 truncate">{c.name}</div>
+                            <div className="text-[8px] text-slate-400 truncate">{c.msg}</div>
+                        </div>
+                        <div className="shrink-0 flex flex-col items-end gap-0.5 ml-1">
+                            <div className="text-[8px] text-slate-400">{c.time}</div>
+                            {c.unread && <div className="w-2 h-2 rounded-full bg-blue-500" />}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="flex-1 flex flex-col min-w-0">
+                <div className="p-2 border-b border-slate-100 flex items-center gap-1.5">
+                    <div className="w-5 h-5 rounded-full bg-slate-300 shrink-0" />
+                    <div><div className="font-bold text-[10px]">John D.</div><div className="text-[9px] text-green-500">Active now</div></div>
+                </div>
+                <div className="p-2 space-y-1.5 flex-1">
+                    <div className="text-center text-[9px] text-slate-400 bg-slate-50 rounded px-1 py-0.5">You sent John a friend request</div>
+                    <div className="flex justify-end">
+                        <div className="bg-blue-500 text-white text-[9px] rounded-xl rounded-tr-sm px-2 py-1.5 max-w-[85%]">
+                            Hey John! Saw your comment in [Group] — do you help local businesses?
+                        </div>
+                    </div>
+                    <div className="flex">
+                        <div className="bg-slate-100 text-slate-700 text-[9px] rounded-xl rounded-tl-sm px-2 py-1.5 max-w-[85%]">
+                            Yeah I do! What's this about? 👀
+                        </div>
+                    </div>
+                </div>
+                <div className="p-1.5 border-t border-slate-100">
+                    <div className="bg-slate-100 rounded-full px-2 py-1 text-[9px] text-slate-400">Type a message...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+const AiQualifyMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="bg-blue-600 px-3 py-2 flex items-center gap-2">
+            <div className="w-5 h-5 rounded-full bg-slate-300 shrink-0" />
+            <div><div className="text-white font-bold text-[11px]">John D.</div><div className="text-blue-200 text-[9px]">Active now</div></div>
+        </div>
+        <div className="p-2 space-y-1.5">
+            <div className="flex">
+                <div className="bg-slate-100 text-slate-700 text-[9px] rounded-xl rounded-tl-sm px-2 py-1.5 max-w-[80%] leading-relaxed">
+                    I run a dental clinic. 3 staff, struggling to get new patients consistently
+                </div>
+            </div>
+            <div className="flex justify-end">
+                <div className="bg-blue-500 text-white text-[9px] rounded-xl rounded-tr-sm px-2 py-1.5 max-w-[80%] leading-relaxed">
+                    Got it! Are you spending on ads or mostly word of mouth right now?
+                </div>
+            </div>
+            <div className="flex">
+                <div className="bg-slate-100 text-slate-700 text-[9px] rounded-xl rounded-tl-sm px-2 py-1.5 max-w-[80%] leading-relaxed">
+                    Mostly word of mouth. Tried FB ads last year — didn't work great
+                </div>
+            </div>
+            <div className="flex justify-end">
+                <div className="bg-blue-500 text-white text-[9px] rounded-xl rounded-tr-sm px-2 py-1.5 max-w-[80%] leading-relaxed">
+                    Makes sense. I help clinics set up AI systems that book 2–3 extra patients/week automatically. Worth a 15-min Zoom to show you exactly how?
+                </div>
+            </div>
+            <div className="flex">
+                <div className="bg-slate-100 text-slate-700 text-[9px] rounded-xl rounded-tl-sm px-2 py-1.5 max-w-[50%]">
+                    Sure, why not 👍
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+const AiZoomMockup = () => (
+    <div className="bg-slate-900 rounded-lg overflow-hidden text-xs text-white">
+        <div className="bg-slate-800 px-3 py-1.5 flex items-center justify-between">
+            <div className="font-bold text-[11px] flex items-center gap-1.5"><span className="text-blue-400 font-black">zoom</span> Meeting</div>
+            <div className="text-[10px] text-slate-400">32:14 · 2 participants</div>
+        </div>
+        <div className="p-2 grid grid-cols-2 gap-1.5">
+            <div className="aspect-video bg-gradient-to-br from-slate-700 to-slate-800 rounded-lg flex flex-col items-end justify-end p-1.5 relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-full bg-slate-600 flex items-center justify-center text-xl">👤</div>
+                </div>
+                <div className="bg-black/60 text-white text-[9px] px-1.5 py-0.5 rounded font-bold">John D.</div>
+            </div>
+            <div className="aspect-video bg-gradient-to-br from-blue-700 to-indigo-800 rounded-lg flex flex-col items-end justify-end p-1.5 relative">
+                <div className="absolute top-1 left-1 w-2 h-2 rounded-full bg-red-500" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center text-xl">😊</div>
+                </div>
+                <div className="bg-black/60 text-white text-[9px] px-1.5 py-0.5 rounded font-bold">You (Host)</div>
+            </div>
+        </div>
+        <div className="mx-2 mb-2 bg-white rounded-lg p-2 border border-slate-200">
+            <div className="text-[9px] text-slate-400 mb-1">📊 Screen Share — Proposal</div>
+            <div className="text-[10px] font-bold text-slate-800">AI Automation Package</div>
+            <div className="grid grid-cols-2 gap-0.5 mt-1">
+                {['Lead Follow-Up AI', 'Appointment Bot', 'Review Automator', 'Monthly Reports'].map(f => (
+                    <div key={f} className="flex items-center gap-0.5 text-[9px] text-slate-600">
+                        <Check className="w-2.5 h-2.5 text-green-500 shrink-0" /> {f}
+                    </div>
+                ))}
+            </div>
+            <div className="mt-1.5 font-black text-sm text-blue-600">$1,500 / month</div>
+        </div>
+        <div className="bg-slate-800 px-3 py-1.5 flex items-center justify-center gap-2">
+            {['🎤', '📷', '💬', '📊'].map(icon => (
+                <div key={icon} className="w-7 h-7 rounded-full bg-slate-700 flex items-center justify-center text-sm">{icon}</div>
+            ))}
+            <div className="w-7 h-7 rounded-full bg-red-500 flex items-center justify-center text-[10px] font-bold">End</div>
+        </div>
+    </div>
+);
+
+const AiCloseMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="bg-blue-600 px-3 py-2 flex items-center gap-2">
+            <div className="w-5 h-5 rounded-full bg-slate-300 shrink-0" />
+            <div className="text-white font-bold text-[11px]">John D.</div>
+        </div>
+        <div className="p-2 space-y-1.5">
+            <div className="flex">
+                <div className="bg-slate-100 text-slate-700 text-[9px] rounded-xl rounded-tl-sm px-2 py-1.5 max-w-[80%] leading-relaxed">
+                    Honestly that was exactly what I needed. When can we start? 🙌
+                </div>
+            </div>
+            <div className="flex justify-end">
+                <div className="bg-blue-500 text-white text-[9px] rounded-xl rounded-tr-sm px-2 py-1.5 max-w-[80%] leading-relaxed">
+                    Amazing! Sending the agreement + invoice now — once signed we kick off Monday 🚀
+                </div>
+            </div>
+            <div className="border border-slate-200 rounded-xl p-2 bg-green-50 space-y-1.5">
+                <div className="flex items-center gap-1.5">
+                    <div className="w-7 h-7 bg-green-100 rounded-lg flex items-center justify-center text-sm shrink-0">📄</div>
+                    <div>
+                        <div className="font-bold text-[10px] text-slate-800">Service Agreement + Invoice</div>
+                        <div className="text-[9px] text-slate-400">AI Automation Package · $1,500/mo</div>
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 gap-1">
+                    <div className="bg-white border border-slate-200 rounded-lg text-center py-1 text-[9px] font-bold text-slate-600">View Doc</div>
+                    <div className="bg-green-500 rounded-lg text-center py-1 text-[9px] font-bold text-white">Sign & Pay ✓</div>
+                </div>
+            </div>
+            <div className="flex justify-center">
+                <div className="bg-green-50 border border-green-200 rounded-full px-2 py-0.5 text-[9px] text-green-600 font-bold">✅ Signed & paid — client onboarded!</div>
+            </div>
+        </div>
+    </div>
+);
+
+// ─── AI AGENCY STAGES ──────────────────────────────────────────────────────────
+
+const AI_AGENCY_STAGES = [
+    {
+        id: 'content', label: 'FB Content', sublabel: 'Profile & Group Posts',
+        icon: Users, url: 'facebook.com/yourprofile',
+        bg: 'bg-blue-600', pill: 'bg-blue-900/40 text-blue-300 border-blue-700', text: 'text-blue-400',
+        mockup: <AiContentMockup />,
+        conversion: '3–8%', conversionNote: 'of viewers engage / connect', price: null,
+        description: 'Daily posts on your personal FB profile and in targeted FB groups build authority and attract inbound interest. Problem-aware content ("your staff is doing work AI can handle in 10 minutes") prompts prospects to comment or reach out.',
+        tips: ['Post once daily minimum — consistency builds compound reach', 'Problem-aware hooks outperform solution posts every time', 'Target groups with 5K–50K members in your niche', 'Reply to every comment — engagement boosts organic reach by 3–5×'],
+        metrics: [{ label: 'Posts/Week', value: '5–7' }, { label: 'Groups Active', value: '10–20' }, { label: 'Reach/Post', value: '200–2K' }],
+    },
+    {
+        id: 'connect', label: 'Add + DM', sublabel: 'Friend Request & Opener',
+        icon: UserPlus, url: 'messenger.com',
+        bg: 'bg-indigo-600', pill: 'bg-indigo-900/40 text-indigo-300 border-indigo-700', text: 'text-indigo-400',
+        mockup: <AiConnectMockup />,
+        conversion: '40–60%', conversionNote: 'accept + reply to opener', price: null,
+        description: 'After someone engages with your content (likes, comments, views profile), send a friend request and a short personalized opener. The opener is NOT a pitch — it\'s a curiosity question about their business.',
+        tips: ['Send 20–30 friend requests per day (stay under FB limits)', 'Reference something specific: "Saw your comment in [Group]..."', 'Never pitch in the first message — ask about their situation', 'Use a simple 2-sentence opener — short messages get more replies'],
+        metrics: [{ label: 'Requests/Day', value: '20–30' }, { label: 'Accept Rate', value: '40–60%' }, { label: 'Reply Rate', value: '30–50%' }],
+    },
+    {
+        id: 'qualify', label: 'Qualify Chat', sublabel: 'DM Conversation',
+        icon: MessageCircle, url: 'messenger.com/conversation',
+        bg: 'bg-purple-600', pill: 'bg-purple-900/40 text-purple-300 border-purple-700', text: 'text-purple-400',
+        mockup: <AiQualifyMockup />,
+        conversion: '25–40%', conversionNote: 'agree to a Zoom call', price: null,
+        description: 'A 4–6 message qualifying conversation identifies the prospect\'s situation, their biggest pain point, and whether they\'re a good fit. The goal is NOT to close here — it\'s to earn a Zoom call (or close directly on chat for smaller tickets).',
+        tips: ['Ask 2–3 questions max before pitching the call', 'Mirror their language — use the words they use to describe the problem', 'Pain → Implication → Zoom: "That\'s costing you X... worth 15 min to fix it?"', 'For <$500 offers you can close fully on chat — skip the Zoom'],
+        metrics: [{ label: 'Messages to Call', value: '4–8' }, { label: 'Call Booking Rate', value: '25–40%' }, { label: 'Chat Close Rate', value: '5–15%' }],
+    },
+    {
+        id: 'zoom', label: 'Zoom Call', sublabel: 'Discovery + Close',
+        icon: Video, url: 'zoom.us/meeting',
+        bg: 'bg-pink-600', pill: 'bg-pink-900/40 text-pink-300 border-pink-700', text: 'text-pink-400',
+        mockup: <AiZoomMockup />,
+        conversion: '25–45%', conversionNote: 'of calls close to a paid client', price: '$1K–$5K/mo',
+        description: 'A 30–45 minute discovery call where you diagnose the prospect\'s situation, show them a live demo or screen-shared proposal, and make a clear offer. The call structure: 70% listening, 30% presenting.',
+        tips: ['Spend the first 15 min only asking questions — resist the urge to pitch early', 'Show a live demo or case study — tangible proof closes better than slides', 'Name the investment confidently: "$1,500/month. Does that work for you?"', 'Always end with a clear next step — never leave the call without a decision'],
+        metrics: [{ label: 'Call Length', value: '30–45 min' }, { label: 'Close Rate', value: '25–45%' }, { label: 'Avg Deal', value: '$1K–$5K/mo' }],
+    },
+    {
+        id: 'close', label: 'Close & Onboard', sublabel: 'Sign, Pay & Start',
+        icon: Award, url: 'messenger.com/close',
+        bg: 'bg-green-600', pill: 'bg-green-900/40 text-green-300 border-green-700', text: 'text-green-400',
+        mockup: <AiCloseMockup />,
+        conversion: null, conversionNote: null, price: null,
+        description: 'Send the agreement and invoice immediately after the call — within 5 minutes while excitement is high. A fast close prevents buyer hesitation. Onboard the client same week to reduce refund risk and build early momentum.',
+        tips: ['Send invoice within 5 minutes of ending the Zoom call', 'Use a simple 1-page agreement — complexity kills momentum', 'Start the onboarding call within 48 hours of payment', 'Week 1 win: deliver one quick result to confirm their decision was right'],
+        metrics: [{ label: 'Send Invoice', value: '< 5 min' }, { label: 'Sign Rate', value: '70–90%' }, { label: 'Refund Risk', value: 'Low (fast start)' }],
+    },
+];
+
 // ─── INDUSTRY DATA ─────────────────────────────────────────────────────────────
 
 const INDUSTRIES = [
@@ -672,6 +925,30 @@ const INDUSTRIES = [
             { label: 'Clients Closed', value: '4', note: '18% close × $3,000', color: 'text-green-400' },
         ],
         revenueSummary: { title: 'Example: 50 Applications → Coaching Revenue', total: '$12,000', perUnitLabel: 'Revenue Per Application', perUnit: '$240', note: 'At higher price points ($5K–$10K programs), even a 10% close rate from 50 applications delivers $25,000–$50,000 per cohort.' },
+    },
+    {
+        id: 'ai-agency',
+        label: 'AI Agency',
+        emoji: '🤖',
+        color: 'blue',
+        accent: 'bg-blue-600',
+        border: 'border-blue-500',
+        text: 'text-blue-400',
+        ring: 'ring-blue-500/30',
+        stages: AI_AGENCY_STAGES,
+        title: 'AI Agency — Organic FB Outreach Funnel',
+        description: 'A fully organic funnel: post content on FB profile & groups to attract attention, connect via DM to qualify, then close the sale on conversation or Zoom — zero ad spend required.',
+        leadBlock: 'bg-blue-900/60 text-blue-200 border border-blue-700/60',
+        leads: ['FB Profile Posts', 'FB Group Posts', 'Video / Reels', 'Carousel Posts', 'Comment Engagement', 'Story Posts', 'Live Videos'],
+        funnels: ['Content → DM → Chat Close', 'Content → DM → Zoom → Close', 'Group Post → Comment → DM', 'Profile View → Friend Request → DM', 'Referral → DM → Close'],
+        offers: ['AI Automation Package ($1K–$3K/mo)', 'Done-For-You AI Setup (one-time)', 'AI Consulting (hourly)', '90-Day AI Agency Build-Out', 'AI Tools Training Workshop', 'Monthly Retainer + Maintenance'],
+        revenueData: [
+            { label: 'Friend Requests / Week', value: '100', note: 'Daily outreach', color: 'text-blue-400' },
+            { label: 'Conversations Started', value: '30', note: '30% connect + reply', color: 'text-indigo-400' },
+            { label: 'Zoom Calls Held', value: '10', note: '33% agree to call', color: 'text-purple-400' },
+            { label: 'Clients Closed', value: '3', note: '30% close × $1,500/mo', color: 'text-green-400' },
+        ],
+        revenueSummary: { title: 'Example: 100 Outreaches → Monthly Revenue', total: '$4,500/mo', perUnitLabel: 'Revenue Per Outreach', perUnit: '$45', note: 'With 3 clients at $1,500/month, you hit $4,500 MRR in week one. Scale volume and price point — 5 clients at $2,500/mo = $12,500 MRR.' },
     },
 ];
 
