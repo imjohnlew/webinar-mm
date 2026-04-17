@@ -13,6 +13,12 @@ import IndustryScanner from './components/IndustryScanner';
 import PDFExportButton from './components/PDFExportButton';
 import WebinarCalculator from './components/WebinarCalculator';
 import VersatileCalculator from './components/VersatileCalculator';
+import LowTicketFunnel from './components/LowTicketFunnel';
+import WebinarFunnel from './components/WebinarFunnel';
+import VslFunnel from './components/VslFunnel';
+import ChallengeFunnel from './components/ChallengeFunnel';
+import MessengerFunnel from './components/MessengerFunnel';
+import IndustryFunnels from './components/IndustryFunnels';
 
 const TABS = [
   { id: 'mindset', label: '1. The Mindset', icon: BookOpen },
@@ -23,10 +29,16 @@ const TABS = [
   { id: 'builder', label: 'Journey Builder', icon: Layers },
   { id: 'calculator', label: 'Calculator', icon: Search },
   { id: 'versatile-calc', label: 'Projections', icon: Search },
+  { id: 'low-ticket', label: 'Low-Ticket Funnel', icon: Layers },
+  { id: 'webinar-funnel', label: 'Webinar Funnel', icon: Layers },
+  { id: 'vsl-funnel', label: 'VSL Funnel', icon: Layers },
+  { id: 'challenge-funnel', label: 'Challenge Funnel', icon: Layers },
+  { id: 'messenger-funnel', label: 'Messenger Funnel', icon: Layers },
+  { id: 'industry-funnels', label: 'Industry Funnels', icon: Layers },
   { id: 'closing', label: '7. The Bridge', icon: Flag },
 ];
 
-const PINNED_IDS = ['simulation', 'builder', 'calculator', 'versatile-calc'];
+const PINNED_IDS = ['simulation', 'builder', 'calculator', 'versatile-calc', 'low-ticket', 'webinar-funnel', 'vsl-funnel', 'challenge-funnel', 'messenger-funnel', 'industry-funnels'];
 
 function App() {
   const [activeTab, setActiveTab] = useState('builder');
@@ -61,6 +73,18 @@ function App() {
         return <WebinarCalculator />;
       case 'versatile-calc':
         return <VersatileCalculator />;
+      case 'low-ticket':
+        return <LowTicketFunnel />;
+      case 'webinar-funnel':
+        return <WebinarFunnel />;
+      case 'vsl-funnel':
+        return <VslFunnel />;
+      case 'challenge-funnel':
+        return <ChallengeFunnel />;
+      case 'messenger-funnel':
+        return <MessengerFunnel />;
+      case 'industry-funnels':
+        return <IndustryFunnels />;
       case 'closing':
         return <ClosingSession />;
       default:
