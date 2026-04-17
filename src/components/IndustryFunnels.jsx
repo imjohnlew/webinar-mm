@@ -1885,8 +1885,7 @@ const IndustryFunnels = () => {
     });
 
     return (
-        <div className="w-full flex justify-center py-8">
-            <div className="w-full max-w-[1400px] flex flex-col gap-8">
+        <div className="w-full flex flex-col gap-8 py-8">
 
                 {/* Header */}
                 <div>
@@ -1954,7 +1953,6 @@ const IndustryFunnels = () => {
                     </div>
                 )}
 
-            </div>
         </div>
     );
 };
