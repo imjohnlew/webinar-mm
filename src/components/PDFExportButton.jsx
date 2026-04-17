@@ -4,7 +4,7 @@ import { Download, Loader2 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-const PDFExportButton = ({ targetId, fileName = 'journey-builder-export' }) => {
+const PDFExportButton = ({ targetId, fileName = 'journey-builder-export', className }) => {
     const [isExporting, setIsExporting] = useState(false);
 
     const handleExport = async () => {
@@ -95,11 +95,11 @@ const PDFExportButton = ({ targetId, fileName = 'journey-builder-export' }) => {
         <button
             onClick={handleExport}
             disabled={isExporting}
-            className={`
-        fixed bottom-6 right-6 z-50 
-        flex items-center gap-2 px-4 py-3 
-        bg-blue-600 hover:bg-blue-500 text-white 
-        rounded-full shadow-lg shadow-blue-900/50 
+            className={className ?? `
+        fixed bottom-6 right-6 z-50
+        flex items-center gap-2 px-4 py-3
+        bg-blue-600 hover:bg-blue-500 text-white
+        rounded-full shadow-lg shadow-blue-900/50
         transition-all transform hover:scale-105 active:scale-95
         disabled:opacity-70 disabled:cursor-not-allowed
       `}

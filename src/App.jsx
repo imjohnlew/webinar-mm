@@ -137,10 +137,15 @@ function App() {
           {/* SPACER */}
           <div className="flex-1" />
 
-          {/* MORE TOOLS (Bottom) - HIDDEN */}
-          {/* <div className="p-4 min-w-[256px] relative z-50">
-           ... (Hidden) ...
-          </div> */}
+          {/* PDF Export — bottom of sidebar */}
+          <div className="p-4 min-w-[256px]">
+            <PDFExportButton
+              targetId="pdf-export-container"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
+                text-slate-400 hover:bg-slate-800 hover:text-white
+                disabled:opacity-50 disabled:cursor-not-allowed"
+            />
+          </div>
 
         </nav>
 
@@ -170,7 +175,6 @@ function App() {
               </motion.div>
             </AnimatePresence>
           </div>
-          <PDFExportButton targetId="pdf-export-container" />
         </main>
 
       </div>
