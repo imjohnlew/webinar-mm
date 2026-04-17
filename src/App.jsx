@@ -12,6 +12,7 @@ import ClosingSession from './components/ClosingSession';
 import IndustryScanner from './components/IndustryScanner';
 import PDFExportButton from './components/PDFExportButton';
 import WebinarCalculator from './components/WebinarCalculator';
+import VersatileCalculator from './components/VersatileCalculator';
 
 const TABS = [
   { id: 'mindset', label: '1. The Mindset', icon: BookOpen },
@@ -21,10 +22,11 @@ const TABS = [
   { id: 'simulation', label: 'The Funnel Lab', icon: Filter },
   { id: 'builder', label: 'Journey Builder', icon: Layers },
   { id: 'calculator', label: 'Calculator', icon: Search },
+  { id: 'versatile-calc', label: 'Projections', icon: Search },
   { id: 'closing', label: '7. The Bridge', icon: Flag },
 ];
 
-const PINNED_IDS = ['simulation', 'builder', 'calculator'];
+const PINNED_IDS = ['simulation', 'builder', 'calculator', 'versatile-calc'];
 
 function App() {
   const [activeTab, setActiveTab] = useState('builder');
@@ -57,6 +59,8 @@ function App() {
         return <CustomerJourneyBuilder industry={selectedIndustry} />;
       case 'calculator':
         return <WebinarCalculator />;
+      case 'versatile-calc':
+        return <VersatileCalculator />;
       case 'closing':
         return <ClosingSession />;
       default:
