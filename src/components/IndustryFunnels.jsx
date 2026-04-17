@@ -1893,25 +1893,28 @@ const IndustryFunnels = () => {
                     <p className="text-slate-400 mt-2">Funnel blueprints tailored to specific industries — each with the right hooks, offer types, and conversion points for that market.</p>
                 </div>
 
-                {/* Industry Selector */}
-                <div className="flex items-center gap-3 flex-wrap">
-                    {INDUSTRIES.map(ind => (
-                        <button
-                            key={ind.id}
-                            onClick={() => setActiveIndustry(ind.id)}
-                            className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl border font-bold text-sm transition-all
-                                ${activeIndustry === ind.id
-                                    ? `${ind.accent} border-transparent text-white shadow-lg`
-                                    : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white hover:border-slate-500'
-                                }`}
-                        >
-                            <span className="text-lg">{ind.emoji}</span>
-                            {ind.label}
-                        </button>
-                    ))}
+                {/* Industry Selector — sticky so you can switch industry while scrolling */}
+                <div className="sticky top-0 z-30 bg-[#0f172a]/95 backdrop-blur-sm border-b border-slate-800/60
+                                -mx-4 px-4 md:-mx-6 md:px-6 lg:-mx-8 lg:px-8 py-3">
+                    <div className="flex items-center gap-3 flex-wrap">
+                        {INDUSTRIES.map(ind => (
+                            <button
+                                key={ind.id}
+                                onClick={() => setActiveIndustry(ind.id)}
+                                className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl border font-bold text-sm transition-all
+                                    ${activeIndustry === ind.id
+                                        ? `${ind.accent} border-transparent text-white shadow-lg`
+                                        : 'bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white hover:border-slate-500'
+                                    }`}
+                            >
+                                <span className="text-lg">{ind.emoji}</span>
+                                {ind.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Active industry funnel */}
+                {/* Active industry funnel — stickyTopPx offsets below the industry selector (~68px) */}
                 {industry && (
                     <FunnelTemplate
                         key={industry.id}
@@ -1920,6 +1923,7 @@ const IndustryFunnels = () => {
                         stages={industry.stages}
                         revenueData={industry.revenueData}
                         revenueSummary={industry.revenueSummary}
+                        stickyTopPx={68}
                     />
                 )}
 
