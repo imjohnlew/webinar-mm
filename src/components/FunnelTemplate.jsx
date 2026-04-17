@@ -74,13 +74,28 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
                 {/* ── FUNNEL OVERVIEW ── */}
                 {funnelView && (
                     <div className="overflow-x-auto pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
-
-                        {/* Row 1: headers — items-stretch equalises height across all cards */}
-                        <div className="flex items-stretch gap-3 min-w-0 mb-3">
+                        {/*
+                          CSS Grid: stage columns = minmax(200px,1fr), arrow columns = auto.
+                          w-full fills the container on wide screens.
+                          min-w-max ensures the grid reports its true content width so
+                          overflow-x-auto actually scrolls on narrow screens.
+                          Row 1 = headers (equal height via grid stretch), Row 2 = mockups.
+                        */}
+                        <div
+                            className="w-full min-w-max grid gap-3"
+                            style={{
+                                gridTemplateColumns: stages.flatMap((_, i) =>
+                                    i < stages.length - 1
+                                        ? ['minmax(200px,1fr)', 'auto']
+                                        : ['minmax(200px,1fr)']
+                                ).join(' ')
+                            }}
+                        >
+                            {/* Row 1: headers */}
                             {stages.map((s, i) => (
                                 <React.Fragment key={s.id + '-h'}>
                                     <div
-                                        className={`flex-1 min-w-[200px] py-3 px-3 ${s.bg} text-white text-center rounded-xl cursor-pointer hover:brightness-110 transition-all`}
+                                        className={`py-3 px-3 ${s.bg} text-white text-center rounded-xl cursor-pointer hover:brightness-110 transition-all`}
                                         onClick={() => { setActiveId(s.id); setFunnelView(false); }}
                                     >
                                         <s.icon className="w-4 h-4 mx-auto mb-1 opacity-80" />
@@ -89,17 +104,15 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
                                         {s.price && <div className="text-[10px] font-bold mt-1.5 bg-black/20 rounded px-2 py-0.5 inline-block">{s.price}</div>}
                                         {s.conversion && <div className="text-[10px] font-bold mt-1 opacity-80">{s.conversion} {s.conversionNote}</div>}
                                     </div>
-                                    {i < stages.length - 1 && <div className="w-9 shrink-0" />}
+                                    {i < stages.length - 1 && <div />}
                                 </React.Fragment>
                             ))}
-                        </div>
 
-                        {/* Row 2: mockups — all start at the same top */}
-                        <div className="flex items-start gap-3 min-w-0">
+                            {/* Row 2: mockups + arrows */}
                             {stages.map((s, i) => (
                                 <React.Fragment key={s.id + '-m'}>
                                     <div
-                                        className="flex-1 min-w-[200px] overflow-hidden cursor-pointer"
+                                        className="overflow-hidden cursor-pointer"
                                         onClick={() => { setActiveId(s.id); setFunnelView(false); }}
                                     >
                                         <BrowserFrame url={s.url || 'yoursite.com'}>
@@ -107,7 +120,7 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
                                         </BrowserFrame>
                                     </div>
                                     {i < stages.length - 1 && (
-                                        <div className="flex items-start pt-4 shrink-0 w-9 justify-center">
+                                        <div className="flex items-start justify-center pt-4">
                                             <ArrowRight className="w-6 h-6 text-slate-500" />
                                         </div>
                                     )}
