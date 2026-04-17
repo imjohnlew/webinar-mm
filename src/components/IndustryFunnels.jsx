@@ -619,28 +619,10 @@ const INDUSTRIES = [
         stages: DENTAL_STAGES,
         title: 'Dental Clinic — Local Lead Funnel',
         description: 'A local lead generation funnel that turns Facebook/Instagram ads into booked dental appointments using a free consultation offer.',
-        leads: [
-            'Cosmetic concerns (yellowing, chips, gaps)',
-            'Invisalign / clear aligner inquiries',
-            'Dental implant candidates',
-            'Emergency toothache patients',
-            'Family & children\'s dentistry seekers',
-            'Smile makeover / confidence seekers',
-        ],
-        funnels: [
-            'Free consultation funnel (most common)',
-            'Before/after quiz → booking funnel',
-            'Google search → calendar booking',
-            'Local awareness ad + retargeting',
-            'Before/after video ad → landing page',
-        ],
-        offers: [
-            'Free smile assessment (valued at $150)',
-            'Free whitening consultation',
-            'New patient special ($99 exam + X-ray)',
-            'Free Invisalign consultation',
-            'Complimentary first clean for new patients',
-        ],
+        leadBlock: 'bg-teal-900/60 text-teal-200 border border-teal-700/60',
+        leads: ['Facebook Ads', 'Instagram Ads', 'Google Ads', 'Google Maps / GMB', '5-Star Reviews', 'Local SEO', 'Patient Referrals', 'Nextdoor'],
+        funnels: ['Free Consultation Funnel', 'Before/After Quiz Funnel', 'Google Search → Booking', 'Local Awareness + Retargeting', 'Before/After Video Ad'],
+        offers: ['Free Smile Assessment ($150 value)', 'Free Whitening Consult', 'New Patient Special ($99)', 'Free Invisalign Consult', 'Complimentary First Clean'],
         revenueData: [
             { label: 'Ad Spend', value: '$1,500', note: '100 leads generated', color: 'text-blue-400' },
             { label: 'Appointments Booked', value: '40', note: '40% book rate', color: 'text-teal-400' },
@@ -661,28 +643,10 @@ const INDUSTRIES = [
         stages: LAWYER_STAGES,
         title: 'Law Firm — Free Case Review Funnel',
         description: 'A lead qualification funnel that converts injury or legal queries into booked attorney consultations via a free case review offer.',
-        leads: [
-            'Car / auto accident victims',
-            'Slip & fall / premises liability cases',
-            'Workplace injury & workers\' comp',
-            'Medical malpractice inquiries',
-            'Wrongful death cases',
-            'Dog bites & product liability',
-        ],
-        funnels: [
-            'Google Search → free case review (highest intent)',
-            'Facebook awareness ad → multi-step intake',
-            'Retargeting non-converting visitors',
-            'Referral partner funnels (doctors, physios)',
-            'Video testimonial ad → case qualifier',
-        ],
-        offers: [
-            'Free case evaluation (no obligation)',
-            'No win, no fee representation',
-            'Free 15-min attorney consultation call',
-            'Statute of limitations audit',
-            'Case strength assessment report',
-        ],
+        leadBlock: 'bg-yellow-900/50 text-yellow-200 border border-yellow-700/60',
+        leads: ['Google Search Ads', 'Facebook Ads', 'Google Maps / GMB', 'Client Reviews', 'Legal Directories (Avvo)', 'Referral Partners', 'Retargeting Ads', 'YouTube Ads'],
+        funnels: ['Google Search → Case Review', 'Facebook Awareness → Intake', 'Retargeting Non-Converters', 'Referral Partner Funnels', 'Video Testimonial → Qualifier'],
+        offers: ['Free Case Evaluation', 'No Win No Fee Representation', 'Free Attorney Call (15 min)', 'Statute of Limitations Audit', 'Case Strength Assessment'],
         revenueData: [
             { label: 'Leads Generated', value: '100', note: '$100 CPL average', color: 'text-slate-300' },
             { label: 'Qualified Cases', value: '40', note: '40% pass intake', color: 'text-yellow-400' },
@@ -703,29 +667,10 @@ const INDUSTRIES = [
         stages: COACH_STAGES,
         title: 'Coaching Business — Discovery Call Funnel',
         description: 'An application-based funnel that filters for ideal clients and books high-quality discovery calls for coaches, consultants, and service providers.',
-        leads: [
-            'Entrepreneurs stuck at a revenue plateau',
-            'New coaches wanting to scale their practice',
-            '9–5 employees planning their exit',
-            'Personal transformation / mindset seekers',
-            'Executives seeking performance coaching',
-            'Online business builders & creators',
-        ],
-        funnels: [
-            'Application → discovery call (high-ticket)',
-            'Free webinar → offer → strategy call',
-            '5-day challenge → pitch day → enroll',
-            'VSL → application → call funnel',
-            'Organic content → DMs → booked call',
-        ],
-        offers: [
-            'Free 30-min strategy / discovery session',
-            'Group coaching program (cohort-based)',
-            '1:1 private coaching package (3–6 months)',
-            '90-day accelerator or mastermind',
-            'Online course or membership community',
-            'Done-with-you (DWY) program',
-        ],
+        leadBlock: 'bg-purple-900/50 text-purple-200 border border-purple-700/60',
+        leads: ['Facebook Ads', 'Instagram Ads', 'LinkedIn Ads', 'YouTube Organic', 'TikTok Content', 'Podcast Appearances', 'Email List', 'Referrals'],
+        funnels: ['Application → Discovery Call', 'Free Webinar → Strategy Call', '5-Day Challenge → Pitch Day', 'VSL → Application → Call', 'Organic Content → DMs → Call'],
+        offers: ['Free 30-min Strategy Session', 'Group Coaching Program', '1:1 Private Coaching (3–6 mo)', '90-Day Accelerator / Mastermind', 'Online Course / Membership', 'Done-With-You Program'],
         revenueData: [
             { label: 'Applications', value: '50', note: 'From ads or organic', color: 'text-indigo-400' },
             { label: 'Calls Booked', value: '30', note: '60% book rate', color: 'text-purple-400' },
@@ -740,7 +685,14 @@ const INDUSTRIES = [
 
 const IndustryFunnels = () => {
     const [activeIndustry, setActiveIndustry] = useState('dental');
+    const [selected, setSelected] = useState(new Set());
     const industry = INDUSTRIES.find(i => i.id === activeIndustry);
+
+    const toggle = (item) => setSelected(prev => {
+        const next = new Set(prev);
+        next.has(item) ? next.delete(item) : next.add(item);
+        return next;
+    });
 
     return (
         <div className="w-full flex justify-center py-8">
@@ -786,17 +738,24 @@ const IndustryFunnels = () => {
                 {industry && (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         {[
-                            { label: 'Possible Leads', items: industry.leads, color: industry.text, dotColor: industry.accent },
-                            { label: 'Possible Funnels', items: industry.funnels, color: 'text-blue-400', dotColor: 'bg-blue-500' },
-                            { label: 'Possible Offers', items: industry.offers, color: 'text-green-400', dotColor: 'bg-green-500' },
+                            { label: 'Traffic Sources / Leads', items: industry.leads, headerColor: industry.text, blockClass: industry.leadBlock },
+                            { label: 'Possible Funnels', items: industry.funnels, headerColor: 'text-blue-400', blockClass: 'bg-blue-900/50 text-blue-200 border border-blue-700/60' },
+                            { label: 'Possible Offers', items: industry.offers, headerColor: 'text-green-400', blockClass: 'bg-green-900/50 text-green-200 border border-green-700/60' },
                         ].map(col => (
                             <div key={col.label} className="bg-slate-800/40 border border-slate-700 rounded-2xl p-5">
-                                <div className={`text-xs font-bold uppercase tracking-widest ${col.color} mb-4`}>{col.label}</div>
-                                <div className="flex flex-col gap-2.5">
+                                <div className={`text-xs font-bold uppercase tracking-widest ${col.headerColor} mb-4`}>{col.label}</div>
+                                <div className="flex flex-wrap gap-2">
                                     {col.items.map(item => (
-                                        <div key={item} className="flex items-start gap-2.5">
-                                            <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${col.dotColor}`} />
-                                            <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                                        <div
+                                            key={item}
+                                            onClick={() => toggle(item)}
+                                            className={`px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer select-none transition-all duration-150 ${col.blockClass}
+                                                ${selected.has(item)
+                                                    ? 'brightness-[1.8] ring-2 ring-white/60 shadow-lg scale-105'
+                                                    : 'hover:brightness-125'
+                                                }`}
+                                        >
+                                            {item}
                                         </div>
                                     ))}
                                 </div>

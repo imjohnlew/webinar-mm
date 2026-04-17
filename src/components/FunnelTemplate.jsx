@@ -51,13 +51,12 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
 
                 {/* ── FUNNEL OVERVIEW ── */}
                 {funnelView && (
-                    <div className="overflow-x-auto pb-6 -mx-4 px-4 lg:mx-0 lg:px-0">
-                        <div className="flex items-start gap-4 min-w-max">
+                    <div className="pb-2">
+                        <div className="flex items-start gap-3">
                             {stages.map((s, i) => (
                                 <React.Fragment key={s.id}>
                                     <div
-                                        className="flex flex-col items-center cursor-pointer group"
-                                        style={{ width: 340 }}
+                                        className="flex flex-col items-center cursor-pointer group flex-1 min-w-0"
                                         onClick={() => { setActiveId(s.id); setFunnelView(false); }}
                                     >
                                         <div className={`w-full py-3 px-3 ${s.bg} text-white text-center rounded-xl mb-3 group-hover:brightness-110 transition-all`}>
@@ -67,9 +66,11 @@ const FunnelTemplate = ({ title, description, stages, revenueData, revenueSummar
                                             {s.price && <div className="text-[10px] font-bold mt-1.5 bg-black/20 rounded px-2 py-0.5 inline-block">{s.price}</div>}
                                             {s.conversion && <div className="text-[10px] font-bold mt-1 opacity-80">{s.conversion} {s.conversionNote}</div>}
                                         </div>
-                                        <BrowserFrame url={s.url || 'yoursite.com'}>
-                                            {s.mockup}
-                                        </BrowserFrame>
+                                        <div className="w-full overflow-hidden">
+                                            <BrowserFrame url={s.url || 'yoursite.com'}>
+                                                {s.mockup}
+                                            </BrowserFrame>
+                                        </div>
                                     </div>
                                     {i < stages.length - 1 && (
                                         <div className="flex items-start pt-24 shrink-0">
