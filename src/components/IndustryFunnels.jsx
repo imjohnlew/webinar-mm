@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Calendar, Check, Shield, Clock, Star, Phone, FileText, MapPin, Award, Search, Zap, Heart, Scale, BookOpen, TrendingUp, MessageCircle, Video, UserPlus } from 'lucide-react';
+import { Users, Calendar, Check, Shield, Clock, Star, Phone, FileText, MapPin, Award, Search, Zap, Heart, Scale, BookOpen, TrendingUp, MessageCircle, Video, UserPlus, Home, Wrench, Sparkles, ShoppingBag } from 'lucide-react';
 import FunnelTemplate, { Bar, VideoFrame } from './FunnelTemplate';
 
 // ─── DENTAL MOCKUPS ────────────────────────────────────────────────────────────
@@ -851,6 +851,829 @@ const AI_AGENCY_STAGES = [
     },
 ];
 
+// ─── REAL ESTATE MOCKUPS ───────────────────────────────────────────────────────
+
+const RealEstateAdMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="p-2.5 flex items-center gap-1.5">
+            <div className="w-7 h-7 rounded-full bg-amber-600 flex items-center justify-center text-white font-black text-[11px]">🏠</div>
+            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[10px] text-slate-400 mt-0.5">Sponsored</div></div>
+        </div>
+        <div className="px-2.5 pb-1.5">
+            <div className="font-bold text-slate-800 text-[11px] leading-tight">🔥 [City] Homeowners: Find Out What Your Home Is Worth in 60 Seconds</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Free home valuation · No obligation · Updated with today's market data</div>
+        </div>
+        <div className="w-full aspect-video bg-gradient-to-br from-amber-500 to-orange-600 flex flex-col items-center justify-center gap-2 relative">
+            <div className="absolute top-1.5 left-1.5 bg-green-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded">FREE VALUATION</div>
+            <div className="text-white font-black text-sm text-center px-4 leading-tight">Your Home Could Be<br/>Worth More Than You Think</div>
+            <div className="flex gap-3 text-center">
+                {['↑ 12%', 'Low Inventory', 'Sellers\' Market'].map(s => <div key={s} className="bg-white/20 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">{s}</div>)}
+            </div>
+        </div>
+        <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
+            <div><div className="text-[10px] text-slate-400">[Agent Name] · Realty</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
+            <div className="bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded">Get My Value</div>
+        </div>
+    </div>
+);
+
+const RealEstateLandingMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-amber-700 px-3 py-1.5 flex items-center justify-between">
+            <div className="text-white font-black text-xs flex items-center gap-1"><Home className="w-3 h-3" /> [Agent Name] Realty</div>
+            <div className="flex items-center gap-1 text-amber-200 text-[10px]"><Phone className="w-2 h-2" /> (555) 200-3000</div>
+        </div>
+        <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-3 text-center space-y-2">
+            <div className="font-black text-slate-900 text-[11px] leading-tight">What's Your [City] Home<br/>Worth Right Now?</div>
+            <div className="text-[10px] text-slate-500">Free instant valuation · Based on today's market · No commitment</div>
+            <div className="w-full aspect-[16/7] bg-amber-100 rounded-lg flex items-center justify-center gap-4 border border-amber-200">
+                <div className="text-center px-2 space-y-0.5">
+                    <div className="text-[18px]">🏡</div>
+                    <div className="text-[10px] font-bold text-amber-700">Market Report</div>
+                    <div className="text-[9px] text-amber-500">Updated daily</div>
+                </div>
+                <div className="space-y-1">
+                    {['Avg. sale: $485,000', 'Days on market: 18', '↑ 12% vs last year'].map(t => <div key={t} className="text-[10px] text-amber-700 font-bold">{t}</div>)}
+                </div>
+            </div>
+            {['Instant estimate based on recent comparable sales', 'See what similar homes sold for nearby', 'Get a custom report from a local expert'].map(b => (
+                <div key={b} className="flex items-center gap-1 text-[11px] text-slate-600 text-left"><Check className="w-2.5 h-2.5 text-amber-500 shrink-0" /> {b}</div>
+            ))}
+            <div className="space-y-1.5 pt-1">
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400 flex items-center gap-1"><MapPin className="w-2 h-2 text-slate-300" /> Your Home Address</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400">Your Phone Number</div>
+                <div className="w-full bg-amber-600 text-white font-black text-sm py-2 rounded">Get My Free Home Valuation →</div>
+            </div>
+            <div className="flex items-center justify-center gap-1 text-[10px] text-slate-400"><Shield className="w-2 h-2" /> Private · No obligation · No spam</div>
+        </div>
+    </div>
+);
+
+const RealEstateQuizMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-amber-700 px-3 py-2">
+            <div className="text-white font-black text-xs">Property Quiz — 45 seconds</div>
+            <div className="flex gap-0.5 mt-1.5">
+                {[1,2,3].map(i => <div key={i} className={`h-1 flex-1 rounded-full ${i === 1 ? 'bg-white' : 'bg-amber-500'}`} />)}
+            </div>
+        </div>
+        <div className="p-3 space-y-3">
+            <div className="font-black text-slate-800 text-sm">Tell us about your home:</div>
+            <div className="space-y-1.5">
+                <div className="text-[10px] font-bold text-slate-600">Bedrooms</div>
+                <div className="flex gap-1.5">
+                    {['2', '3', '4', '5+'].map((o, i) => (
+                        <div key={o} className={`flex-1 border rounded py-1.5 text-center text-[11px] font-bold cursor-pointer ${i === 1 ? 'border-amber-500 bg-amber-50 text-amber-700' : 'border-slate-200 text-slate-500'}`}>{o}</div>
+                    ))}
+                </div>
+            </div>
+            <div className="space-y-1.5">
+                <div className="text-[10px] font-bold text-slate-600">Bathrooms</div>
+                <div className="flex gap-1.5">
+                    {['1', '2', '3', '4+'].map((o) => (
+                        <div key={o} className="flex-1 border border-slate-200 rounded py-1.5 text-center text-[11px] font-bold cursor-pointer text-slate-500">{o}</div>
+                    ))}
+                </div>
+            </div>
+            <div className="space-y-1">
+                <div className="text-[10px] font-bold text-slate-600">When are you thinking of selling?</div>
+                {['In the next 0–3 months', '3–6 months from now', 'Just researching values', 'Already listed / expired'].map((opt, i) => (
+                    <div key={opt} className={`border-2 rounded-lg px-3 py-2 cursor-pointer flex items-center gap-2 ${i === 0 ? 'border-amber-500 bg-amber-50' : 'border-slate-200'}`}>
+                        <div className={`w-3 h-3 rounded-full border-2 shrink-0 ${i === 0 ? 'border-amber-500 bg-amber-500' : 'border-slate-300'}`} />
+                        <span className="text-[11px] text-slate-700">{opt}</span>
+                    </div>
+                ))}
+            </div>
+            <div className="w-full bg-amber-600 text-white font-black text-xs py-2 rounded text-center">See My Estimate →</div>
+        </div>
+    </div>
+);
+
+const RealEstateBookingMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-amber-600 to-orange-600 px-3 py-3 text-center">
+            <div className="text-white font-black text-sm">Your Estimated Value: $472,000–$511,000</div>
+            <div className="text-amber-100 text-[10px] mt-0.5">Book a free consultation to get your precise number</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-2 space-y-1">
+                <div className="font-bold text-amber-700 text-[11px]">Your free consultation includes:</div>
+                {['Precise CMA based on actual sold data', 'Suggested listing price to maximize offers', 'Current market conditions in your area'].map(r => (
+                    <div key={r} className="flex items-start gap-1 text-[10px] text-amber-700"><Check className="w-2 h-2 shrink-0 mt-0.5 text-amber-500" /> {r}</div>
+                ))}
+            </div>
+            <div className="grid grid-cols-4 gap-1">
+                {['Mon 14', 'Tue 15', 'Wed 16', 'Thu 17'].map((d, i) => (
+                    <div key={d} className={`border rounded p-1.5 text-center cursor-pointer ${i === 2 ? 'border-amber-500 bg-amber-50' : 'border-slate-200'}`}>
+                        <div className="text-[10px] font-black text-slate-700">{d}</div>
+                        <div className="text-[9px] text-slate-400">Open</div>
+                    </div>
+                ))}
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+                {['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '3:00 PM', '5:00 PM'].map((t, i) => (
+                    <div key={t} className={`border rounded px-1 py-1.5 text-center text-[10px] font-bold cursor-pointer ${i === 3 ? 'border-amber-500 bg-amber-500 text-white' : 'border-slate-200 text-slate-600'}`}>{t}</div>
+                ))}
+            </div>
+            <div className="w-full bg-amber-600 text-white font-black text-sm py-2 rounded text-center">Book My Free Consultation →</div>
+        </div>
+    </div>
+);
+
+const RealEstateConfirmMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-amber-500 to-green-500 px-3 py-3 text-center">
+            <div className="text-3xl mb-0.5">✅</div>
+            <div className="text-white font-black text-sm">Consultation Confirmed!</div>
+            <div className="text-green-100 text-[10px]">Wednesday at 1:00 PM · In-person or Zoom</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="border border-amber-200 rounded-lg p-2 bg-amber-50 space-y-1">
+                <div className="font-bold text-amber-700 text-[11px]">What to Expect:</div>
+                <div className="text-[10px] text-amber-600">📊 Custom market analysis for your home</div>
+                <div className="text-[10px] text-amber-600">💰 Suggested list price + net proceeds estimate</div>
+                <div className="text-[10px] text-amber-600">🗓 30–45 minutes, no pressure</div>
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+                {['Add to Google', 'Add to Apple', 'Add to Outlook'].map(c => (
+                    <div key={c} className="border border-slate-200 rounded text-center py-1.5 text-[9px] font-bold text-slate-600 cursor-pointer">📅 {c}</div>
+                ))}
+            </div>
+            <div className="border border-slate-200 rounded-lg p-2 flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-[14px] shrink-0">👤</div>
+                <div>
+                    <div className="font-bold text-slate-700 text-[10px]">[Agent Name]</div>
+                    <div className="text-[9px] text-slate-400">Licensed Realtor · [City] Market Expert</div>
+                    <div className="text-[9px] text-amber-600 font-bold">(555) 200-3000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+// ─── HOME SERVICES MOCKUPS ─────────────────────────────────────────────────────
+
+const HomeServicesAdMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="p-2.5 flex items-center gap-1.5">
+            <div className="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center text-white font-black text-[11px]">🔧</div>
+            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[10px] text-slate-400 mt-0.5">Sponsored · Google</div></div>
+        </div>
+        <div className="px-2.5 pb-1.5">
+            <div className="font-bold text-red-700 text-[11px] leading-tight">⚡ [City] Emergency Plumber — Same Day Service Available</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Free estimate · Licensed & insured · 4.9⭐ on Google</div>
+        </div>
+        <div className="w-full aspect-video bg-gradient-to-br from-red-600 to-red-800 flex flex-col items-center justify-center gap-2 relative">
+            <div className="absolute top-1.5 left-1.5 bg-yellow-400 text-black text-[10px] font-black px-1.5 py-0.5 rounded">FREE ESTIMATE</div>
+            <div className="text-white font-black text-sm text-center px-4 leading-tight">Burst Pipe? AC Out?<br/>We're On Our Way.</div>
+            <div className="flex gap-2">
+                {['Same-Day', '24/7', 'Licensed'].map(s => <div key={s} className="bg-white/20 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">{s}</div>)}
+            </div>
+        </div>
+        <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
+            <div><div className="text-[10px] text-slate-400">[Company Name] Services</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
+            <div className="bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded">Get Free Quote</div>
+        </div>
+    </div>
+);
+
+const HomeServicesLandingMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-red-700 px-3 py-1.5 flex items-center justify-between">
+            <div className="text-white font-black text-xs flex items-center gap-1"><Wrench className="w-3 h-3" /> [Company Name]</div>
+            <div className="flex items-center gap-1 text-red-200 text-[10px] font-bold"><Phone className="w-2 h-2" /> Call Now: (555) 911-PIPE</div>
+        </div>
+        <div className="bg-red-50 border-b border-red-100 px-3 py-2 flex items-center gap-2">
+            <Zap className="w-3 h-3 text-red-500 shrink-0" />
+            <div className="text-[10px] font-bold text-red-600">Emergency? Call directly — we answer 24/7</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="font-black text-slate-900 text-[11px] leading-tight">Get a Free Estimate from [City]'s #1 Rated Home Services Team</div>
+            <div className="text-[10px] text-slate-500">Plumbing · HVAC · Electrical · Same-day available</div>
+            {['Licensed, bonded & insured — since 2008', '4.9 ⭐ with 300+ Google reviews', 'No hidden fees — upfront pricing always'].map(b => (
+                <div key={b} className="flex items-center gap-1 text-[11px] text-slate-600"><Check className="w-2.5 h-2.5 text-red-500 shrink-0" /> {b}</div>
+            ))}
+            <div className="space-y-1.5">
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400">Your Name</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400">Phone Number</div>
+                <select className="w-full border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400 appearance-none">
+                    <option>Service needed...</option>
+                </select>
+                <div className="w-full bg-red-600 text-white font-black text-sm py-2 rounded text-center">Get My Free Estimate →</div>
+            </div>
+            <div className="text-[10px] text-slate-400 text-center">Respond within 15 minutes · No obligation</div>
+        </div>
+    </div>
+);
+
+const HomeServicesFormMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-red-700 px-3 py-2">
+            <div className="text-white font-black text-xs">Service Details — 60 seconds</div>
+            <div className="flex gap-0.5 mt-1.5">
+                {[1,2,3].map(i => <div key={i} className={`h-1 flex-1 rounded-full ${i <= 2 ? 'bg-white' : 'bg-red-500'}`} />)}
+            </div>
+            <div className="text-[9px] text-red-200 mt-0.5">Step 2 of 3 — Problem Details</div>
+        </div>
+        <div className="p-3 space-y-2.5">
+            <div className="space-y-1">
+                <div className="text-[10px] font-bold text-slate-600">What type of service do you need?</div>
+                <div className="grid grid-cols-2 gap-1">
+                    {['🔧 Plumbing', '❄️ HVAC / AC', '⚡ Electrical', '🚰 Drain / Sewer'].map((o, i) => (
+                        <div key={o} className={`border rounded px-2 py-1.5 text-[10px] font-bold cursor-pointer ${i === 0 ? 'border-red-500 bg-red-50 text-red-700' : 'border-slate-200 text-slate-500'}`}>{o}</div>
+                    ))}
+                </div>
+            </div>
+            <div className="space-y-1">
+                <div className="text-[10px] font-bold text-slate-600">How urgent is this?</div>
+                <div className="grid grid-cols-3 gap-1">
+                    {['Emergency now', 'Today/Tomorrow', 'This week'].map((o, i) => (
+                        <div key={o} className={`border rounded px-1.5 py-1.5 text-center text-[9px] font-bold cursor-pointer ${i === 0 ? 'border-red-500 bg-red-500 text-white' : 'border-slate-200 text-slate-500'}`}>{o}</div>
+                    ))}
+                </div>
+            </div>
+            <div className="space-y-1">
+                <div className="text-[10px] font-bold text-slate-600">Briefly describe the problem:</div>
+                <div className="border border-slate-200 rounded p-2 bg-slate-50 h-10"><Bar w="w-3/4" h="h-1.5" color="bg-slate-200" /></div>
+            </div>
+            <div className="space-y-1">
+                <div className="text-[10px] font-bold text-slate-600">Your address (for the estimate):</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-slate-50 flex items-center gap-1"><MapPin className="w-2.5 h-2.5 text-slate-400" /><Bar w="w-3/4" h="h-1.5" color="bg-slate-200" /></div>
+            </div>
+            <div className="w-full bg-red-600 text-white font-black text-xs py-2 rounded text-center">Get My Free Estimate →</div>
+        </div>
+    </div>
+);
+
+const HomeServicesBookingMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-3 text-center">
+            <div className="text-white font-black text-sm">✅ Estimate Ready — Book Your Visit</div>
+            <div className="text-red-100 text-[10px] mt-0.5">A technician is available today</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-2 flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-red-200 flex items-center justify-center text-[14px] shrink-0">👷</div>
+                <div>
+                    <div className="font-bold text-red-700 text-[10px]">Technician: [Name]</div>
+                    <div className="text-[9px] text-red-500">Licensed · 12 yrs experience · 4.9⭐</div>
+                    <div className="flex gap-1 mt-0.5"><div className="bg-red-100 text-red-600 text-[9px] font-bold px-1 py-0.5 rounded">Same-Day Available</div></div>
+                </div>
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+                {['Today', 'Tomorrow', 'This Week'].map((d, i) => (
+                    <div key={d} className={`border rounded p-1.5 text-center cursor-pointer ${i === 0 ? 'border-red-500 bg-red-50' : 'border-slate-200'}`}>
+                        <div className="text-[10px] font-black text-slate-700">{d}</div>
+                        <div className="text-[9px] text-slate-400">{i === 0 ? '4 slots' : 'Available'}</div>
+                    </div>
+                ))}
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+                {['8–10 AM', '10 AM–12', '12–2 PM', '2–4 PM', '4–6 PM', 'After 6'].map((t, i) => (
+                    <div key={t} className={`border rounded px-1 py-1.5 text-center text-[9px] font-bold cursor-pointer ${i === 1 ? 'border-red-500 bg-red-500 text-white' : 'border-slate-200 text-slate-600'}`}>{t}</div>
+                ))}
+            </div>
+            <div className="w-full bg-red-600 text-white font-black text-sm py-2 rounded text-center">Confirm My Booking →</div>
+        </div>
+    </div>
+);
+
+const HomeServicesConfirmMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-red-600 to-green-600 px-3 py-3 text-center">
+            <div className="text-3xl mb-0.5">🔧</div>
+            <div className="text-white font-black text-sm">We're On Our Way!</div>
+            <div className="text-green-100 text-[10px]">Technician arriving today · 10 AM–12 PM window</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="border border-slate-200 rounded-lg p-2 bg-slate-50 space-y-1">
+                <div className="font-bold text-slate-700 text-[11px]">Your Booking:</div>
+                <div className="text-[10px] text-slate-600">📅 Today · 10:00 AM–12:00 PM arrival window</div>
+                <div className="text-[10px] text-slate-600">📍 [Your Address]</div>
+                <div className="text-[10px] text-slate-600">👷 Technician: [Name] · (555) 911-PIPE</div>
+            </div>
+            <div className="border border-slate-200 rounded-lg p-2 space-y-1.5">
+                <div className="font-bold text-slate-700 text-[11px]">Before We Arrive:</div>
+                {['Clear access to the problem area if possible', 'You\'ll receive a call 30 min before arrival', 'Payment: card, cash, or financing available'].map((s, i) => (
+                    <div key={s} className="flex items-start gap-1.5 text-[10px] text-slate-600">
+                        <div className="w-3 h-3 rounded-full bg-red-600 text-white font-black flex items-center justify-center text-[9px] shrink-0">{i+1}</div> {s}
+                    </div>
+                ))}
+            </div>
+            <div className="bg-red-50 border border-red-200 rounded-lg p-2 text-center">
+                <div className="text-[10px] font-bold text-red-700">Need to reach us?</div>
+                <div className="text-red-600 font-black text-sm">(555) 911-PIPE</div>
+                <div className="text-[9px] text-red-500">Available 24/7 for emergencies</div>
+            </div>
+        </div>
+    </div>
+);
+
+// ─── MED SPA MOCKUPS ───────────────────────────────────────────────────────────
+
+const MedSpaAdMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="p-2.5 flex items-center gap-1.5">
+            <div className="w-7 h-7 rounded-full bg-rose-500 flex items-center justify-center text-white font-black text-[11px]">💆</div>
+            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[10px] text-slate-400 mt-0.5">Sponsored</div></div>
+        </div>
+        <div className="px-2.5 pb-1.5">
+            <div className="font-bold text-slate-800 text-[11px] leading-tight">✨ Real Results: See What Botox & Filler Can Do for Your Skin</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Free consultation ($200 value) · Limited spots · [City] med spa</div>
+        </div>
+        <div className="w-full aspect-video bg-gradient-to-br from-rose-400 to-pink-600 flex flex-col items-center justify-center gap-2 relative">
+            <div className="absolute top-1.5 left-1.5 bg-white text-rose-600 text-[10px] font-black px-1.5 py-0.5 rounded">FREE CONSULT</div>
+            <div className="flex gap-3 items-end">
+                <div className="text-center">
+                    <div className="text-[10px] text-rose-100 font-bold mb-0.5">BEFORE</div>
+                    <div className="w-11 h-10 bg-rose-200 rounded flex items-center justify-center text-[14px]">😐</div>
+                </div>
+                <div className="text-white font-black text-sm">→</div>
+                <div className="text-center">
+                    <div className="text-[10px] text-rose-100 font-bold mb-0.5">AFTER</div>
+                    <div className="w-11 h-10 bg-white rounded flex items-center justify-center text-[14px]">😍</div>
+                </div>
+            </div>
+            <div className="text-[10px] text-white font-bold">Natural · Refreshed · Confident</div>
+        </div>
+        <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
+            <div><div className="text-[10px] text-slate-400">[Med Spa Name]</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
+            <div className="bg-rose-500 text-white text-[10px] font-bold px-2.5 py-1 rounded">Book Free Consult</div>
+        </div>
+    </div>
+);
+
+const MedSpaLandingMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-rose-600 px-3 py-1.5 flex items-center justify-between">
+            <div className="text-white font-black text-xs flex items-center gap-1"><Sparkles className="w-3 h-3" /> [Med Spa Name]</div>
+            <div className="flex items-center gap-1 text-rose-200 text-[10px]"><Phone className="w-2 h-2" /> (555) 400-GLOW</div>
+        </div>
+        <div className="bg-gradient-to-br from-rose-50 to-pink-50 p-3 text-center space-y-2">
+            <div className="font-black text-slate-900 text-[11px] leading-tight">Claim Your Free Skin Consultation<br/><span className="text-rose-500">— $200 Value, Yours Free —</span></div>
+            <div className="text-[10px] text-slate-500">Meet with our master injector · Personalized treatment plan · No pressure</div>
+            <div className="w-full aspect-[16/7] bg-rose-100 rounded-lg flex items-center justify-center gap-3 border border-rose-200">
+                <div className="text-center px-2 space-y-0.5">
+                    <div className="text-[18px]">💉</div>
+                    <div className="text-[10px] font-bold text-rose-700">Botox & Filler</div>
+                </div>
+                <div className="space-y-1">
+                    {['⭐⭐⭐⭐⭐ 180+ Reviews', 'Board-Certified Injectors', 'Natural-Looking Results'].map(t => <div key={t} className="text-[10px] text-rose-700 font-bold">{t}</div>)}
+                </div>
+            </div>
+            {['Personalized plan — no one-size-fits-all treatments', 'See before/after of your specific concerns', 'No obligation to book a treatment'].map(b => (
+                <div key={b} className="flex items-center gap-1 text-[11px] text-slate-600 text-left"><Check className="w-2.5 h-2.5 text-rose-500 shrink-0" /> {b}</div>
+            ))}
+            <div className="space-y-1.5 pt-1">
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400">Your Name</div>
+                <div className="border border-slate-200 rounded px-2 py-1.5 bg-white text-[11px] text-slate-400">Phone Number</div>
+                <div className="w-full bg-rose-500 text-white font-black text-sm py-2 rounded">Claim My Free Consultation →</div>
+            </div>
+            <div className="flex items-center justify-center gap-1 text-[10px] text-slate-400"><Shield className="w-2 h-2" /> Private · No spam · Cancel anytime</div>
+        </div>
+    </div>
+);
+
+const MedSpaQuizMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-rose-600 px-3 py-2">
+            <div className="text-white font-black text-xs">Skin Concern Quiz — 30 seconds</div>
+            <div className="flex gap-0.5 mt-1.5">
+                {[1,2,3].map(i => <div key={i} className={`h-1 flex-1 rounded-full ${i <= 2 ? 'bg-white' : 'bg-rose-400'}`} />)}
+            </div>
+            <div className="text-[9px] text-rose-200 mt-0.5">Step 2 of 3</div>
+        </div>
+        <div className="p-3 space-y-2.5">
+            <div className="font-black text-slate-800 text-sm">What concerns you most about your skin?</div>
+            {['Fine lines & wrinkles', 'Volume loss / sunken cheeks', 'Lips — want more fullness', 'Skin texture & tone', 'Dark spots / pigmentation', 'Overall refresh — I\'m not sure'].map((opt, i) => (
+                <div key={opt} className={`border-2 rounded-lg px-3 py-2 cursor-pointer flex items-center gap-2 ${i === 0 ? 'border-rose-500 bg-rose-50' : 'border-slate-200'}`}>
+                    <div className={`w-3 h-3 rounded-full border-2 shrink-0 ${i === 0 ? 'border-rose-500 bg-rose-500' : 'border-slate-300'}`} />
+                    <span className="text-[11px] text-slate-700">{opt}</span>
+                </div>
+            ))}
+            <div className="w-full bg-rose-500 text-white font-black text-xs py-2 rounded text-center">Next →</div>
+        </div>
+    </div>
+);
+
+const MedSpaBookingMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-rose-500 to-pink-500 px-3 py-3 text-center">
+            <div className="text-white font-black text-sm">🎉 You're a Great Candidate! Book Your Free Consult</div>
+            <div className="text-rose-100 text-[10px] mt-0.5">Only 4 complimentary spots left this week</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="bg-rose-50 border border-rose-200 rounded-lg p-2 flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-rose-200 flex items-center justify-center text-[14px] shrink-0">👩‍⚕️</div>
+                <div>
+                    <div className="font-bold text-rose-700 text-[10px]">Dr. [Name] — Master Injector</div>
+                    <div className="text-[9px] text-rose-500">Board-Certified · 8+ years · 180+ ⭐ reviews</div>
+                    <div className="flex gap-1 mt-0.5"><div className="bg-rose-100 text-rose-600 text-[9px] font-bold px-1 py-0.5 rounded">Free Skin Analysis Included</div></div>
+                </div>
+            </div>
+            <div className="grid grid-cols-4 gap-1">
+                {['Mon 14', 'Tue 15', 'Wed 16', 'Fri 18'].map((d, i) => (
+                    <div key={d} className={`border rounded p-1.5 text-center cursor-pointer ${i === 1 ? 'border-rose-500 bg-rose-50' : 'border-slate-200'}`}>
+                        <div className="text-[9px] font-black text-slate-700">{d}</div>
+                    </div>
+                ))}
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+                {['10:00 AM', '11:30 AM', '1:00 PM', '2:30 PM', '4:00 PM', '5:30 PM'].map((t, i) => (
+                    <div key={t} className={`border rounded px-1 py-1.5 text-center text-[10px] font-bold cursor-pointer ${i === 2 ? 'border-rose-500 bg-rose-500 text-white' : 'border-slate-200 text-slate-600'}`}>{t}</div>
+                ))}
+            </div>
+            <div className="w-full bg-rose-500 text-white font-black text-xs py-2 rounded text-center">Confirm My Free Consultation →</div>
+        </div>
+    </div>
+);
+
+const MedSpaConfirmMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-rose-500 to-pink-400 px-3 py-3 text-center">
+            <div className="text-2xl mb-0.5">✨</div>
+            <div className="text-white font-black text-sm">You're Booked — Can't Wait to See You!</div>
+            <div className="text-rose-100 text-[10px]">Tuesday at 1:00 PM · [Med Spa Name]</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="text-[11px] text-slate-600 text-center">A calendar invite is on its way. Here's what to expect at your visit:</div>
+            <div className="border border-rose-200 rounded-lg p-2 bg-rose-50 space-y-1.5">
+                <div className="font-bold text-rose-700 text-[11px]">Your Consultation Includes:</div>
+                {['Full skin analysis with our injector', 'Personalized treatment recommendations', '30 minutes dedicated entirely to you'].map((s, i) => (
+                    <div key={s} className="flex items-start gap-1.5 text-[10px] text-rose-700">
+                        <div className="w-3 h-3 rounded-full bg-rose-500 text-white font-black flex items-center justify-center text-[9px] shrink-0">{i+1}</div> {s}
+                    </div>
+                ))}
+            </div>
+            <div className="border border-slate-200 rounded-lg p-2 space-y-1">
+                <div className="font-bold text-slate-700 text-[11px]">Intro Offer — Just for New Clients:</div>
+                <div className="text-[10px] text-slate-600">💉 First Botox treatment from $99 (normally $250+)</div>
+                <div className="text-[10px] text-slate-600">🌸 Mention this offer at your consultation</div>
+            </div>
+            <div className="bg-rose-50 border border-rose-200 rounded-lg p-2 text-center">
+                <div className="text-[10px] font-bold text-rose-700">Questions? We're here.</div>
+                <div className="text-rose-500 font-black text-sm">(555) 400-GLOW</div>
+            </div>
+        </div>
+    </div>
+);
+
+// ─── ECOMMERCE MOCKUPS ─────────────────────────────────────────────────────────
+
+const EcomAdMockup = () => (
+    <div className="bg-white rounded-lg overflow-hidden border border-slate-200 text-xs text-slate-700">
+        <div className="p-2.5 flex items-center gap-1.5">
+            <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-white font-black text-[11px]">🛍️</div>
+            <div><Bar w="w-20" h="h-1.5" color="bg-slate-300" /><div className="text-[10px] text-slate-400 mt-0.5">Sponsored · Meta</div></div>
+        </div>
+        <div className="px-2.5 pb-1.5">
+            <div className="font-bold text-slate-800 text-[11px] leading-tight">⚡ Everyone's Obsessed With This. Here's Why.</div>
+            <div className="text-[10px] text-slate-500 mt-0.5">Free shipping · 30-day returns · 10,000+ reviews</div>
+        </div>
+        <div className="w-full aspect-video bg-gradient-to-br from-violet-600 to-purple-700 flex flex-col items-center justify-center gap-2 relative">
+            <div className="absolute top-1.5 left-1.5 bg-yellow-400 text-black text-[10px] font-black px-1.5 py-0.5 rounded">15% OFF TODAY</div>
+            <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center text-[28px]">📦</div>
+            <div className="text-white font-black text-xs text-center">[Product Name]</div>
+            <div className="flex items-center gap-1">
+                <div className="text-yellow-300 text-[10px]">⭐⭐⭐⭐⭐</div>
+                <div className="text-violet-200 text-[9px]">10,482 reviews</div>
+            </div>
+        </div>
+        <div className="bg-slate-50 border-t border-slate-200 px-2.5 py-2 flex items-center justify-between">
+            <div><div className="text-[10px] text-slate-400">[Brand Name]</div><Bar w="w-20" h="h-1.5" color="bg-slate-300" className="mt-0.5" /></div>
+            <div className="bg-violet-600 text-white text-[10px] font-bold px-2.5 py-1 rounded">Shop Now</div>
+        </div>
+    </div>
+);
+
+const EcomProductMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-violet-700 px-3 py-1.5 flex items-center justify-between">
+            <div className="text-white font-black text-xs flex items-center gap-1"><ShoppingBag className="w-3 h-3" /> [Brand Name]</div>
+            <div className="flex items-center gap-2 text-violet-200 text-[10px]">
+                <Search className="w-2.5 h-2.5" /><ShoppingBag className="w-2.5 h-2.5" />
+            </div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="w-full aspect-video bg-violet-100 rounded-lg flex items-center justify-center text-[40px]">📦</div>
+            <div className="flex items-center justify-between">
+                <div className="font-black text-slate-900 text-[12px]">[Product Name]</div>
+                <div className="text-[10px] text-yellow-500">⭐⭐⭐⭐⭐ <span className="text-slate-400">(10,482)</span></div>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+                <div className="font-black text-violet-600 text-sm">$67.00</div>
+                <div className="text-[10px] text-slate-400 line-through">$89.00</div>
+                <div className="bg-yellow-400 text-black text-[9px] font-black px-1.5 py-0.5 rounded">SAVE 25%</div>
+            </div>
+            {['Free US shipping over $50', '30-day hassle-free returns', 'Over 10,000 happy customers'].map(b => (
+                <div key={b} className="flex items-center gap-1 text-[10px] text-slate-600"><Check className="w-2 h-2 text-green-500 shrink-0" /> {b}</div>
+            ))}
+            <div className="space-y-1.5">
+                <div className="w-full bg-violet-600 text-white font-black text-sm py-2 rounded text-center">Add to Cart →</div>
+                <div className="w-full border border-violet-200 text-violet-600 font-bold text-xs py-1.5 rounded text-center">Subscribe & Save 20%</div>
+            </div>
+            <div className="flex items-center justify-center gap-1 text-[9px] text-slate-400"><Clock className="w-2 h-2" /> Only 14 left in stock</div>
+        </div>
+    </div>
+);
+
+const EcomCartMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-violet-700 px-3 py-1.5 flex items-center justify-between">
+            <div className="text-white font-black text-xs">Your Cart (1 item)</div>
+            <div className="text-violet-200 text-[10px]">Secure Checkout 🔒</div>
+        </div>
+        <div className="p-3 space-y-2.5">
+            <div className="flex items-center gap-2 border border-slate-200 rounded-lg p-2">
+                <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center text-[18px] shrink-0">📦</div>
+                <div className="flex-1 min-w-0">
+                    <div className="font-bold text-slate-800 text-[10px] truncate">[Product Name]</div>
+                    <div className="text-[9px] text-slate-400">Qty: 1</div>
+                </div>
+                <div className="font-black text-slate-800 text-[11px] shrink-0">$67.00</div>
+            </div>
+            <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-2 space-y-1.5">
+                <div className="font-black text-yellow-800 text-[11px]">⚡ Add on: Customers also love...</div>
+                <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-yellow-100 rounded flex items-center justify-center text-[14px] shrink-0">🎁</div>
+                    <div className="flex-1 min-w-0">
+                        <div className="font-bold text-slate-700 text-[10px] truncate">[Complementary Product]</div>
+                        <div className="text-[9px] text-slate-500">Add for just $19 (normally $35)</div>
+                    </div>
+                    <div className="bg-yellow-400 text-black text-[9px] font-black px-1.5 py-1 rounded shrink-0">+ Add</div>
+                </div>
+            </div>
+            <div className="border-t border-slate-200 pt-2 space-y-1">
+                <div className="flex justify-between text-[10px] text-slate-500"><span>Subtotal</span><span>$67.00</span></div>
+                <div className="flex justify-between text-[10px] text-green-600 font-bold"><span>Shipping</span><span>FREE</span></div>
+                <div className="flex justify-between font-black text-slate-800"><span className="text-[11px]">Total</span><span className="text-[11px]">$67.00</span></div>
+            </div>
+            <div className="w-full bg-violet-600 text-white font-black text-sm py-2 rounded text-center">Proceed to Checkout →</div>
+        </div>
+    </div>
+);
+
+const EcomUpsellMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-violet-600 to-purple-600 px-3 py-3 text-center">
+            <div className="text-white font-black text-sm">🎉 Order Confirmed! Wait — One Special Offer:</div>
+            <div className="text-violet-100 text-[10px] mt-0.5">This offer expires when you leave this page</div>
+        </div>
+        <div className="p-3 space-y-2.5">
+            <div className="border-2 border-violet-300 rounded-xl p-3 bg-violet-50 space-y-2">
+                <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 bg-violet-200 rounded-lg flex items-center justify-center text-[18px] shrink-0">🎁</div>
+                    <div>
+                        <div className="font-black text-slate-800 text-[11px]">Bundle Deal — Buy 2 Get 1 Free</div>
+                        <div className="text-[10px] text-slate-500">Add 2 more at 50% off · Ships with your order</div>
+                    </div>
+                </div>
+                <div className="flex items-baseline gap-2">
+                    <div className="font-black text-violet-600 text-sm">+$49.00</div>
+                    <div className="text-[10px] text-slate-400 line-through">+$134.00</div>
+                    <div className="bg-violet-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded">SAVE $85</div>
+                </div>
+                <div className="w-full bg-violet-600 text-white font-black text-xs py-2 rounded text-center">Yes — Add the Bundle! →</div>
+                <div className="text-center text-[10px] text-slate-400 cursor-pointer">No thanks, skip this offer</div>
+            </div>
+            <div className="border border-slate-200 rounded-lg p-2 flex items-center gap-2 bg-green-50">
+                <Check className="w-4 h-4 text-green-500 shrink-0" />
+                <div className="text-[10px] text-green-700 font-bold">Your original order is confirmed and processing!</div>
+            </div>
+        </div>
+    </div>
+);
+
+const EcomThankYouMockup = () => (
+    <div className="bg-white text-xs text-slate-700">
+        <div className="bg-gradient-to-r from-violet-600 to-green-500 px-3 py-3 text-center">
+            <div className="text-3xl mb-0.5">📦</div>
+            <div className="text-white font-black text-sm">Order #38291 — You're all set!</div>
+            <div className="text-green-100 text-[10px]">Confirmation sent to [email] · Ships in 1–2 days</div>
+        </div>
+        <div className="p-3 space-y-2">
+            <div className="border border-slate-200 rounded-lg p-2 bg-slate-50 space-y-1">
+                <div className="font-bold text-slate-700 text-[11px]">Order Summary:</div>
+                <div className="text-[10px] text-slate-600">📦 [Product Name] × 1 — $67.00</div>
+                <div className="text-[10px] text-green-600 font-bold">🚚 Free shipping — Est. delivery: 3–5 days</div>
+            </div>
+            <div className="bg-violet-50 border border-violet-200 rounded-lg p-2 space-y-1">
+                <div className="font-bold text-violet-700 text-[11px]">🎁 Exclusive Loyalty Discount — Just for You:</div>
+                <div className="text-[10px] text-violet-600">Use code <span className="font-black">THANKYOU15</span> for 15% off your next order</div>
+                <div className="text-[9px] text-violet-500">Valid for 7 days · One-time use</div>
+            </div>
+            <div className="border border-slate-200 rounded-lg p-2 space-y-1">
+                <div className="font-bold text-slate-700 text-[11px]">What happens next:</div>
+                {['Shipping confirmation email in 24h', 'Share your experience — get $10 store credit', 'Join our VIP list for early access & deals'].map((s, i) => (
+                    <div key={s} className="flex items-start gap-1.5 text-[10px] text-slate-600">
+                        <div className="w-3 h-3 rounded-full bg-violet-600 text-white font-black flex items-center justify-center text-[9px] shrink-0">{i+1}</div> {s}
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+);
+
+// ─── REAL ESTATE STAGES ────────────────────────────────────────────────────────
+
+const REAL_ESTATE_STAGES = [
+    {
+        id: 'ad', label: 'FB / Google Ad', sublabel: 'Free Valuation Hook',
+        icon: Users, bg: 'bg-amber-600', pill: 'bg-amber-900/40 text-amber-300 border-amber-700', text: 'text-amber-400',
+        url: 'facebook.com/ad', mockup: <RealEstateAdMockup />,
+        conversion: '1–4%', conversionNote: 'click-through rate', price: null,
+        description: 'Facebook and Google ads targeting homeowners with a free home valuation offer. The hook is curiosity-driven: "Your home could be worth more than you think." This attracts both active sellers and curious owners.',
+        tips: ['Geo-target within 5–10 miles of target neighbourhoods', '"Free home valuation" is the highest-converting offer for seller leads', 'Use market stats (↑12% this year) to create urgency around timing', 'Google Search ads capture high-intent "sell my home [city]" queries'],
+        metrics: [{ label: 'CTR', value: '1–4%' }, { label: 'CPL Target', value: '$10–$40' }, { label: 'Best Platform', value: 'Meta + Google' }],
+    },
+    {
+        id: 'landing', label: 'Landing Page', sublabel: 'Home Valuation Offer',
+        icon: Home, bg: 'bg-orange-600', pill: 'bg-orange-900/40 text-orange-300 border-orange-700', text: 'text-orange-400',
+        url: 'homevalue.youragency.com', mockup: <RealEstateLandingMockup />,
+        conversion: '20–40%', conversionNote: 'of visitors submit their address', price: 'Free Valuation',
+        description: 'A dedicated landing page offering a free home valuation. Show local market data to establish authority. Ask for address + phone — not much more. The key is local credibility: local stats, local photo, local reviews.',
+        tips: ['Show real local market stats ("avg days on market: 18") — specificity builds trust', 'Ask for address first — it\'s the most natural first step for a valuation', 'Agent photo + credentials humanise the page and build instant trust', 'Mention the neighbourhood/suburb by name — hyper-local wins'],
+        metrics: [{ label: 'Conv. Rate', value: '20–40%' }, { label: 'Key Ask', value: 'Address + phone' }, { label: 'Trust Signal', value: 'Local stats' }],
+    },
+    {
+        id: 'quiz', label: 'Property Quiz', sublabel: 'Beds / Baths / Timeline',
+        icon: FileText, bg: 'bg-amber-700', pill: 'bg-amber-900/40 text-amber-200 border-amber-600', text: 'text-amber-300',
+        url: 'homevalue.youragency.com/quiz', mockup: <RealEstateQuizMockup />,
+        conversion: '55–75%', conversionNote: 'complete the quiz', price: null,
+        description: 'A quick property quiz captures beds, baths, condition, and selling timeline — critical qualification data. The "when are you selling?" question is the most important: 0–3 month sellers get immediate follow-up.',
+        tips: ['The timeline question is your #1 qualifying signal — segment follow-up by answer', 'Beds/baths questions are easy to answer and build quiz momentum', 'Use a progress bar — completion rates increase by 15%+', 'Quiz completion = intent signal. Respond to 0–3 month sellers within minutes'],
+        metrics: [{ label: 'Completion', value: '55–75%' }, { label: 'Key Question', value: 'Selling timeline' }, { label: 'Segment', value: 'Hot vs warm' }],
+    },
+    {
+        id: 'book', label: 'Book Consultation', sublabel: 'Free Market Analysis',
+        icon: Calendar, bg: 'bg-orange-700', pill: 'bg-orange-900/40 text-orange-200 border-orange-600', text: 'text-orange-300',
+        url: 'homevalue.youragency.com/book', mockup: <RealEstateBookingMockup />,
+        conversion: '30–50%', conversionNote: 'of leads book a consultation', price: null,
+        description: 'Show the estimated value range to reward the lead, then invite them to book a free consultation for their precise CMA. Showing a range creates curiosity and motivates booking to get the full picture.',
+        tips: ['Show an estimated range — the curiosity gap motivates them to book for the exact number', 'Offer in-person or Zoom — Zoom dramatically increases availability', 'Show the agent\'s face, credentials, and recent sold properties', 'Include a urgency element: "market window" or limited weekly slots'],
+        metrics: [{ label: 'Book Rate', value: '30–50%' }, { label: 'No-Show Rate', value: '25–40%' }, { label: 'Close Rate', value: '20–40% to listing' }],
+    },
+    {
+        id: 'confirm', label: 'Confirmation', sublabel: 'Pre-Consult Nurture',
+        icon: Award, bg: 'bg-green-600', pill: 'bg-green-900/40 text-green-300 border-green-700', text: 'text-green-400',
+        url: 'homevalue.youragency.com/confirmed', mockup: <RealEstateConfirmMockup />,
+        conversion: '20–40%', conversionNote: 'of consultations convert to listings', price: '$15,000 avg commission',
+        description: 'Confirmation with the agent\'s photo, contact details, and what to expect. SMS reminders at 48h and 2h before are essential. Pre-consult content (recent sold properties nearby) warms the lead and shortens the listing conversation.',
+        tips: ['Send an SMS with 2 recent nearby sold properties — they\'ll be impressed at the consultation', 'Remind them at 48h and 2h before the meeting', 'Pre-position your unique marketing plan (pro photos, social media reach)', '20–40% of consultations convert to listings with the right follow-up'],
+        metrics: [{ label: 'Show Rate', value: '60–75%' }, { label: 'Listing Rate', value: '20–40%' }, { label: 'Avg Commission', value: '$12K–$18K' }],
+    },
+];
+
+// ─── HOME SERVICES STAGES ──────────────────────────────────────────────────────
+
+const HOME_SERVICES_STAGES = [
+    {
+        id: 'ad', label: 'Google Search Ad', sublabel: 'Emergency / Urgency Hook',
+        icon: Search, bg: 'bg-red-600', pill: 'bg-red-900/40 text-red-300 border-red-700', text: 'text-red-400',
+        url: 'google.com/search', mockup: <HomeServicesAdMockup />,
+        conversion: '5–15%', conversionNote: 'click-through rate', price: null,
+        description: 'Google Search ads are the highest-intent traffic for home services — someone with a burst pipe or broken AC is searching right now and ready to call. Emergency keywords ("emergency plumber near me") convert significantly better than general terms.',
+        tips: ['"Near me" and "[city]" keywords capture highest-intent local traffic', 'Emergency-tone ad copy converts 2–3× better than generic service ads', 'Call extensions are critical — many users call directly from the search result', 'Google LSA (Local Services Ads) can supplement with pay-per-lead model'],
+        metrics: [{ label: 'CTR', value: '5–15%' }, { label: 'CPL', value: '$20–$80' }, { label: 'Best Intent', value: 'Emergency search' }],
+    },
+    {
+        id: 'landing', label: 'Free Quote Landing', sublabel: 'Trust + Urgency Page',
+        icon: Wrench, bg: 'bg-red-700', pill: 'bg-red-900/40 text-red-200 border-red-600', text: 'text-red-300',
+        url: 'freequote.yourcompany.com', mockup: <HomeServicesLandingMockup />,
+        conversion: '25–45%', conversionNote: 'of visitors request a quote', price: 'Free Estimate',
+        description: 'A landing page built for urgency and trust. Lead with an emergency phone number at the top — many home services customers will call rather than fill a form. Show licences, insurance, Google reviews, and response time prominently.',
+        tips: ['Put the phone number FIRST — emergency customers want to call, not fill forms', 'Show review count + stars prominently — trust is the #1 conversion lever', '"Licensed, bonded & insured" badge removes homeowner fear immediately', 'Highlight response time: "We respond within 15 minutes" drives form fills'],
+        metrics: [{ label: 'Conv. Rate', value: '25–45%' }, { label: 'Call vs Form', value: '60% call' }, { label: 'Key Trust', value: 'Licence + reviews' }],
+    },
+    {
+        id: 'form', label: 'Service Details Form', sublabel: 'Qualify the Job',
+        icon: FileText, bg: 'bg-orange-600', pill: 'bg-orange-900/40 text-orange-300 border-orange-700', text: 'text-orange-400',
+        url: 'freequote.yourcompany.com/details', mockup: <HomeServicesFormMockup />,
+        conversion: '60–80%', conversionNote: 'complete the details form', price: null,
+        description: 'A short 3-step form captures service type, urgency level, and problem description. The urgency question ("emergency now" vs "this week") lets you prioritise dispatch and tailor follow-up speed. Address collection allows you to estimate travel time.',
+        tips: ['Urgency selector lets you instantly triage and respond to emergencies first', 'Service type dropdown pre-qualifies the job and routes to the right tech', 'Address field enables route planning and distance-based pricing estimates', 'Keep it to 3–4 fields max — completion drops fast above that'],
+        metrics: [{ label: 'Completion', value: '60–80%' }, { label: 'Fields', value: '3–4 max' }, { label: 'Goal', value: 'Qualify + address' }],
+    },
+    {
+        id: 'book', label: 'Schedule Booking', sublabel: 'Pick Arrival Window',
+        icon: Calendar, bg: 'bg-red-800', pill: 'bg-red-900/40 text-red-200 border-red-700', text: 'text-red-300',
+        url: 'freequote.yourcompany.com/schedule', mockup: <HomeServicesBookingMockup />,
+        conversion: '50–70%', conversionNote: 'of quote requests schedule a visit', price: null,
+        description: 'Scheduling an arrival window (not an exact time) sets realistic expectations and reduces no-shows. Show the technician\'s name, photo, and credentials to build trust before they arrive. For emergency jobs, skip this step and call immediately.',
+        tips: ['Offer 2-hour arrival windows — exact times create disappointment and no-shows', 'Technician photo + licence info builds comfort before the visit', 'SMS confirmation with tech\'s name and number dramatically reduces anxiety', 'For emergency tier leads: call immediately rather than waiting for booking'],
+        metrics: [{ label: 'Book Rate', value: '50–70%' }, { label: 'No-Show Rate', value: '10–20%' }, { label: 'Same-Day Rate', value: '30–50%' }],
+    },
+    {
+        id: 'confirm', label: 'Confirmation', sublabel: 'Tech on the Way',
+        icon: Check, bg: 'bg-green-600', pill: 'bg-green-900/40 text-green-300 border-green-700', text: 'text-green-400',
+        url: 'freequote.yourcompany.com/confirmed', mockup: <HomeServicesConfirmMockup />,
+        conversion: '70–85%', conversionNote: 'of bookings result in a completed job', price: '$350 avg job value',
+        description: 'Post-booking confirmation with the technician\'s name, a 30-minute heads-up call promise, and payment method info. The "we\'re on our way" confirmation is your upsell and review request foundation — a completed job with a happy customer should always trigger a Google review ask.',
+        tips: ['Call the customer 30 minutes before arrival — it\'s a massive trust builder', 'Confirm upfront pricing policy to prevent objections on-site', 'Post-job: send SMS review request within 30 minutes of completion', 'Offer annual maintenance plan at checkout — converts 15–25% of one-time jobs to recurring'],
+        metrics: [{ label: 'Completion Rate', value: '70–85%' }, { label: 'Avg Job Value', value: '$250–$500' }, { label: 'Review Ask', value: 'Post-job SMS' }],
+    },
+];
+
+// ─── MED SPA STAGES ────────────────────────────────────────────────────────────
+
+const MED_SPA_STAGES = [
+    {
+        id: 'ad', label: 'Instagram / FB Ad', sublabel: 'Before/After Creative',
+        icon: Users, bg: 'bg-rose-500', pill: 'bg-rose-900/40 text-rose-300 border-rose-700', text: 'text-rose-400',
+        url: 'instagram.com/ad', mockup: <MedSpaAdMockup />,
+        conversion: '1–4%', conversionNote: 'click-through rate', price: null,
+        description: 'Before/after video and carousel ads on Instagram and Facebook are the highest-converting creative for med spas. Real patient results (with permission) dramatically outperform generic stock imagery. Target by age (28–55), gender, and local zip codes.',
+        tips: ['Real before/after photos/videos from actual patients convert best — get consent forms ready', 'Target women 28–55 within 15 miles of the spa', 'Lead with the transformation, not the procedure name — "look refreshed" beats "Botox"', 'UGC-style (phone-filmed, authentic) videos outperform polished studio ads'],
+        metrics: [{ label: 'CTR', value: '1–4%' }, { label: 'CPL Target', value: '$15–$60' }, { label: 'Best Format', value: 'Before/After video' }],
+    },
+    {
+        id: 'landing', label: 'Free Consult Landing', sublabel: '$200 Value Offer',
+        icon: Sparkles, bg: 'bg-pink-600', pill: 'bg-pink-900/40 text-pink-300 border-pink-700', text: 'text-pink-400',
+        url: 'consult.yourmedspa.com', mockup: <MedSpaLandingMockup />,
+        conversion: '20–40%', conversionNote: 'of visitors book the free consult', price: 'Free ($200 value)',
+        description: 'A landing page offering a complimentary skin consultation framed at its real dollar value ($200). Show board-certified credentials, before/after gallery, and Google reviews prominently. The offer removes the #1 barrier: not knowing what to expect or what things cost.',
+        tips: ['Frame the consult value in dollars ("$200 value — yours free") — it reframes it as a gift', 'Show real injector credentials prominently — "board-certified" is a powerful trust signal', 'Before/after gallery on the landing page increases lead quality dramatically', 'Privacy message: "We never share your info" reduces hesitancy for aesthetic enquiries'],
+        metrics: [{ label: 'Conv. Rate', value: '20–40%' }, { label: 'Offer Value', value: '$200 consult' }, { label: 'Trust Signal', value: 'Board-certified' }],
+    },
+    {
+        id: 'quiz', label: 'Skin Concern Quiz', sublabel: 'Personalise the Offer',
+        icon: Heart, bg: 'bg-rose-600', pill: 'bg-rose-900/40 text-rose-200 border-rose-600', text: 'text-rose-300',
+        url: 'consult.yourmedspa.com/quiz', mockup: <MedSpaQuizMockup />,
+        conversion: '55–75%', conversionNote: 'complete the quiz', price: null,
+        description: 'A short skin concern quiz personalises the consultation experience before the patient arrives. The injector reviews answers before the consult, making the visit feel bespoke. Quiz answers also segment the follow-up email sequence with relevant treatment content.',
+        tips: ['Quiz answers let the injector prep personalised recommendations before the consult', 'Offer options like "I\'m not sure" — it reduces drop-off and is common for first-timers', 'Use quiz results page to preview relevant treatments by concern area', 'Email follow-up can be segmented: wrinkles → Botox content, volume → filler content'],
+        metrics: [{ label: 'Completion', value: '55–75%' }, { label: 'Purpose', value: 'Personalise + qualify' }, { label: 'Follow-Up', value: 'Segmented by concern' }],
+    },
+    {
+        id: 'book', label: 'Book Treatment', sublabel: 'Secure the Appointment',
+        icon: Calendar, bg: 'bg-pink-700', pill: 'bg-pink-900/40 text-pink-200 border-pink-600', text: 'text-pink-300',
+        url: 'consult.yourmedspa.com/book', mockup: <MedSpaBookingMockup />,
+        conversion: '40–60%', conversionNote: 'of quiz completers book', price: null,
+        description: 'A booking page that validates the lead ("great candidate!") and shows limited availability to create scarcity. Show the injector\'s photo, credentials, and a review or two. Offer Zoom pre-consult for those not ready to visit in person — this captures fence-sitters.',
+        tips: ['"Great candidate!" validation at the top dramatically increases booking rates', 'Show only 4–5 days of availability — artificial scarcity is effective and often real', 'Credit card hold for no-show protection reduces no-shows by 40%+', 'Offer virtual pre-consult for patients who want to discuss before visiting'],
+        metrics: [{ label: 'Book Rate', value: '40–60%' }, { label: 'No-Show Rate', value: '15–30%' }, { label: 'Show Rate', value: '70–85%' }],
+    },
+    {
+        id: 'confirm', label: 'Confirmation', sublabel: 'Intro Offer + Nurture',
+        icon: Award, bg: 'bg-green-600', pill: 'bg-green-900/40 text-green-300 border-green-700', text: 'text-green-400',
+        url: 'consult.yourmedspa.com/confirmed', mockup: <MedSpaConfirmMockup />,
+        conversion: '20–35%', conversionNote: 'convert to paying patient at consult', price: '$350 avg first treatment',
+        description: 'Post-booking confirmation with consultation details and an intro offer revealed as a reward. The intro offer ($99 Botox, discounted first filler) converts curious leads into paying patients at the first visit. Pre-consult education content reduces no-shows and improves conversion.',
+        tips: ['Reveal the intro offer AFTER booking — it rewards the commitment and drives attendance', 'Send a pre-consult video from the injector — it reduces anxiety and builds rapport', 'SMS reminder at 48h and 2h: include the injector\'s name and what to expect', '70%+ of new patients who attend their first treatment return within 90 days'],
+        metrics: [{ label: 'Convert to Patient', value: '20–35%' }, { label: 'Avg First Visit', value: '$250–$500' }, { label: 'LTV', value: '$2,000–$5,000+/yr' }],
+    },
+];
+
+// ─── ECOMMERCE STAGES ──────────────────────────────────────────────────────────
+
+const ECOMMERCE_STAGES = [
+    {
+        id: 'ad', label: 'Meta / TikTok Ad', sublabel: 'Product Demo / UGC',
+        icon: Users, bg: 'bg-violet-600', pill: 'bg-violet-900/40 text-violet-300 border-violet-700', text: 'text-violet-400',
+        url: 'meta.com/ads', mockup: <EcomAdMockup />,
+        conversion: '1–3%', conversionNote: 'click-through rate', price: null,
+        description: 'Meta (Facebook/Instagram) and TikTok ads drive cold traffic to the product page. UGC-style creative (phone-filmed reviews, unboxings, demos) dramatically outperforms polished studio ads for most e-commerce products. Hook the viewer in the first 2 seconds.',
+        tips: ['UGC creative outperforms studio ads by 2–4× for most e-com products', 'Hook in the first 2 seconds: show the product in action, not a logo', 'Social proof in the creative: "10,000 five-star reviews" builds instant trust', 'Test 3–5 creative variants simultaneously — let data pick the winner'],
+        metrics: [{ label: 'CTR Target', value: '1–3%' }, { label: 'CPC Target', value: '$0.50–$2.00' }, { label: 'Best Format', value: 'UGC video' }],
+    },
+    {
+        id: 'product', label: 'Product Page', sublabel: 'Optimised for Conversion',
+        icon: ShoppingBag, bg: 'bg-purple-600', pill: 'bg-purple-900/40 text-purple-300 border-purple-700', text: 'text-purple-400',
+        url: 'yourstore.com/product', mockup: <EcomProductMockup />,
+        conversion: '2–5%', conversionNote: 'of visitors add to cart', price: '$67 avg',
+        description: 'A product page optimised for conversion: strong hero image/video, clear pricing with savings shown, social proof (reviews count + star rating), benefits bullets, and a prominent CTA. Scarcity ("only 14 left") and urgency ("order today, ships tomorrow") drive action.',
+        tips: ['Show reviews count + star rating immediately below the product name', 'Display savings clearly: crossed-out original price + % discount badge', '"Only X left in stock" creates real urgency — use honestly', 'Subscribe & Save option converts 10–20% of buyers to repeat customers'],
+        metrics: [{ label: 'Add-to-Cart Rate', value: '3–8%' }, { label: 'CVR', value: '1.5–3%' }, { label: 'AOV Target', value: '$50–$100+' }],
+    },
+    {
+        id: 'cart', label: 'Cart + Order Bump', sublabel: 'Increase AOV',
+        icon: TrendingUp, bg: 'bg-indigo-600', pill: 'bg-indigo-900/40 text-indigo-300 border-indigo-700', text: 'text-indigo-400',
+        url: 'yourstore.com/cart', mockup: <EcomCartMockup />,
+        conversion: '30–50%', conversionNote: 'of cart visitors proceed to checkout', price: null,
+        description: 'The cart page is your best AOV-boosting opportunity. An order bump (a complementary product offered at a discount in the cart) converts 20–40% of buyers. Free shipping thresholds ("add $12 more for free shipping") also increase AOV effectively.',
+        tips: ['Order bump offer: complementary item at 40–60% off — positioned as "customers also love"', 'Free shipping threshold: "You\'re $12 away from free shipping" drives adds', 'Social proof under the CTA: "Trusted by 10,000+ customers"', 'Trust badges (SSL, money-back guarantee) directly above the checkout button'],
+        metrics: [{ label: 'Bump Take Rate', value: '20–40%' }, { label: 'Cart Abandon', value: '65–80%' }, { label: 'Recover Rate', value: '10–15% via email' }],
+    },
+    {
+        id: 'upsell', label: 'Post-Purchase Upsell', sublabel: 'One-Click Add-On',
+        icon: Zap, bg: 'bg-violet-700', pill: 'bg-violet-900/40 text-violet-200 border-violet-600', text: 'text-violet-300',
+        url: 'yourstore.com/upsell', mockup: <EcomUpsellMockup />,
+        conversion: '15–25%', conversionNote: 'accept the post-purchase offer', price: '+$49 avg',
+        description: 'A one-click post-purchase upsell shown immediately after the order is confirmed but before the thank-you page. Because payment info is already saved, acceptance is frictionless — just one click. A bundle or higher-quantity offer at a steep discount works best.',
+        tips: ['One-click acceptance (no re-entering payment info) is the key advantage of post-purchase upsells', 'Offer a bundle, multi-pack, or complementary product at 40–60% off', 'Urgency: "this offer disappears when you leave this page" — and mean it', '15–25% take rate can add $5–$15 to average order value per customer'],
+        metrics: [{ label: 'Take Rate', value: '15–25%' }, { label: 'Upsell Value', value: '$29–$79' }, { label: 'AOV Lift', value: '+20–40%' }],
+    },
+    {
+        id: 'thankyou', label: 'Thank You + Email Seq.', sublabel: 'LTV & Retention',
+        icon: Award, bg: 'bg-green-600', pill: 'bg-green-900/40 text-green-300 border-green-700', text: 'text-green-400',
+        url: 'yourstore.com/thankyou', mockup: <EcomThankYouMockup />,
+        conversion: '30–50%', conversionNote: 'make a 2nd purchase within 90 days', price: null,
+        description: 'The thank-you page and post-purchase email sequence are your retention engine. A loyalty discount for the next order, review request, and referral offer all live here. The post-purchase email sequence (days 3, 7, 14) is the highest-ROI email flow in e-commerce.',
+        tips: ['Post-purchase email Day 3: "How\'s your order?" — check-in builds loyalty', 'Day 7: Review request with $10 credit for a photo review — boosts social proof', 'Day 14: Related products or refill reminder (especially for consumables)', 'Abandoned cart flow: 3-email sequence (1h, 24h, 72h) recovers 10–15% of carts'],
+        metrics: [{ label: 'Repeat Purchase', value: '30–50% in 90d' }, { label: 'Email Revenue', value: '20–40% of total' }, { label: 'LTV vs CAC', value: '3:1+ target' }],
+    },
+];
+
 // ─── INDUSTRY DATA ─────────────────────────────────────────────────────────────
 
 const INDUSTRIES = [
@@ -949,6 +1772,102 @@ const INDUSTRIES = [
             { label: 'Clients Closed', value: '3', note: '30% close × $1,500/mo', color: 'text-green-400' },
         ],
         revenueSummary: { title: 'Example: 100 Outreaches → Monthly Revenue', total: '$4,500/mo', perUnitLabel: 'Revenue Per Outreach', perUnit: '$45', note: 'With 3 clients at $1,500/month, you hit $4,500 MRR in week one. Scale volume and price point — 5 clients at $2,500/mo = $12,500 MRR.' },
+    },
+    {
+        id: 'real-estate',
+        label: 'Real Estate Agent',
+        emoji: '🏠',
+        color: 'amber',
+        accent: 'bg-amber-600',
+        border: 'border-amber-500',
+        text: 'text-amber-400',
+        ring: 'ring-amber-500/30',
+        stages: REAL_ESTATE_STAGES,
+        title: 'Real Estate Agent — Home Valuation Funnel',
+        description: 'A seller lead generation funnel that turns homeowners into listing consultations using a free home valuation offer and property quiz.',
+        leadBlock: 'bg-amber-900/50 text-amber-200 border border-amber-700/60',
+        leads: ['Google Search Ads', 'Facebook Ads', 'Instagram Ads', 'Google Maps / GMB', 'Zillow / Realtor.com', 'Referrals', 'Just Listed Posts', 'Nextdoor'],
+        funnels: ['Home Valuation Funnel', 'Buyer Consultation Funnel', 'Listing Inquiry Funnel', 'Just Sold Proof → DM', 'Open House → Follow-Up Sequence'],
+        offers: ['Free Home Valuation', 'Free Buyer Consultation', 'Free Market Report', 'Free Investment Property Analysis', 'Free Neighbourhood Price Guide'],
+        revenueData: [
+            { label: 'Leads Generated', value: '100', note: '$20–$40 CPL average', color: 'text-slate-300' },
+            { label: 'Consultations Booked', value: '40', note: '40% book rate', color: 'text-amber-400' },
+            { label: 'Consultations Held', value: '20', note: '50% show rate', color: 'text-orange-400' },
+            { label: 'Listings / Buyers Signed', value: '5', note: '25% close rate', color: 'text-green-400' },
+        ],
+        revenueSummary: { title: 'Example: 100 Leads → Agent Commission Revenue', total: '$75,000', perUnitLabel: 'Revenue Per Lead', perUnit: '$750', note: '5 listings/buyers at $15,000 average commission = $75,000. Even at a higher CPL, the math works powerfully — one deal covers months of ad spend.' },
+    },
+    {
+        id: 'home-services',
+        label: 'Home Services',
+        emoji: '🔧',
+        color: 'red',
+        accent: 'bg-red-600',
+        border: 'border-red-500',
+        text: 'text-red-400',
+        ring: 'ring-red-500/30',
+        stages: HOME_SERVICES_STAGES,
+        title: 'Home Services — Emergency Quote Funnel',
+        description: 'A high-intent local funnel turning emergency searches (burst pipe, AC out, electrical fault) into booked service visits using a free estimate offer.',
+        leadBlock: 'bg-red-900/50 text-red-200 border border-red-700/60',
+        leads: ['Google Search Ads (highest intent)', 'Google Maps / GMB', 'Yelp', 'Nextdoor', 'Referrals', 'Door Hangers / Local Flyers', 'Google LSA (Local Services Ads)', 'Seasonal Campaigns'],
+        funnels: ['Emergency Search → Instant Quote → Booking', 'Google Maps → Click-to-Call', 'Seasonal Campaign Funnel (AC tune-up in spring)', 'Maintenance Plan Upsell', 'Review Request → Referral Loop'],
+        offers: ['Free Estimate / Quote', 'Emergency Same-Day Service', 'Annual Maintenance Plan', 'Free Inspection (drain, HVAC, electrical)', '10% Off for New Customers'],
+        revenueData: [
+            { label: 'Quote Requests', value: '100', note: 'From ads + GMB', color: 'text-slate-300' },
+            { label: 'Respond / Qualify', value: '60', note: '60% reachable', color: 'text-red-400' },
+            { label: 'Jobs Booked', value: '35', note: '58% booking rate', color: 'text-orange-400' },
+            { label: 'Jobs Completed', value: '25', note: '$350 avg job value', color: 'text-green-400' },
+        ],
+        revenueSummary: { title: 'Example: 100 Quote Requests → Revenue', total: '$8,750', perUnitLabel: 'Revenue Per Quote Request', perUnit: '$87.50', note: '25 completed jobs × $350 average = $8,750. Emergency jobs and larger repairs push the average up significantly. Recurring maintenance plans add predictable MRR.' },
+    },
+    {
+        id: 'med-spa',
+        label: 'Med Spa',
+        emoji: '💆',
+        color: 'rose',
+        accent: 'bg-rose-500',
+        border: 'border-rose-500',
+        text: 'text-rose-400',
+        ring: 'ring-rose-500/30',
+        stages: MED_SPA_STAGES,
+        title: 'Med Spa — Free Consultation Funnel',
+        description: 'A before/after-driven funnel that turns Instagram and Facebook ad viewers into booked skin consultations and paying med spa patients.',
+        leadBlock: 'bg-rose-900/50 text-rose-200 border border-rose-700/60',
+        leads: ['Instagram Ads', 'Facebook Ads', 'Google Ads', 'Before/After Organic Content', 'Influencer / UGC Partnerships', 'Referral Program', 'Google Maps / GMB', 'Email & SMS List'],
+        funnels: ['Before/After Ad → Free Consult', 'Treatment Quiz → Booking', 'Refer-a-Friend Program', 'Loyalty Member Upsell', 'Seasonal Promo (Valentine\'s, Summer)', 'Abandoned Booking Recovery'],
+        offers: ['Free Skin Consultation ($200 value)', 'Intro Offer — $99 First Botox/Filler', 'Free Lip Filler Units with Package', 'Free Skin Analysis + Treatment Plan', 'Refer a Friend — Both Get $50 Off'],
+        revenueData: [
+            { label: 'Leads Generated', value: '100', note: 'From Instagram + Facebook ads', color: 'text-slate-300' },
+            { label: 'Consult Bookings', value: '40', note: '40% book rate', color: 'text-rose-400' },
+            { label: 'Show Ups', value: '28', note: '70% show rate', color: 'text-pink-400' },
+            { label: 'Patients Converted', value: '20', note: '70% convert × $350 avg', color: 'text-green-400' },
+        ],
+        revenueSummary: { title: 'Example: 100 Leads → Med Spa Revenue', total: '$7,000', perUnitLabel: 'Revenue Per Lead', perUnit: '$70', note: '20 converting patients × $350 first-visit average = $7,000. Patient LTV ($2,000–$5,000+/year with repeat visits) makes this the most scalable number to focus on.' },
+    },
+    {
+        id: 'ecommerce',
+        label: 'E-commerce',
+        emoji: '🛍️',
+        color: 'violet',
+        accent: 'bg-violet-600',
+        border: 'border-violet-500',
+        text: 'text-violet-400',
+        ring: 'ring-violet-500/30',
+        stages: ECOMMERCE_STAGES,
+        title: 'E-commerce — Product Ad to Purchase Funnel',
+        description: 'A full-stack e-commerce funnel from Meta/TikTok cold traffic through product page, cart with order bump, post-purchase upsell, and retention email sequence.',
+        leadBlock: 'bg-violet-900/50 text-violet-200 border border-violet-700/60',
+        leads: ['Meta Ads (Facebook / Instagram)', 'TikTok Ads', 'Google Shopping Ads', 'Influencer / UGC Partnerships', 'Email / SMS List', 'Organic Social Content', 'Affiliate / Collab Programs', 'SEO / Blog Content'],
+        funnels: ['Cold Traffic → Product → Cart', 'Abandoned Cart Recovery (email + SMS)', 'Post-Purchase Upsell Sequence', 'Back-in-Stock Flow', 'Win-Back Campaign (90-day lapsed)', 'Influencer → Link-in-Bio → Product'],
+        offers: ['First Order Discount (10–15% off)', 'Bundle Deal (Buy 2 Get 1)', 'Subscribe & Save (20% off recurring)', 'Limited Edition / Seasonal Drop', 'Free Gift with Purchase over $X', 'Loyalty Points Program'],
+        revenueData: [
+            { label: 'Store Visitors', value: '1,000', note: 'From paid ads', color: 'text-slate-300' },
+            { label: 'Add to Cart', value: '30', note: '3% add-to-cart rate', color: 'text-violet-400' },
+            { label: 'Purchases (1.5% CR)', value: '15', note: '× $67 AOV = $1,005', color: 'text-purple-400' },
+            { label: 'With Bumps + Upsells', value: '≈ $1,400', note: '40% bump, 20% upsell', color: 'text-green-400' },
+        ],
+        revenueSummary: { title: 'Example: 1,000 Visitors → E-commerce Revenue', total: '≈ $1,400', perUnitLabel: 'Revenue Per 100 Visitors', perUnit: '$140', note: '15 base purchases × $67 + 40% order bump take-rate + 20% upsell take-rate ≈ $1,400. Abandoned cart recovery (10–15% recovery rate) adds another $100–$150 on top.' },
     },
 ];
 
